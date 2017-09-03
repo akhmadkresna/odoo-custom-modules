@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    	<!-- new id name for your new xml record with ir.ui.view model -->
       <record id="view_product_form" model="ir.ui.view">
+      	<!-- new name for your new view record -->
 		<field name="name">product.form.inherit</field>
+		<!-- object of the view -->
 		<field name="model">product.template</field>
+		<!-- inherit id is as view name you want to inherit. we can get it from edit form view wizard like i showed above -->
 		<field name="inherit_id" ref="product.product_template_only_form_view" />
 		<field name="arch" type="xml">
+		<!-- place your new custom after 'barcode' field -->
 		  <field name="barcode" position="after">
+		    
 		    <field name="custom_field"/>
 		    
 		  </field>
