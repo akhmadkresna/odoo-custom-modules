@@ -3,17 +3,15 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'Export Record on Filtered Tree',
-    'version': '10.0.1.0.0',
-    "author": "Portcities",
-    "maintainer": "Portcities",
-    "website": "http://portcities.net",
+    'name': 'JS module template',
+    'version': '1.0',
+    "author": "Akhmad kresna",
     "license": "LGPL-3",
-    'category': 'Technical Settings',
+    'category': 'web',
     'depends': [
         'web',
     ],
-    'summary': 'Export Records on Filtered Treeview',
+    'summary': 'Just template module',
     'data': [
         'views/templates.xml',
     ],

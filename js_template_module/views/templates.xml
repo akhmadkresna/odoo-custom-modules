@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <template id="assets_backend" name="export_on_filter" inherit_id="web.assets_backend">
+        <template id="assets_backend" name="new_name" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/export_on_filter/static/src/js/export_on_filter.js"></script>
+                <script type="text/javascript" src="/js_template_module/static/src/js/example.js"></script>
             </xpath>
         </template>
     </data>
