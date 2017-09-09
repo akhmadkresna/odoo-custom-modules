@@ -3,11 +3,11 @@ from openerp import models, fields, api
 
 # declare new pbject/class. "productTemplate" is a new name.
 # you could name it as you want
-class productTemplate(models.Model):
+class SaleOrder(models.Model):
 	# inherit odoo object where you want add a new field
-    _inherit = 'product.template'
+    _inherit = 'sale.order'
 
     # declase your new field
-    custom_field = fields.Char('Custom field')
+    delivery_currier = fields.Char('Delivery Currier')
 
 

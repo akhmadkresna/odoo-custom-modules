@@ -2,18 +2,18 @@
 <openerp>
     <data>
     	<!-- new id name for your new xml record with ir.ui.view model -->
-      <record id="view_product_form" model="ir.ui.view">
+      <record id="delivery_currier_sale_form" model="ir.ui.view">
       	<!-- new name for your new view record -->
-		<field name="name">product.form.inherit</field>
+		<field name="name">delivery.currier.field</field>
 		<!-- object of the view -->
-		<field name="model">product.template</field>
+		<field name="model">sale.order</field>
 		<!-- inherit id is as view name you want to inherit. we can get it from edit form view wizard like i showed above -->
-		<field name="inherit_id" ref="product.product_template_only_form_view" />
+		<field name="inherit_id" ref="sale.view_order_form" />
 		<field name="arch" type="xml">
 		<!-- place your new custom after 'barcode' field -->
-		  <field name="barcode" position="after">
+		  <field name="payment_term_id" position="after">
 		    
-		    <field name="custom_field"/>
+		    <field name="delivery_currier"/>
 		    
 		  </field>
 		  
