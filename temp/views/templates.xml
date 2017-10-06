@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_hover_menu" name="new_css"
+                  inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/hover_dropdown/static/src/css/hover_menu.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>
