@@ -51,7 +51,7 @@
                 <field name="block_id"/>
                 <field name="division_id"/>
                 <field name="estate_id"/>
-                <filter string="This Year" name="this_year" domain="[('month', '&gt;=', (context_today().replace(month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Year" name="this_year" domain="[('month', '&gt;=', time.strftime('%Y-01-01'))]"/>
                 <group>
                     <filter string="Estate" name="group_estate" context="{'group_by': 'estate_id'}"/>
                     <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
