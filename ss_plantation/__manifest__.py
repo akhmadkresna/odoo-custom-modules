@@ -3,7 +3,7 @@
     "version": "20.0.1.0.0",
     "category": "Agriculture",
     "summary": "Oil palm estate: blocks, field work, harvest, weighbridge, pay, assets, mill, map and dashboards",
-    "author": "Portcities",
+    "author": "Seasoft",
     "depends": [
         "analytic",
         "hr",
