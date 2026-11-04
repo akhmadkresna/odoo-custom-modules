@@ -40,6 +40,11 @@ class SsPlantationBlockAssetWizard(models.TransientModel):
             raise UserError(self.env._("Only a mature block can be capitalised."))
         if block.asset_id:
             raise UserError(self.env._("Block %s already has an asset.", block.display_name))
+        if not self.account_asset_id.depreciation_model_id:
+            raise UserError(self.env._(
+                "Account %s has no depreciation model. Set one on the account "
+                "(Accounting > Configuration > Chart of Accounts) before capitalising a block.",
+                self.account_asset_id.display_name))
         move = self.env['account.move'].create({
             'move_type': 'entry',
             'journal_id': self.journal_id.id,

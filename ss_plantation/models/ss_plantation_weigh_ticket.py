@@ -110,6 +110,11 @@ class SsPlantationWeighTicket(models.Model):
     # ------------------------------------------------------------------
     # Confirmation
     # ------------------------------------------------------------------
+    def _kg_to_product_qty(self, product, kg):
+        """`kg` expressed in the stock unit of `product` (kg, tonne, ...)."""
+        kgm = self.env.ref('uom.product_uom_kgm')
+        return kgm._compute_quantity(kg, product.uom_id, round=False)
+
     def _check_ready(self):
         self.ensure_one()
         company = self.company_id
@@ -124,6 +129,14 @@ class SsPlantationWeighTicket(models.Model):
             raise UserError(self.env._("Choose the lot sold on ticket %s.", self.name))
         if self.payable_kg <= 0:
             raise UserError(self.env._("Ticket %s has no payable weight.", self.name))
+        try:
+            self._kg_to_product_qty(company.ss_ffb_product_id, 1.0)
+        except UserError:
+            raise UserError(self.env._(
+                "The FFB product %(product)s is counted in %(uom)s, which cannot be converted from "
+                "kilograms. Give it a weight unit such as kg or tonne.",
+                product=company.ss_ffb_product_id.display_name,
+                uom=company.ss_ffb_product_id.uom_id.display_name)) from None
 
     def action_confirm(self):
         for ticket in self.filtered(lambda t: t.state == 'draft'):
@@ -169,6 +182,7 @@ class SsPlantationWeighTicket(models.Model):
         warehouse = company.ss_warehouse_id
         product = company.ss_ffb_product_id
         lot = self._new_lot()
+        qty = self._kg_to_product_qty(product, self.payable_kg)
         picking = self.env['stock.picking'].create({
             'picking_type_id': warehouse.in_type_id.id,
             'location_id': company.ss_estate_location_id.id,
@@ -177,7 +191,7 @@ class SsPlantationWeighTicket(models.Model):
             'company_id': company.id,
             'move_ids': [Command.create({
                 'product_id': product.id,
-                'product_uom_qty': self.payable_kg,
+                'product_uom_qty': qty,
                 'uom_id': product.uom_id.id,
                 'location_id': company.ss_estate_location_id.id,
                 'location_dest_id': warehouse.lot_stock_id.id,
@@ -185,7 +199,7 @@ class SsPlantationWeighTicket(models.Model):
             })],
         })
         picking.action_confirm()
-        self._set_lot_and_validate(picking, lot, self.payable_kg)
+        self._set_lot_and_validate(picking, lot, qty)
         self.write({'lot_id': lot.id, 'picking_id': picking.id})
 
     def _confirm_purchase(self):
@@ -193,6 +207,7 @@ class SsPlantationWeighTicket(models.Model):
         company = self.company_id
         warehouse = company.ss_warehouse_id
         product = company.ss_ffb_product_id
+        qty = self._kg_to_product_qty(product, self.payable_kg)
         order = self.env['purchase.order'].create({
             'partner_id': self.partner_id.id,
             'company_id': company.id,
@@ -200,15 +215,15 @@ class SsPlantationWeighTicket(models.Model):
             'picking_type_id': warehouse.in_type_id.id,
             'order_line': [Command.create({
                 'product_id': product.id,
-                'product_qty': self.payable_kg,
+                'product_qty': qty,
                 'uom_id': product.uom_id.id,
-                'price_unit': self.unit_price,
+                'price_unit': self.unit_price / self._kg_to_product_qty(product, 1.0) if self.unit_price else 0.0,
             })],
         })
         order.button_confirm()
         picking = order.picking_ids[:1]
         lot = self._new_lot()
-        self._set_lot_and_validate(picking, lot, self.payable_kg)
+        self._set_lot_and_validate(picking, lot, qty)
         self.write({'lot_id': lot.id, 'picking_id': picking.id, 'purchase_id': order.id})
 
     def _confirm_sale(self):
@@ -217,6 +232,7 @@ class SsPlantationWeighTicket(models.Model):
         warehouse = company.ss_warehouse_id
         product = company.ss_ffb_product_id
         customer_location = self.partner_id.property_stock_customer
+        qty = self._kg_to_product_qty(product, self.payable_kg)
         picking = self.env['stock.picking'].create({
             'picking_type_id': warehouse.out_type_id.id,
             'partner_id': self.partner_id.id,
@@ -226,7 +242,7 @@ class SsPlantationWeighTicket(models.Model):
             'company_id': company.id,
             'move_ids': [Command.create({
                 'product_id': product.id,
-                'product_uom_qty': self.payable_kg,
+                'product_uom_qty': qty,
                 'uom_id': product.uom_id.id,
                 'location_id': warehouse.lot_stock_id.id,
                 'location_dest_id': customer_location.id,
@@ -234,7 +250,7 @@ class SsPlantationWeighTicket(models.Model):
             })],
         })
         picking.action_confirm()
-        self._set_lot_and_validate(picking, self.source_lot_id, self.payable_kg)
+        self._set_lot_and_validate(picking, self.source_lot_id, qty)
         self.write({'lot_id': self.source_lot_id.id, 'picking_id': picking.id})
 
     def action_cancel(self):

@@ -9,8 +9,12 @@ class TestBlockAsset(SsPlantationCommon):
 
     def _wizard(self, block):
         Account = self.env['account.account']
+        model = self.env['account.depreciation.model'].create({
+            'name': 'Plantation 25 years', 'method': 'linear', 'method_number': 25.0,
+            'method_period': '12', 'prorata_computation_type': 'constant_periods'})
         asset_account = Account.create({
-            'name': 'Mature plantation', 'code': 'SS150', 'account_type': 'asset_fixed'})
+            'name': 'Mature plantation', 'code': 'SS150', 'account_type': 'asset_fixed',
+            'depreciation_model_id': model.id})
         counterpart = Account.create({
             'name': 'Plantation development cost', 'code': 'SS151', 'account_type': 'asset_current'})
         journal = self.env['account.journal'].create({
@@ -38,3 +42,10 @@ class TestBlockAsset(SsPlantationCommon):
         self._wizard(self.block).action_create_asset()
         with self.assertRaises(UserError):
             self._wizard(self.block).action_create_asset()
+
+    def test_account_without_depreciation_model_is_refused(self):
+        wizard = self._wizard(self.block)
+        wizard.account_asset_id.depreciation_model_id = False
+        with self.assertRaisesRegex(UserError, "depreciation model"):
+            wizard.action_create_asset()
+        self.assertFalse(self.block.asset_id)
