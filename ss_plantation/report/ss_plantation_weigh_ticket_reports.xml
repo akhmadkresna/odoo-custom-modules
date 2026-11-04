@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_weigh_ticket" model="ir.actions.report">
+        <field name="name">Weigh Ticket</field>
+        <field name="model">ss.plantation.weigh.ticket</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ss_plantation.report_weigh_ticket</field>
+        <field name="print_report_name">'Weigh Ticket - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_ss_plantation_weigh_ticket"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_weigh_ticket">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Weigh Ticket <span t-field="o.name"/></h2>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <p><strong>Date:</strong> <span t-field="o.date"/></p>
+                                <p><strong>Direction:</strong> <span t-field="o.direction"/></p>
+                                <p t-if="o.partner_id"><strong>Partner:</strong> <span t-field="o.partner_id"/></p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Vehicle:</strong> <span t-field="o.plate"/></p>
+                                <p><strong>Driver:</strong> <span t-field="o.driver_name"/></p>
+                                <p><strong>Lot:</strong> <span t-field="o.lot_id"/></p>
+                            </div>
+                        </div>
+                        <table class="table table-sm mt-3">
+                            <tbody>
+                                <tr><td>Gross weight</td><td class="text-end"><span t-field="o.gross_kg"/> kg</td></tr>
+                                <tr><td>Tare weight</td><td class="text-end"><span t-field="o.tare_kg"/> kg</td></tr>
+                                <tr><td><strong>Net weight</strong></td><td class="text-end"><strong><span t-field="o.net_kg"/> kg</strong></td></tr>
+                                <tr t-foreach="o.grade_line_ids" t-as="g">
+                                    <td>Deduction: <span t-field="g.grade_type_id"/></td>
+                                    <td class="text-end">- <span t-field="g.deduction_kg"/> kg</td>
+                                </tr>
+                                <tr><td><strong>Payable weight</strong></td><td class="text-end"><strong><span t-field="o.payable_kg"/> kg</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p t-if="o.transport_ids">
+                            <strong>Transport notes:</strong>
+                            <t t-foreach="o.transport_ids" t-as="n"><span t-out="n.name"/> </t>
+                        </p>
+                        <div class="row mt-5">
+                            <div class="col-6 text-center">Driver<br/><br/><br/>________________</div>
+                            <div class="col-6 text-center">Weighbridge operator<br/><br/><br/>________________</div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

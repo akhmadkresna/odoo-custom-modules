@@ -1,0 +1,459 @@
+{
+ "version": "19.3.10",
+ "sheets": [
+  {
+   "id": "dashboard_sheet_id",
+   "name": "Dashboard",
+   "colNumber": 10,
+   "rowNumber": 95,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 136
+    }
+   },
+   "merges": [],
+   "cells": {},
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [
+    {
+     "id": "30ca76f9-3693-4ce8-ae8e-cb9285112033",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Activities done",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B2",
+      "humanize": true,
+      "chartId": "30ca76f9-3693-4ce8-ae8e-cb9285112033"
+     },
+     "offset": {
+      "x": 0,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "2a41d884-50f2-4f63-a979-67db98b99e6a",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Area or palms worked",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B3",
+      "humanize": true,
+      "chartId": "2a41d884-50f2-4f63-a979-67db98b99e6a"
+     },
+     "offset": {
+      "x": 229,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "5ac7fcc3-4a97-4df3-8b40-1e993c4a5873",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Man-days",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B4",
+      "humanize": true,
+      "chartId": "5ac7fcc3-4a97-4df3-8b40-1e993c4a5873"
+     },
+     "offset": {
+      "x": 458,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    }
+   ],
+   "tables": [],
+   "areGridLinesVisible": false,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "91a2cfc6-2c68-4fb7-a8be-ea30506085b1",
+   "name": "Data",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=_t(\"KPI\")",
+    "B1": "=_t(\"Current\")",
+    "C1": "=_t(\"Previous\")",
+    "A2": "Activities done",
+    "B2": "=PIVOT.VALUE(1,\"__count\")",
+    "A3": "Area or palms worked",
+    "B3": "=PIVOT.VALUE(1,\"quantity:sum\")",
+    "A4": "Man-days",
+    "B4": "=PIVOT.VALUE(1,\"man_days:sum\")"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "ca2de274-0869-4650-adf1-75abe9ee5e16",
+   "name": "By activity type",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(2,20,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "297e83c4-ce45-4313-b255-277cd8aa3433",
+   "name": "Inputs by product",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(3,100,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "52b81804-12e6-440f-bd4d-b73eded9daa2",
+   "name": "Store levels",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(4,200,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  }
+ ],
+ "styles": {},
+ "formats": {},
+ "borders": {},
+ "revisionId": "START_REVISION",
+ "uniqueFigureIds": true,
+ "settings": {
+  "locale": {
+   "name": "English (US)",
+   "code": "en_US",
+   "thousandsSeparator": ",",
+   "decimalSeparator": ".",
+   "dateFormat": "mm/dd/yyyy",
+   "timeFormat": "hh:mm:ss",
+   "formulaArgSeparator": ",",
+   "weekStart": 7
+  }
+ },
+ "pivots": {
+  "1": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "done"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    },
+    {
+     "id": "quantity:sum",
+     "fieldName": "quantity",
+     "aggregator": "sum"
+    },
+    {
+     "id": "man_days:sum",
+     "fieldName": "man_days",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.activity",
+   "name": "Activities",
+   "formulaId": "1",
+   "fieldMatching": {
+    "48697e6f-dbab-4482-9e9c-34b3e83447ac": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    },
+    "52c9b5b3-9d31-47c2-8ae2-454f5f9694d5": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "2": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "done"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    },
+    {
+     "id": "quantity:sum",
+     "fieldName": "quantity",
+     "aggregator": "sum"
+    },
+    {
+     "id": "man_days:sum",
+     "fieldName": "man_days",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.activity",
+   "name": "By activity type",
+   "formulaId": "2",
+   "fieldMatching": {
+    "48697e6f-dbab-4482-9e9c-34b3e83447ac": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    },
+    "52c9b5b3-9d31-47c2-8ae2-454f5f9694d5": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "type_id"
+    }
+   ]
+  },
+  "3": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "activity_id.state",
+     "=",
+     "done"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "qty:sum",
+     "fieldName": "qty",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.activity.input",
+   "name": "Inputs by product",
+   "formulaId": "3",
+   "fieldMatching": {
+    "48697e6f-dbab-4482-9e9c-34b3e83447ac": {
+     "chain": "activity_id.date",
+     "type": "date",
+     "offset": 0
+    },
+    "52c9b5b3-9d31-47c2-8ae2-454f5f9694d5": {
+     "chain": "activity_id.division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "product_id"
+    }
+   ]
+  },
+  "4": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "location_id.usage",
+     "=",
+     "internal"
+    ],
+    [
+     "product_id.is_storable",
+     "=",
+     true
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "quantity:sum",
+     "fieldName": "quantity",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "stock.quant",
+   "name": "Store levels",
+   "formulaId": "4",
+   "fieldMatching": {},
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "location_id"
+    },
+    {
+     "fieldName": "product_id"
+    }
+   ]
+  }
+ },
+ "pivotNextId": 5,
+ "customTableStyles": {},
+ "namedRanges": {},
+ "globalFilters": [
+  {
+   "id": "48697e6f-dbab-4482-9e9c-34b3e83447ac",
+   "type": "date",
+   "label": "Period"
+  },
+  {
+   "id": "52c9b5b3-9d31-47c2-8ae2-454f5f9694d5",
+   "type": "relation",
+   "label": "Division",
+   "defaultValueDisplayNames": [],
+   "modelName": "ss.plantation.division",
+   "includeChildren": false
+  }
+ ],
+ "lists": {},
+ "listNextId": 1,
+ "odooLinkReferences": {}
+}

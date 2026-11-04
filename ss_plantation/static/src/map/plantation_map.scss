@@ -1,0 +1,25 @@
+.o_ss_plantation_map {
+    .o_ss_map_canvas {
+        min-height: 400px;
+        z-index: 0;
+    }
+
+    .o_ss_map_swatch {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+    }
+}
+
+.o_ss_map_marker span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+}

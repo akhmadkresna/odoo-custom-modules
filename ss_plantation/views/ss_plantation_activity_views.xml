@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ss_plantation_activity_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.activity.list</field>
+        <field name="model">ss.plantation.activity</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="division_id"/>
+                <field name="block_id"/>
+                <field name="type_id"/>
+                <field name="quantity"/>
+                <field name="man_days" sum="Total"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-muted="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_activity_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.activity.form</field>
+        <field name="model">ss.plantation.activity</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_done" type="object" string="Done" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancel'"
+                            confirm="Cancelling a done activity returns its inputs to the store."/>
+                    <button name="action_draft" type="object" string="Set to Draft" invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="block_id"/>
+                            <field name="division_id"/>
+                            <field name="type_id"/>
+                        </group>
+                        <group>
+                            <field name="uom_basis" invisible="1"/>
+                            <field name="quantity" invisible="uom_basis == 'none'"/>
+                            <field name="man_days"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Inputs" name="inputs">
+                            <field name="input_line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Workers" name="workers">
+                            <field name="employee_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_activity_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.activity.search</field>
+        <field name="model">ss.plantation.activity</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="block_id"/>
+                <field name="division_id"/>
+                <field name="type_id"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <group>
+                    <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
+                    <filter string="Block" name="group_block" context="{'group_by': 'block_id'}"/>
+                    <filter string="Type" name="group_type" context="{'group_by': 'type_id'}"/>
+                    <filter string="Month" name="group_month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_activity_action" model="ir.actions.act_window">
+        <field name="name">Field Activities</field>
+        <field name="res_model">ss.plantation.activity</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

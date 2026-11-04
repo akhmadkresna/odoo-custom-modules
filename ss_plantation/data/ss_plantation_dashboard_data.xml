@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="spreadsheet_dashboard_group_plantation" model="spreadsheet.dashboard.group">
+        <field name="name">Plantation</field>
+        <field name="sequence">250</field>
+    </record>
+
+    <record id="spreadsheet_dashboard_owner" model="spreadsheet.dashboard">
+        <field name="name">Owner</field>
+        <field name="spreadsheet_binary_data" type="bytes" file="ss_plantation/data/files/owner_dashboard.json"/>
+        <field name="main_data_model_ids" eval="[Command.link(ref('model_ss_plantation_yield_report'))]"/>
+        <field name="dashboard_group_id" ref="spreadsheet_dashboard_group_plantation"/>
+        <field name="group_ids" eval="[Command.link(ref('group_plantation_manager'))]"/>
+        <field name="sequence">10</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="spreadsheet_dashboard_manager" model="spreadsheet.dashboard">
+        <field name="name">Estate Manager</field>
+        <field name="spreadsheet_binary_data" type="bytes" file="ss_plantation/data/files/manager_dashboard.json"/>
+        <field name="main_data_model_ids" eval="[Command.link(ref('model_ss_plantation_harvest_tally_line'))]"/>
+        <field name="dashboard_group_id" ref="spreadsheet_dashboard_group_plantation"/>
+        <field name="group_ids" eval="[Command.link(ref('group_plantation_user'))]"/>
+        <field name="sequence">20</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="spreadsheet_dashboard_weighbridge" model="spreadsheet.dashboard">
+        <field name="name">Weighbridge</field>
+        <field name="spreadsheet_binary_data" type="bytes" file="ss_plantation/data/files/weighbridge_dashboard.json"/>
+        <field name="main_data_model_ids" eval="[Command.link(ref('model_ss_plantation_weigh_ticket'))]"/>
+        <field name="dashboard_group_id" ref="spreadsheet_dashboard_group_plantation"/>
+        <field name="group_ids" eval="[Command.link(ref('group_plantation_weighbridge'))]"/>
+        <field name="sequence">30</field>
+        <field name="is_published">True</field>
+    </record>
+
+    <record id="spreadsheet_dashboard_inputs" model="spreadsheet.dashboard">
+        <field name="name">Stock and Inputs</field>
+        <field name="spreadsheet_binary_data" type="bytes" file="ss_plantation/data/files/inputs_dashboard.json"/>
+        <field name="main_data_model_ids" eval="[Command.link(ref('model_ss_plantation_activity'))]"/>
+        <field name="dashboard_group_id" ref="spreadsheet_dashboard_group_plantation"/>
+        <field name="group_ids" eval="[Command.link(ref('group_plantation_user'))]"/>
+        <field name="sequence">40</field>
+        <field name="is_published">True</field>
+    </record>
+</odoo>

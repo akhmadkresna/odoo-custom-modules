@@ -1,0 +1,84 @@
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+
+
+class SsPlantationTransport(models.Model):
+    _name = 'ss.plantation.transport'
+    _description = 'Plantation Transport Note'
+    _order = 'date desc, id desc'
+    _check_company_auto = True
+
+    name = fields.Char(readonly=True, copy=False, default='/')
+    date = fields.Date(required=True, default=fields.Date.context_today, index=True)
+    harvested_at = fields.Datetime(
+        string="Harvested At", default=fields.Datetime.now,
+        help="Time the earliest fruit on this load was cut. Used for the freshness check.")
+    division_id = fields.Many2one(
+        'ss.plantation.division', required=True, index=True, check_company=True, ondelete='restrict')
+    company_id = fields.Many2one(
+        'res.company', required=True, index=True, default=lambda self: self.env.company)
+    vehicle_id = fields.Many2one('fleet.vehicle')
+    plate = fields.Char(compute='_compute_plate', store=True, readonly=False)
+    driver_id = fields.Many2one('hr.employee', check_company=True)
+    line_ids = fields.One2many('ss.plantation.transport.line', 'transport_id', copy=True)
+    ticket_id = fields.Many2one(
+        'ss.plantation.weigh.ticket', string="Weigh Ticket", readonly=True, copy=False,
+        index='btree_not_null')
+    state = fields.Selection(
+        [('draft', "Draft"), ('sent', "Sent"), ('weighed', "Weighed"), ('cancel', "Cancelled")],
+        default='draft', required=True, index=True, copy=False)
+    bunch_total = fields.Integer(compute='_compute_totals', store=True)
+    est_weight_kg = fields.Float(compute='_compute_totals', store=True, digits=(16, 1))
+
+    @api.depends('vehicle_id')
+    def _compute_plate(self):
+        for note in self:
+            note.plate = note.vehicle_id.license_plate or note.plate
+
+    @api.depends('line_ids.bunches', 'line_ids.est_weight_kg')
+    def _compute_totals(self):
+        for note in self:
+            note.bunch_total = sum(note.line_ids.mapped('bunches'))
+            note.est_weight_kg = sum(note.line_ids.mapped('est_weight_kg'))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', '/') == '/':
+                vals['name'] = self.env['ir.sequence'].next_by_code('ss.plantation.transport') or '/'
+        return super().create(vals_list)
+
+    def action_send(self):
+        for note in self.filtered(lambda n: n.state == 'draft'):
+            if not note.line_ids:
+                raise UserError(self.env._("Transport note %s has no lines.", note.name))
+            note.state = 'sent'
+
+    def action_cancel(self):
+        if any(n.state == 'weighed' for n in self):
+            raise UserError(self.env._("A weighed transport note cannot be cancelled."))
+        self.state = 'cancel'
+
+    def action_draft(self):
+        self.filtered(lambda n: n.state == 'cancel').state = 'draft'
+
+
+class SsPlantationTransportLine(models.Model):
+    _name = 'ss.plantation.transport.line'
+    _description = 'Plantation Transport Line'
+    _check_company_auto = True
+
+    transport_id = fields.Many2one(
+        'ss.plantation.transport', required=True, ondelete='cascade', index=True)
+    company_id = fields.Many2one(related='transport_id.company_id', store=True)
+    block_id = fields.Many2one(
+        'ss.plantation.block', required=True, index=True, check_company=True)
+    bunches = fields.Integer(required=True)
+    est_weight_kg = fields.Float(compute='_compute_est_weight_kg', store=True, digits=(16, 1))
+
+    _bunches_positive = models.Constraint('CHECK(bunches > 0)', "Bunches must be positive.")
+
+    @api.depends('bunches', 'block_id.avg_bunch_weight_kg')
+    def _compute_est_weight_kg(self):
+        for line in self:
+            line.est_weight_kg = line.bunches * line.block_id.avg_bunch_weight_kg

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ss_plantation_yield_report_view_pivot" model="ir.ui.view">
+        <field name="name">ss.plantation.yield.report.pivot</field>
+        <field name="model">ss.plantation.yield.report</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="division_id" type="row"/>
+                <field name="month" type="col" interval="month"/>
+                <field name="bunches" type="measure"/>
+                <field name="est_weight_kg" type="measure"/>
+                <field name="weighed_kg" type="measure"/>
+                <field name="cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="ss_plantation_yield_report_view_graph" model="ir.ui.view">
+        <field name="name">ss.plantation.yield.report.graph</field>
+        <field name="model">ss.plantation.yield.report</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="month" interval="month"/>
+                <field name="weighed_kg" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="ss_plantation_yield_report_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.yield.report.list</field>
+        <field name="model">ss.plantation.yield.report</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="month"/>
+                <field name="estate_id"/>
+                <field name="division_id"/>
+                <field name="block_id"/>
+                <field name="bunches" sum="Bunches"/>
+                <field name="est_weight_kg" sum="Estimated kg"/>
+                <field name="weighed_kg" sum="Weighed kg"/>
+                <field name="cost" sum="Cost"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_yield_report_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.yield.report.search</field>
+        <field name="model">ss.plantation.yield.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="block_id"/>
+                <field name="division_id"/>
+                <field name="estate_id"/>
+                <filter string="This Year" name="this_year" domain="[('month', '&gt;=', (context_today().replace(month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter string="Estate" name="group_estate" context="{'group_by': 'estate_id'}"/>
+                    <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
+                    <filter string="Block" name="group_block" context="{'group_by': 'block_id'}"/>
+                    <filter string="Month" name="group_month" context="{'group_by': 'month:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_yield_report_action" model="ir.actions.act_window">
+        <field name="name">Yield and Cost</field>
+        <field name="res_model">ss.plantation.yield.report</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="context">{'search_default_this_year': 1}</field>
+    </record>
+</odoo>

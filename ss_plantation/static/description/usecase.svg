@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="690" viewBox="0 0 680 690" role="img" font-family="sans-serif"><title>Use case modul perkebunan dengan menu</title><desc>Tiga peran dan sebelas use case, masing-masing dengan menu Odoo tempat mengerjakannya.</desc>
+<rect x="0.5" y="0.5" width="679" height="689" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+<rect x="170" y="40" width="340" height="590" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="5 4"/>
+<text x="340" y="62" text-anchor="middle" font-size="14" font-weight="500" fill="#334155">Modul Manajemen Perkebunan</text>
+<g stroke="#64748b" stroke-width="1" fill="none">
+<line x1="82" y1="150" x2="214" y2="96"/><line x1="82" y1="150" x2="212" y2="146"/><line x1="82" y1="150" x2="214" y2="196"/>
+<line x1="82" y1="272" x2="212" y2="246"/>
+<line x1="598" y1="430" x2="466" y2="296"/><line x1="598" y1="430" x2="468" y2="346"/><line x1="598" y1="430" x2="466" y2="396"/><line x1="598" y1="430" x2="468" y2="446"/><line x1="598" y1="430" x2="468" y2="496"/><line x1="598" y1="430" x2="466" y2="546"/><line x1="598" y1="430" x2="466" y2="596"/>
+</g>
+<g fill="#dbeafe" stroke="#1d4ed8" stroke-width="1">
+<ellipse cx="340" cy="96" rx="128" ry="22"/><ellipse cx="340" cy="146" rx="128" ry="22"/><ellipse cx="340" cy="196" rx="128" ry="22"/><ellipse cx="340" cy="246" rx="128" ry="22"/><ellipse cx="340" cy="296" rx="128" ry="22"/><ellipse cx="340" cy="346" rx="128" ry="22"/><ellipse cx="340" cy="396" rx="128" ry="22"/><ellipse cx="340" cy="596" rx="128" ry="22"/>
+</g>
+<g fill="#fef3c7" stroke="#b45309" stroke-width="1"><ellipse cx="340" cy="446" rx="128" ry="22"/><ellipse cx="340" cy="496" rx="128" ry="22"/><ellipse cx="340" cy="546" rx="128" ry="22"/></g>
+<g text-anchor="middle" dominant-baseline="central">
+<g fill="#1e3a8a" font-size="13" font-weight="500"><text x="340" y="90">Catat aktivitas lapangan</text><text x="340" y="140">Catat tally panen</text><text x="340" y="190">Buat nota angkut</text><text x="340" y="240">Konfirmasi tiket timbang</text><text x="340" y="290">Koreksi tiket terkonfirmasi</text><text x="340" y="340">Kelola data master dan harga</text><text x="340" y="390">Jadikan blok mature</text><text x="340" y="590">Lihat laporan dan dasbor</text></g>
+<g fill="#78350f" font-size="13" font-weight="500"><text x="340" y="440">Kapitalisasi blok jadi aset</text><text x="340" y="490">Olah TBS di pabrik</text><text x="340" y="540">Hitung gaji panen</text></g>
+<g fill="#475569" font-size="11"><text x="340" y="106">Operasional &gt; Aktivitas Lapangan</text><text x="340" y="156">Operasional &gt; Tally Panen</text><text x="340" y="206">Operasional &gt; Nota Angkut</text><text x="340" y="256">Operasional &gt; Tiket Timbang</text><text x="340" y="306">Tiket Timbang (hak manajer)</text><text x="340" y="356">Data Master, Konfigurasi</text><text x="340" y="406">Data Master &gt; Blok</text><text x="340" y="456">Form blok &gt; Kapitalisasi sebagai Aset</text><text x="340" y="506">Manufaktur &gt; Order Produksi</text><text x="340" y="556">Penggajian &gt; Hitung Gaji Panen</text><text x="340" y="606">Laporan, Dasbor, Peta, Rasio Ekstraksi</text></g>
+</g>
+<g stroke="#334155" stroke-width="1.5" fill="none" stroke-linecap="round">
+<circle cx="60" cy="122" r="9" fill="#ffffff"/><line x1="60" y1="131" x2="60" y2="162"/><line x1="42" y1="142" x2="78" y2="142"/><line x1="60" y1="162" x2="46" y2="184"/><line x1="60" y1="162" x2="74" y2="184"/>
+<circle cx="60" cy="244" r="9" fill="#ffffff"/><line x1="60" y1="253" x2="60" y2="284"/><line x1="42" y1="264" x2="78" y2="264"/><line x1="60" y1="284" x2="46" y2="306"/><line x1="60" y1="284" x2="74" y2="306"/>
+<circle cx="620" cy="402" r="9" fill="#ffffff"/><line x1="620" y1="411" x2="620" y2="442"/><line x1="602" y1="422" x2="638" y2="422"/><line x1="620" y1="442" x2="606" y2="464"/><line x1="620" y1="442" x2="634" y2="464"/>
+</g>
+<g font-size="13" text-anchor="middle" fill="#0f172a"><text x="60" y="202">Petugas</text><text x="60" y="324">Operator timbang</text><text x="620" y="482">Manajer</text></g>
+<g font-size="12" fill="#475569"><rect x="170" y="656" width="14" height="10" rx="2" fill="#dbeafe" stroke="#1d4ed8"/><text x="190" y="665">Fitur inti</text><rect x="270" y="656" width="14" height="10" rx="2" fill="#fef3c7" stroke="#b45309"/><text x="290" y="665">Fitur opsional (Aset, Pabrik, Gaji panen)</text></g>
+</svg>

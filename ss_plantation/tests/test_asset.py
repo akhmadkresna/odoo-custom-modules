@@ -1,0 +1,40 @@
+from odoo.exceptions import UserError
+from odoo.tests import tagged
+
+from .common import SsPlantationCommon
+
+
+@tagged('post_install', '-at_install')
+class TestBlockAsset(SsPlantationCommon):
+
+    def _wizard(self, block):
+        Account = self.env['account.account']
+        asset_account = Account.create({
+            'name': 'Mature plantation', 'code': 'SS150', 'account_type': 'asset_fixed'})
+        counterpart = Account.create({
+            'name': 'Plantation development cost', 'code': 'SS151', 'account_type': 'asset_current'})
+        journal = self.env['account.journal'].create({
+            'name': 'Plantation misc', 'code': 'SSPM', 'type': 'general'})
+        return self.env['ss.plantation.block.asset.wizard'].create({
+            'block_id': block.id, 'name': 'Block asset', 'original_value': 1000000.0,
+            'account_asset_id': asset_account.id, 'counterpart_account_id': counterpart.id,
+            'journal_id': journal.id,
+        })
+
+    def test_mature_wizard_creates_asset(self):
+        wizard = self._wizard(self.block)
+        wizard.action_create_asset()
+        asset = self.block.asset_id
+        self.assertTrue(asset)
+        self.assertEqual(asset.original_value, 1000000.0)
+        self.assertEqual(asset.state, 'draft')
+
+    def test_immature_block_cannot_be_capitalised(self):
+        block = self._make_block('TC01', 18.0, stage='immature')
+        with self.assertRaises(UserError):
+            self._wizard(block).action_create_asset()
+
+    def test_block_capitalised_once(self):
+        self._wizard(self.block).action_create_asset()
+        with self.assertRaises(UserError):
+            self._wizard(self.block).action_create_asset()

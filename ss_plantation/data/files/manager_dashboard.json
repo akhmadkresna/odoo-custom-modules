@@ -1,0 +1,660 @@
+{
+ "version": "19.3.10",
+ "sheets": [
+  {
+   "id": "dashboard_sheet_id",
+   "name": "Dashboard",
+   "colNumber": 10,
+   "rowNumber": 95,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 136
+    }
+   },
+   "merges": [],
+   "cells": {},
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [
+    {
+     "id": "ca0fccbc-d90a-4884-90af-0db3712eef53",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Ripe bunches",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B2",
+      "humanize": true,
+      "chartId": "ca0fccbc-d90a-4884-90af-0db3712eef53",
+      "baseline": "Data!C2"
+     },
+     "offset": {
+      "x": 0,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "437c6176-58cf-4f1b-bda6-a0ad061ef85b",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Estimated weight (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B3",
+      "humanize": true,
+      "chartId": "437c6176-58cf-4f1b-bda6-a0ad061ef85b",
+      "baseline": "Data!C3"
+     },
+     "offset": {
+      "x": 229,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "a6c27d69-60bd-4b95-a7cf-8be597cdb224",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Unripe bunches cut",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B4",
+      "humanize": true,
+      "chartId": "a6c27d69-60bd-4b95-a7cf-8be597cdb224"
+     },
+     "offset": {
+      "x": 458,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "8f0394c7-015e-4163-b384-5db3726ffabf",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Tickets over freshness limit",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B6",
+      "humanize": true,
+      "chartId": "8f0394c7-015e-4163-b384-5db3726ffabf"
+     },
+     "offset": {
+      "x": 0,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "e69fef78-f736-4526-b410-3342d444652c",
+     "col": 0,
+     "row": 0,
+     "offset": {
+      "x": 0,
+      "y": 243
+     },
+     "width": 688,
+     "height": 320,
+     "tag": "carousel",
+     "data": {
+      "chartDefinitions": {
+       "a8b98b2c-2442-4a6b-95c0-4249cca49402": {
+        "type": "bar",
+        "legendPosition": "none",
+        "title": {},
+        "aggregated": false,
+        "showValues": false,
+        "humanize": true,
+        "dataSource": {
+         "labelRange": "Daily harvest!A2:A61",
+         "type": "range",
+         "dataSets": [
+          {
+           "dataSetId": "0",
+           "dataRange": "Daily harvest!B2:B61"
+          }
+         ],
+         "dataSetsHaveTitle": false
+        },
+        "dataSetStyles": {
+         "0": {}
+        }
+       }
+      },
+      "title": {
+       "text": "Estimated harvest per day (kg)",
+       "fontSize": 16,
+       "bold": true,
+       "color": "#01666B"
+      },
+      "items": [
+       {
+        "type": "chart",
+        "chartId": "a8b98b2c-2442-4a6b-95c0-4249cca49402",
+        "title": "Estimated harvest per day (kg)"
+       }
+      ],
+      "fieldMatching": {}
+     }
+    }
+   ],
+   "tables": [],
+   "areGridLinesVisible": false,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "db62bd3f-99ab-4ac2-bbb3-9758c0ebfbb7",
+   "name": "Data",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=_t(\"KPI\")",
+    "B1": "=_t(\"Current\")",
+    "C1": "=_t(\"Previous\")",
+    "A2": "Ripe bunches",
+    "B2": "=PIVOT.VALUE(1,\"bunches_ripe:sum\")",
+    "C2": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"bunches_ripe:sum\"),\"N/A\")",
+    "A3": "Estimated weight (kg)",
+    "B3": "=PIVOT.VALUE(1,\"est_weight_kg:sum\")",
+    "C3": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"est_weight_kg:sum\"),\"N/A\")",
+    "A4": "Unripe bunches cut",
+    "B4": "=PIVOT.VALUE(1,\"bunches_unripe:sum\")",
+    "A5": "Tally lines",
+    "B5": "=SUM(PIVOT.VALUE(3,\"__count\"))",
+    "A6": "Tickets over freshness limit",
+    "B6": "=PIVOT.VALUE(4,\"__count\")"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "501e3323-6794-4717-bad8-56d92674408a",
+   "name": "Daily harvest",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(5,60,false,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "737e9a48-0e51-475f-bba3-4335cbc21f31",
+   "name": "Per harvester",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(6,100,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "a8024480-7860-4287-8dcd-c2581eb19c5e",
+   "name": "Blocks not harvested",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=ODOO.LIST(1,100)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  }
+ ],
+ "styles": {},
+ "formats": {},
+ "borders": {},
+ "revisionId": "START_REVISION",
+ "uniqueFigureIds": true,
+ "settings": {
+  "locale": {
+   "name": "English (US)",
+   "code": "en_US",
+   "thousandsSeparator": ",",
+   "decimalSeparator": ".",
+   "dateFormat": "mm/dd/yyyy",
+   "timeFormat": "hh:mm:ss",
+   "formulaArgSeparator": ",",
+   "weekStart": 7
+  }
+ },
+ "pivots": {
+  "1": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "tally_state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "bunches_ripe:sum",
+     "fieldName": "bunches_ripe",
+     "aggregator": "sum"
+    },
+    {
+     "id": "est_weight_kg:sum",
+     "fieldName": "est_weight_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "bunches_unripe:sum",
+     "fieldName": "bunches_unripe",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.harvest.tally.line",
+   "name": "Harvest",
+   "formulaId": "1",
+   "fieldMatching": {
+    "322414c6-541d-481a-b70a-418c45a782df": {
+     "chain": "tally_date",
+     "type": "date",
+     "offset": 0
+    },
+    "c4befa43-07b7-4dad-9fc0-d27523a9427f": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "2": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "tally_state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "bunches_ripe:sum",
+     "fieldName": "bunches_ripe",
+     "aggregator": "sum"
+    },
+    {
+     "id": "est_weight_kg:sum",
+     "fieldName": "est_weight_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.harvest.tally.line",
+   "name": "Harvest, previous",
+   "formulaId": "2",
+   "fieldMatching": {
+    "322414c6-541d-481a-b70a-418c45a782df": {
+     "chain": "tally_date",
+     "type": "date",
+     "offset": -1
+    },
+    "c4befa43-07b7-4dad-9fc0-d27523a9427f": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "3": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "tally_state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    }
+   ],
+   "model": "ss.plantation.harvest.tally.line",
+   "name": "Harvesters",
+   "formulaId": "3",
+   "fieldMatching": {
+    "322414c6-541d-481a-b70a-418c45a782df": {
+     "chain": "tally_date",
+     "type": "date",
+     "offset": 0
+    },
+    "c4befa43-07b7-4dad-9fc0-d27523a9427f": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "harvester_id"
+    }
+   ]
+  },
+  "4": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "too_stale",
+     "=",
+     true
+    ],
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "Stale tickets",
+   "formulaId": "4",
+   "fieldMatching": {
+    "322414c6-541d-481a-b70a-418c45a782df": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "5": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "tally_state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "est_weight_kg:sum",
+     "fieldName": "est_weight_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.harvest.tally.line",
+   "name": "Daily",
+   "formulaId": "5",
+   "fieldMatching": {
+    "c4befa43-07b7-4dad-9fc0-d27523a9427f": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "tally_date",
+     "granularity": "day"
+    }
+   ]
+  },
+  "6": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "tally_state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "bunches_ripe:sum",
+     "fieldName": "bunches_ripe",
+     "aggregator": "sum"
+    },
+    {
+     "id": "est_weight_kg:sum",
+     "fieldName": "est_weight_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "bunches_unripe:sum",
+     "fieldName": "bunches_unripe",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.harvest.tally.line",
+   "name": "Per harvester",
+   "formulaId": "6",
+   "fieldMatching": {
+    "322414c6-541d-481a-b70a-418c45a782df": {
+     "chain": "tally_date",
+     "type": "date",
+     "offset": 0
+    },
+    "c4befa43-07b7-4dad-9fc0-d27523a9427f": {
+     "chain": "division_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "harvester_id"
+    }
+   ]
+  }
+ },
+ "pivotNextId": 7,
+ "customTableStyles": {},
+ "namedRanges": {},
+ "globalFilters": [
+  {
+   "id": "322414c6-541d-481a-b70a-418c45a782df",
+   "type": "date",
+   "label": "Period"
+  },
+  {
+   "id": "c4befa43-07b7-4dad-9fc0-d27523a9427f",
+   "type": "relation",
+   "label": "Division",
+   "defaultValueDisplayNames": [],
+   "modelName": "ss.plantation.division",
+   "includeChildren": false
+  }
+ ],
+ "lists": {
+  "1": {
+   "columns": [
+    {
+     "name": "code"
+    },
+    {
+     "name": "name"
+    },
+    {
+     "name": "division_id"
+    },
+    {
+     "name": "last_harvest_date"
+    },
+    {
+     "name": "area_ha"
+    }
+   ],
+   "domain": [
+    [
+     "stage",
+     "=",
+     "mature"
+    ]
+   ],
+   "model": "ss.plantation.block",
+   "context": {},
+   "orderBy": [
+    {
+     "name": "last_harvest_date",
+     "asc": true
+    }
+   ],
+   "id": "1",
+   "name": "Mature blocks by last harvest",
+   "fieldMatching": {},
+   "limit": 50
+  }
+ },
+ "listNextId": 2,
+ "odooLinkReferences": {}
+}

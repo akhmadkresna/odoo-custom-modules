@@ -1,0 +1,35 @@
+.o_ss_geojson {
+    .o_ss_geojson_map {
+        height: 380px;
+        width: 100%;
+        border: 1px solid var(--border-color, #ccc);
+        border-radius: 4px;
+        z-index: 0;
+    }
+
+    .o_ss_geojson_drawing {
+        cursor: crosshair;
+        outline: 2px solid #e65100;
+    }
+
+    .o_ss_geojson_handle {
+        background: #fff;
+        border: 2px solid #2e7d32;
+        border-radius: 50%;
+        cursor: grab;
+    }
+
+    .o_ss_geojson_draft_point span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #e65100;
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        border: 2px solid #fff;
+    }
+}

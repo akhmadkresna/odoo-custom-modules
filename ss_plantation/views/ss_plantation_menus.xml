@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="ss_plantation_menu_root" name="Plantation" sequence="60"
+              web_icon="ss_plantation,static/description/icon.png"
+              groups="ss_plantation.group_plantation_user"/>
+
+    <menuitem id="ss_plantation_menu_dashboards" name="Dashboards" parent="ss_plantation_menu_root" sequence="5"
+              action="spreadsheet_dashboard.ir_actions_dashboard_action"
+              groups="ss_plantation.group_plantation_user"/>
+
+    <menuitem id="ss_plantation_menu_map" name="Map" parent="ss_plantation_menu_root" sequence="8"
+              action="ss_plantation_map_action"/>
+
+    <!-- Operations -->
+    <menuitem id="ss_plantation_menu_operations" name="Operations" parent="ss_plantation_menu_root" sequence="10"/>
+    <menuitem id="ss_plantation_menu_activity" name="Field Activities" parent="ss_plantation_menu_operations"
+              action="ss_plantation_activity_action" sequence="10"/>
+    <menuitem id="ss_plantation_menu_tally" name="Harvest Tally" parent="ss_plantation_menu_operations"
+              action="ss_plantation_harvest_tally_action" sequence="20"/>
+    <menuitem id="ss_plantation_menu_transport" name="Transport Notes" parent="ss_plantation_menu_operations"
+              action="ss_plantation_transport_action" sequence="30"/>
+    <menuitem id="ss_plantation_menu_ticket" name="Weigh Tickets" parent="ss_plantation_menu_operations"
+              action="ss_plantation_weigh_ticket_action" sequence="40"/>
+
+    <!-- Mill -->
+    <menuitem id="ss_plantation_menu_mill" name="Mill" parent="ss_plantation_menu_root" sequence="20"
+              groups="ss_plantation.group_ss_feature_mill"/>
+    <menuitem id="ss_plantation_menu_extraction" name="Extraction Rates" parent="ss_plantation_menu_mill"
+              action="mrp_production_ss_extraction_action" sequence="10"/>
+
+    <!-- Payroll -->
+    <menuitem id="ss_plantation_menu_payroll" name="Payroll" parent="ss_plantation_menu_root" sequence="30"
+              groups="ss_plantation.group_ss_feature_payroll,ss_plantation.group_plantation_manager"/>
+    <menuitem id="ss_plantation_menu_compute_pay" name="Compute Harvest Pay" parent="ss_plantation_menu_payroll"
+              action="ss_plantation_harvest_pay_wizard_action" sequence="10"
+              groups="ss_plantation.group_plantation_manager"/>
+    <menuitem id="ss_plantation_menu_harvest_pay" name="Harvest Pay" parent="ss_plantation_menu_payroll"
+              action="ss_plantation_harvest_pay_action" sequence="20"
+              groups="ss_plantation.group_plantation_manager"/>
+    <menuitem id="ss_plantation_menu_pay_scheme" name="Pay Schemes" parent="ss_plantation_menu_payroll"
+              action="ss_plantation_pay_scheme_action" sequence="30"
+              groups="ss_plantation.group_plantation_manager"/>
+
+    <!-- Reporting -->
+    <menuitem id="ss_plantation_menu_reporting" name="Reporting" parent="ss_plantation_menu_root" sequence="40"/>
+    <menuitem id="ss_plantation_menu_yield" name="Yield and Cost" parent="ss_plantation_menu_reporting"
+              action="ss_plantation_yield_report_action" sequence="10"/>
+
+    <!-- Master data -->
+    <menuitem id="ss_plantation_menu_master" name="Master Data" parent="ss_plantation_menu_root" sequence="50"/>
+    <menuitem id="ss_plantation_menu_estate" name="Estates" parent="ss_plantation_menu_master"
+              action="ss_plantation_estate_action" sequence="10"/>
+    <menuitem id="ss_plantation_menu_division" name="Divisions" parent="ss_plantation_menu_master"
+              action="ss_plantation_division_action" sequence="20"/>
+    <menuitem id="ss_plantation_menu_block" name="Blocks" parent="ss_plantation_menu_master"
+              action="ss_plantation_block_action" sequence="30"/>
+    <menuitem id="ss_plantation_menu_landmark" name="Landmarks" parent="ss_plantation_menu_master"
+              action="ss_plantation_landmark_action" sequence="40"/>
+    <menuitem id="ss_plantation_menu_landmark_import" name="Import Landmarks" parent="ss_plantation_menu_master"
+              action="ss_plantation_landmark_import_action" sequence="45"
+              groups="ss_plantation.group_plantation_manager"/>
+
+    <!-- Configuration -->
+    <menuitem id="ss_plantation_menu_config" name="Configuration" parent="ss_plantation_menu_root" sequence="90"
+              groups="ss_plantation.group_plantation_manager"/>
+    <menuitem id="ss_plantation_menu_settings" name="Settings" parent="ss_plantation_menu_config"
+              action="ss_plantation_settings_action" sequence="10" groups="base.group_system"/>
+    <menuitem id="ss_plantation_menu_activity_type" name="Activity Types" parent="ss_plantation_menu_config"
+              action="ss_plantation_activity_type_action" sequence="20"/>
+    <menuitem id="ss_plantation_menu_landmark_type" name="Landmark Types" parent="ss_plantation_menu_config"
+              action="ss_plantation_landmark_type_action" sequence="30"/>
+    <menuitem id="ss_plantation_menu_grade_type" name="Grade Deductions" parent="ss_plantation_menu_config"
+              action="ss_plantation_grade_type_action" sequence="40"/>
+    <menuitem id="ss_plantation_menu_ffb_price" name="FFB Reference Prices" parent="ss_plantation_menu_config"
+              action="ss_plantation_ffb_price_action" sequence="50"/>
+</odoo>

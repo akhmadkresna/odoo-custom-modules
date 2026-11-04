@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ss_plantation.GeoJsonDraw">
+        <div class="o_ss_geojson w-100">
+            <t t-if="this.canEdit()">
+                <div t-if="this.state.drawing" class="alert alert-warning d-flex flex-wrap align-items-center gap-2 py-2 mb-1" role="status">
+                    <strong>Drawing</strong>
+                    <span t-if="this.kind() === 'point'">Click the map to place the point.</span>
+                    <span t-else="">
+                        Click the map to add points (<t t-out="this.state.count"/> added, at least <t t-out="this.minPoints()"/> needed), then press Finish.
+                    </span>
+                    <span class="ms-auto d-flex gap-1">
+                        <button type="button" class="btn btn-sm btn-secondary" t-att-disabled="!this.state.count" t-on-click="this.onUndo">Undo last point</button>
+                        <button type="button" class="btn btn-sm btn-primary" t-att-disabled="this.state.count &lt; this.minPoints()" t-on-click="this.onFinish">Finish</button>
+                        <button type="button" class="btn btn-sm btn-light" t-on-click="this.onCancel">Cancel</button>
+                    </span>
+                </div>
+                <div t-else="" class="o_ss_geojson_toolbar d-flex flex-wrap align-items-center gap-1 mb-1">
+                    <button type="button" class="btn btn-sm btn-primary" t-on-click="this.onStartDraw">
+                        <t t-if="this.kind() === 'point'">Place point</t>
+                        <t t-elif="this.hasShape()">Draw again</t>
+                        <t t-else="">Draw shape</t>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" t-att-disabled="!this.hasShape()" t-on-click="this.onClear">Clear</button>
+                    <button type="button" class="btn btn-sm btn-secondary" t-on-click="this.onToggleImport">Paste GeoJSON</button>
+                    <span class="text-muted small ms-2">
+                        <t t-if="this.hasShape()">Drag a point to move it. Click a point to remove it. "Draw again" replaces the shape.</t>
+                        <t t-else="">No shape yet. Press <em>Draw shape</em>, then click the map.</t>
+                    </span>
+                </div>
+            </t>
+            <div t-if="this.state.importing" class="mb-1">
+                <textarea class="form-control font-monospace" rows="4" t-ref="this.importRef"
+                          placeholder="Paste a GeoJSON geometry, Feature or FeatureCollection"/>
+                <button type="button" class="btn btn-sm btn-primary mt-1" t-on-click="this.onApplyImport">Apply</button>
+            </div>
+            <div class="text-danger small mb-1" t-if="this.state.message" t-out="this.state.message"/>
+            <div class="o_ss_geojson_map" t-ref="this.mapRef"/>
+        </div>
+    </t>
+</templates>

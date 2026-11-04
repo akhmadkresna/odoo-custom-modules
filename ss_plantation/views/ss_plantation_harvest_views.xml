@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Harvest tally -->
+    <record id="ss_plantation_harvest_tally_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.tally.list</field>
+        <field name="model">ss.plantation.harvest.tally</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="division_id"/>
+                <field name="clerk_id"/>
+                <field name="bunch_total" sum="Bunches"/>
+                <field name="est_weight_kg" sum="Estimated kg"/>
+                <field name="state" widget="badge" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_tally_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.tally.form</field>
+        <field name="model">ss.plantation.harvest.tally</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancel'"/>
+                    <button name="action_draft" type="object" string="Set to Draft" invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="division_id"/>
+                        </group>
+                        <group>
+                            <field name="clerk_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="state != 'draft'">
+                        <list editable="bottom">
+                            <field name="division_id" column_invisible="1"/>
+                            <field name="block_id"/>
+                            <field name="harvester_id"/>
+                            <field name="bunches_ripe" sum="Ripe"/>
+                            <field name="bunches_overripe" sum="Overripe"/>
+                            <field name="bunches_unripe" sum="Unripe"/>
+                            <field name="loose_fruit_kg" sum="Loose kg"/>
+                            <field name="loose_left_kg" optional="hide"/>
+                            <field name="est_weight_kg" sum="Estimated kg"/>
+                        </list>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="bunch_total"/>
+                        <field name="est_weight_kg"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_tally_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.tally.search</field>
+        <field name="model">ss.plantation.harvest.tally</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="division_id"/>
+                <field name="clerk_id"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <group>
+                    <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_tally_action" model="ir.actions.act_window">
+        <field name="name">Harvest Tally</field>
+        <field name="res_model">ss.plantation.harvest.tally</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="ss_plantation_harvest_tally_line_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.tally.line.list</field>
+        <field name="model">ss.plantation.harvest.tally.line</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0">
+                <field name="tally_date"/>
+                <field name="tally_id"/>
+                <field name="block_id"/>
+                <field name="harvester_id"/>
+                <field name="bunches_ripe" sum="Ripe"/>
+                <field name="est_weight_kg" sum="Estimated kg"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Transport note -->
+    <record id="ss_plantation_transport_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.transport.list</field>
+        <field name="model">ss.plantation.transport</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="division_id"/>
+                <field name="plate"/>
+                <field name="bunch_total" sum="Bunches"/>
+                <field name="est_weight_kg" sum="Estimated kg"/>
+                <field name="ticket_id"/>
+                <field name="state" widget="badge" decoration-success="state == 'weighed'" decoration-info="state == 'sent'" decoration-muted="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_transport_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.transport.form</field>
+        <field name="model">ss.plantation.transport</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_send" type="object" string="Send to Mill" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state in ('cancel', 'weighed')"/>
+                    <button name="action_draft" type="object" string="Set to Draft" invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,weighed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="harvested_at"/>
+                            <field name="division_id"/>
+                        </group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="plate"/>
+                            <field name="driver_id"/>
+                            <field name="ticket_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" readonly="state not in ('draft', 'sent')">
+                        <list editable="bottom">
+                            <field name="block_id"/>
+                            <field name="bunches" sum="Bunches"/>
+                            <field name="est_weight_kg" sum="Estimated kg"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_transport_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.transport.search</field>
+        <field name="model">ss.plantation.transport</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="plate"/>
+                <field name="division_id"/>
+                <filter string="Not Weighed" name="open" domain="[('state', 'in', ('draft', 'sent'))]"/>
+                <group>
+                    <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_transport_action" model="ir.actions.act_window">
+        <field name="name">Transport Notes</field>
+        <field name="res_model">ss.plantation.transport</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Weigh ticket -->
+    <record id="ss_plantation_weigh_ticket_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.weigh.ticket.list</field>
+        <field name="model">ss.plantation.weigh.ticket</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="too_stale">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="direction"/>
+                <field name="partner_id"/>
+                <field name="plate"/>
+                <field name="net_kg" sum="Net kg"/>
+                <field name="payable_kg" sum="Payable kg"/>
+                <field name="delay_hours" optional="show"/>
+                <field name="too_stale" column_invisible="1"/>
+                <field name="amount_total" sum="Total" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_weigh_ticket_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.weigh.ticket.form</field>
+        <field name="model">ss.plantation.weigh.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state != 'draft'"/>
+                    <button name="action_draft" type="object" string="Set to Draft" invisible="state != 'cancel'"/>
+                    <button name="%(ss_plantation.action_report_weigh_ticket)d" type="action" string="Print" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_picking" type="object" class="oe_stat_button" invisible="not picking_id">
+                            <div class="o_stat_info"><span class="o_stat_text">Stock Transfer</span></div>
+                        </button>
+                        <button name="action_view_tally_lines" type="object" class="oe_stat_button" invisible="direction != 'estate_in'">
+                            <div class="o_stat_info"><span class="o_stat_text">Tally Lines</span></div>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <div class="alert alert-warning" role="alert" invisible="not too_stale">
+                        The fruit waited <field name="delay_hours" class="oe_inline"/> hours between harvest and weighing.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="direction"/>
+                            <field name="partner_id" required="direction != 'estate_in'"/>
+                            <field name="date"/>
+                            <field name="source_lot_id" invisible="direction != 'out'" required="direction == 'out'"/>
+                        </group>
+                        <group>
+                            <field name="plate"/>
+                            <field name="driver_name"/>
+                            <field name="weigh_in_at"/>
+                            <field name="weigh_out_at"/>
+                            <field name="too_stale" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Weights">
+                        <group>
+                            <field name="gross_kg"/>
+                            <field name="tare_kg"/>
+                            <field name="net_kg"/>
+                        </group>
+                        <group>
+                            <field name="deduction_kg"/>
+                            <field name="payable_kg" class="fw-bold"/>
+                            <field name="unit_price" invisible="direction == 'estate_in'"/>
+                            <field name="amount_total" invisible="direction == 'estate_in'"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Grade Deductions" name="grades">
+                            <field name="grade_line_ids">
+                                <list editable="bottom">
+                                    <field name="grade_type_id"/>
+                                    <field name="percent"/>
+                                    <field name="kg"/>
+                                    <field name="deduction_kg" sum="Total"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Transport Notes" name="transport" invisible="direction != 'estate_in'">
+                            <field name="transport_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="division_id"/>
+                                    <field name="bunch_total"/>
+                                    <field name="est_weight_kg"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Traceability" name="trace">
+                            <group>
+                                <field name="lot_id"/>
+                                <field name="picking_id"/>
+                                <field name="purchase_id" invisible="not purchase_id"/>
+                                <field name="note"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_weigh_ticket_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.weigh.ticket.search</field>
+        <field name="model">ss.plantation.weigh.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="plate"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Too Stale" name="stale" domain="[('too_stale', '=', True)]"/>
+                <separator/>
+                <filter string="Own Estate" name="estate_in" domain="[('direction', '=', 'estate_in')]"/>
+                <filter string="Bought" name="third_party_in" domain="[('direction', '=', 'third_party_in')]"/>
+                <filter string="Sold" name="out" domain="[('direction', '=', 'out')]"/>
+                <group>
+                    <filter string="Direction" name="group_direction" context="{'group_by': 'direction'}"/>
+                    <filter string="Partner" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_weigh_ticket_view_pivot" model="ir.ui.view">
+        <field name="name">ss.plantation.weigh.ticket.pivot</field>
+        <field name="model">ss.plantation.weigh.ticket</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="date" type="row" interval="month"/>
+                <field name="direction" type="col"/>
+                <field name="payable_kg" type="measure"/>
+                <field name="amount_total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="ss_plantation_weigh_ticket_action" model="ir.actions.act_window">
+        <field name="name">Weigh Tickets</field>
+        <field name="res_model">ss.plantation.weigh.ticket</field>
+        <field name="view_mode">list,form,pivot</field>
+    </record>
+
+    <!-- Grade types and prices -->
+    <record id="ss_plantation_grade_type_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.grade.type.list</field>
+        <field name="model">ss.plantation.grade.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="default_percent"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_grade_type_action" model="ir.actions.act_window">
+        <field name="name">Grade Deduction Types</field>
+        <field name="res_model">ss.plantation.grade.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="ss_plantation_ffb_price_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.ffb.price.list</field>
+        <field name="model">ss.plantation.ffb.price</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="date_from"/>
+                <field name="price_per_kg"/>
+                <field name="partner_category_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_ffb_price_action" model="ir.actions.act_window">
+        <field name="name">FFB Reference Prices</field>
+        <field name="res_model">ss.plantation.ffb.price</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

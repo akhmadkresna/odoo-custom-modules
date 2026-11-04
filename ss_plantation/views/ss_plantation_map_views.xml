@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ss_plantation_map_action" model="ir.actions.client">
+        <field name="name">Plantation Map</field>
+        <field name="tag">ss_plantation_map</field>
+    </record>
+</odoo>

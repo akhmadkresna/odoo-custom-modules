@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Estate -->
+    <record id="ss_plantation_estate_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.estate.list</field>
+        <field name="model">ss.plantation.estate</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="division_count"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_estate_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.estate.form</field>
+        <field name="model">ss.plantation.estate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Divisions" name="divisions">
+                            <field name="division_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="manager_id"/>
+                                    <field name="area_ha"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Boundary" name="boundary">
+                            <field name="boundary_geojson" widget="ss_geojson_draw" options="{'geometry': 'polygon'}" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_estate_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.estate.search</field>
+        <field name="model">ss.plantation.estate</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_estate_action" model="ir.actions.act_window">
+        <field name="name">Estates</field>
+        <field name="res_model">ss.plantation.estate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Division -->
+    <record id="ss_plantation_division_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.division.list</field>
+        <field name="model">ss.plantation.division</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="estate_id"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="manager_id"/>
+                <field name="block_count"/>
+                <field name="area_ha" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_division_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.division.form</field>
+        <field name="model">ss.plantation.division</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="estate_id"/>
+                        </group>
+                        <group>
+                            <field name="manager_id"/>
+                            <field name="store_location_id"/>
+                            <field name="area_ha"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Blocks" name="blocks">
+                            <field name="block_ids" readonly="1">
+                                <list>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="stage"/>
+                                    <field name="area_ha"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Boundary" name="boundary">
+                            <field name="boundary_geojson" widget="ss_geojson_draw" options="{'geometry': 'polygon'}" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_division_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.division.search</field>
+        <field name="model">ss.plantation.division</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="estate_id"/>
+                <group>
+                    <filter string="Estate" name="group_estate" context="{'group_by': 'estate_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_division_action" model="ir.actions.act_window">
+        <field name="name">Divisions</field>
+        <field name="res_model">ss.plantation.division</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Block -->
+    <record id="ss_plantation_block_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.block.list</field>
+        <field name="model">ss.plantation.block</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="estate_id" optional="show"/>
+                <field name="division_id"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="stage" widget="badge" decoration-info="stage == 'immature'" decoration-success="stage == 'mature'" decoration-warning="stage == 'replanting'"/>
+                <field name="planting_year" options="{'enable_formatting': false}"/>
+                <field name="area_ha" sum="Total"/>
+                <field name="stand_count" optional="hide"/>
+                <field name="avg_bunch_weight_kg" optional="hide"/>
+                <field name="last_harvest_date" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_block_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.block.form</field>
+        <field name="model">ss.plantation.block</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_mature" type="object" string="Set Mature" class="btn-primary" invisible="stage != 'immature'"/>
+                    <button name="%(ss_plantation.ss_plantation_block_asset_wizard_action)d" type="action" string="Capitalise as Asset"
+                            invisible="stage != 'mature' or asset_id" groups="ss_plantation.group_ss_feature_asset"
+                            context="{'default_block_id': id}"/>
+                    <field name="stage" widget="statusbar" statusbar_visible="immature,mature" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_cost" type="object" class="oe_stat_button">
+                            <field name="cost_total" widget="statinfo" string="Cost"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="division_id"/>
+                            <field name="estate_id"/>
+                        </group>
+                        <group>
+                            <label for="area_ha"/>
+                            <div class="o_row">
+                                <field name="area_ha"/>
+                                <span>ha</span>
+                                <button name="action_use_suggested_area" type="object" class="btn btn-link p-0"
+                                        invisible="not suggested_area_ha or suggested_area_ha == area_ha">
+                                    Use drawn area (<field name="suggested_area_ha" nolabel="1" class="oe_inline"/> ha)
+                                </button>
+                            </div>
+                            <field name="cost_per_ha"/>
+                            <field name="asset_id" invisible="not asset_id" groups="ss_plantation.group_ss_feature_asset"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planting" name="planting">
+                            <group>
+                                <group>
+                                    <field name="planting_date"/>
+                                    <field name="planting_year" options="{'enable_formatting': false}"/>
+                                    <field name="variety"/>
+                                </group>
+                                <group>
+                                    <field name="stand_count"/>
+                                    <field name="avg_bunch_weight_kg"/>
+                                    <field name="mature_date"/>
+                                    <field name="last_harvest_date"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Boundary" name="boundary">
+                            <field name="boundary_geojson" widget="ss_geojson_draw" options="{'geometry': 'polygon'}" nolabel="1"/>
+                            <group>
+                                <field name="latitude"/>
+                                <field name="longitude"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_block_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.block.search</field>
+        <field name="model">ss.plantation.block</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]" string="Block"/>
+                <field name="division_id"/>
+                <field name="estate_id"/>
+                <filter string="Immature" name="immature" domain="[('stage', '=', 'immature')]"/>
+                <filter string="Mature" name="mature" domain="[('stage', '=', 'mature')]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter string="Estate" name="group_estate" context="{'group_by': 'estate_id'}"/>
+                    <filter string="Division" name="group_division" context="{'group_by': 'division_id'}"/>
+                    <filter string="Stage" name="group_stage" context="{'group_by': 'stage'}"/>
+                    <filter string="Planting Year" name="group_year" context="{'group_by': 'planting_year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_block_action" model="ir.actions.act_window">
+        <field name="name">Blocks</field>
+        <field name="res_model">ss.plantation.block</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Activity types -->
+    <record id="ss_plantation_activity_type_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.activity.type.list</field>
+        <field name="model">ss.plantation.activity.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="uom_basis"/>
+                <field name="requires_inputs"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_activity_type_action" model="ir.actions.act_window">
+        <field name="name">Activity Types</field>
+        <field name="res_model">ss.plantation.activity.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Landmark types -->
+    <record id="ss_plantation_landmark_type_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.landmark.type.list</field>
+        <field name="model">ss.plantation.landmark.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="geometry_kind"/>
+                <field name="icon"/>
+                <field name="color" widget="color_picker"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_landmark_type_action" model="ir.actions.act_window">
+        <field name="name">Landmark Types</field>
+        <field name="res_model">ss.plantation.landmark.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Landmarks -->
+    <record id="ss_plantation_landmark_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.landmark.list</field>
+        <field name="model">ss.plantation.landmark</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="estate_id"/>
+                <field name="division_id"/>
+                <field name="latitude" optional="hide"/>
+                <field name="longitude" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_landmark_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.landmark.form</field>
+        <field name="model">ss.plantation.landmark</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="photo" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="name"/>
+                            <field name="type_id"/>
+                            <field name="geometry_kind" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="estate_id"/>
+                            <field name="division_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <field name="geometry_geojson" widget="ss_geojson_draw" options="{'geometry': 'auto', 'kind_field': 'geometry_kind'}" nolabel="1"/>
+                    <group>
+                        <field name="latitude"/>
+                        <field name="longitude"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_landmark_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.landmark.search</field>
+        <field name="model">ss.plantation.landmark</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="estate_id"/>
+                <group>
+                    <filter string="Type" name="group_type" context="{'group_by': 'type_id'}"/>
+                    <filter string="Estate" name="group_estate" context="{'group_by': 'estate_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_landmark_action" model="ir.actions.act_window">
+        <field name="name">Landmarks</field>
+        <field name="res_model">ss.plantation.landmark</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Landmark import wizard -->
+    <record id="ss_plantation_landmark_import_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.landmark.import.form</field>
+        <field name="model">ss.plantation.landmark.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="file" filename="filename"/>
+                    <field name="filename" invisible="1"/>
+                    <field name="type_id"/>
+                    <field name="estate_id"/>
+                </group>
+                <div class="text-muted">
+                    GeoJSON FeatureCollection (feature properties "name" and "type") or CSV with the columns name, type, lat, lon.
+                </div>
+                <footer>
+                    <button name="action_import" type="object" string="Import" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_landmark_import_action" model="ir.actions.act_window">
+        <field name="name">Import Landmarks</field>
+        <field name="res_model">ss.plantation.landmark.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Analytic plan: one account per block -->
+    <record id="analytic_plan_block" model="account.analytic.plan">
+        <field name="name">Plantation Block</field>
+    </record>
+
+    <!-- Sequences -->
+    <record id="seq_activity" model="ir.sequence">
+        <field name="name">Plantation Activity</field>
+        <field name="code">ss.plantation.activity</field>
+        <field name="prefix">ACT/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_harvest_tally" model="ir.sequence">
+        <field name="name">Plantation Harvest Tally</field>
+        <field name="code">ss.plantation.harvest.tally</field>
+        <field name="prefix">HT/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_transport" model="ir.sequence">
+        <field name="name">Plantation Transport Note</field>
+        <field name="code">ss.plantation.transport</field>
+        <field name="prefix">SPB/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_weigh_ticket" model="ir.sequence">
+        <field name="name">Plantation Weigh Ticket</field>
+        <field name="code">ss.plantation.weigh.ticket</field>
+        <field name="prefix">WT/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Virtual locations -->
+    <record id="location_consumption" model="stock.location">
+        <field name="name">Plantation Consumption</field>
+        <field name="usage">inventory</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="location_estate_harvest" model="stock.location">
+        <field name="name">Estate Harvest</field>
+        <field name="usage">production</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Activity types -->
+    <record id="activity_type_fertilising" model="ss.plantation.activity.type">
+        <field name="name">Fertilising</field>
+        <field name="code">FERT</field>
+        <field name="sequence">10</field>
+        <field name="requires_inputs" eval="True"/>
+    </record>
+    <record id="activity_type_spraying" model="ss.plantation.activity.type">
+        <field name="name">Spraying</field>
+        <field name="code">SPRAY</field>
+        <field name="sequence">20</field>
+        <field name="requires_inputs" eval="True"/>
+    </record>
+    <record id="activity_type_weeding" model="ss.plantation.activity.type">
+        <field name="name">Weeding</field>
+        <field name="code">WEED</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="activity_type_pruning" model="ss.plantation.activity.type">
+        <field name="name">Pruning</field>
+        <field name="code">PRUNE</field>
+        <field name="sequence">40</field>
+        <field name="uom_basis">palm</field>
+    </record>
+    <record id="activity_type_census" model="ss.plantation.activity.type">
+        <field name="name">Palm Census</field>
+        <field name="code">CENSUS</field>
+        <field name="sequence">50</field>
+        <field name="uom_basis">palm</field>
+    </record>
+    <record id="activity_type_road" model="ss.plantation.activity.type">
+        <field name="name">Road and Drain Maintenance</field>
+        <field name="code">ROAD</field>
+        <field name="sequence">60</field>
+        <field name="uom_basis">none</field>
+    </record>
+
+    <!-- Landmark types -->
+    <record id="landmark_type_mill" model="ss.plantation.landmark.type">
+        <field name="name">Mill</field>
+        <field name="sequence">10</field>
+        <field name="color">#7a3e9d</field>
+        <field name="icon">🏭</field>
+    </record>
+    <record id="landmark_type_office" model="ss.plantation.landmark.type">
+        <field name="name">Office</field>
+        <field name="sequence">20</field>
+        <field name="color">#1f6feb</field>
+        <field name="icon">🏢</field>
+    </record>
+    <record id="landmark_type_store" model="ss.plantation.landmark.type">
+        <field name="name">Store</field>
+        <field name="sequence">30</field>
+        <field name="color">#8a5a00</field>
+        <field name="icon">📦</field>
+    </record>
+    <record id="landmark_type_weighbridge" model="ss.plantation.landmark.type">
+        <field name="name">Weighbridge</field>
+        <field name="sequence">40</field>
+        <field name="color">#b3261e</field>
+        <field name="icon">⚖️</field>
+    </record>
+    <record id="landmark_type_tph" model="ss.plantation.landmark.type">
+        <field name="name">Collection Point (TPH)</field>
+        <field name="sequence">50</field>
+        <field name="color">#2e7d32</field>
+        <field name="icon">🧺</field>
+    </record>
+    <record id="landmark_type_bridge" model="ss.plantation.landmark.type">
+        <field name="name">Bridge</field>
+        <field name="sequence">60</field>
+        <field name="color">#5d4037</field>
+        <field name="icon">🌉</field>
+    </record>
+    <record id="landmark_type_road" model="ss.plantation.landmark.type">
+        <field name="name">Main Road</field>
+        <field name="sequence">70</field>
+        <field name="geometry_kind">line</field>
+        <field name="color">#6d6d6d</field>
+        <field name="icon">🛣️</field>
+    </record>
+    <record id="landmark_type_canal" model="ss.plantation.landmark.type">
+        <field name="name">Canal or Drain</field>
+        <field name="sequence">80</field>
+        <field name="geometry_kind">line</field>
+        <field name="color">#0277bd</field>
+        <field name="icon">〰️</field>
+    </record>
+    <record id="landmark_type_water" model="ss.plantation.landmark.type">
+        <field name="name">Water Body</field>
+        <field name="sequence">90</field>
+        <field name="geometry_kind">area</field>
+        <field name="color">#29b6f6</field>
+        <field name="icon">💧</field>
+    </record>
+    <record id="landmark_type_housing" model="ss.plantation.landmark.type">
+        <field name="name">Worker Housing</field>
+        <field name="sequence">100</field>
+        <field name="geometry_kind">area</field>
+        <field name="color">#ef6c00</field>
+        <field name="icon">🏘️</field>
+    </record>
+    <record id="landmark_type_hazard" model="ss.plantation.landmark.type">
+        <field name="name">Hazard</field>
+        <field name="sequence">110</field>
+        <field name="color">#d50000</field>
+        <field name="icon">⚠️</field>
+    </record>
+
+    <!-- Grade deductions -->
+    <record id="grade_unripe" model="ss.plantation.grade.type">
+        <field name="name">Unripe Bunches</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="grade_overripe" model="ss.plantation.grade.type">
+        <field name="name">Overripe or Rotten Bunches</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="grade_long_stalk" model="ss.plantation.grade.type">
+        <field name="name">Long Stalks</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="grade_dirt" model="ss.plantation.grade.type">
+        <field name="name">Dirt and Water</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="grade_empty_bunch" model="ss.plantation.grade.type">
+        <field name="name">Empty Bunches</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <!-- Products -->
+    <record id="product_ffb" model="product.product">
+        <field name="name">Fresh Fruit Bunches (FFB)</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True"/>
+        <field name="tracking">lot</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="True"/>
+    </record>
+    <record id="product_cpo" model="product.product">
+        <field name="name">Crude Palm Oil (CPO)</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+    </record>
+    <record id="product_kernel" model="product.product">
+        <field name="name">Palm Kernel</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+    </record>
+    <record id="product_shell" model="product.product">
+        <field name="name">Palm Shell</field>
+        <field name="type">consu</field>
+        <field name="is_storable" eval="True"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+    </record>
+</odoo>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ss_plantation_pay_scheme_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.pay.scheme.list</field>
+        <field name="model">ss.plantation.pay.scheme</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="mode"/>
+                <field name="rate_per_kg" optional="show"/>
+                <field name="basis_kg" optional="show"/>
+                <field name="bonus_per_kg" optional="show"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_pay_scheme_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.pay.scheme.form</field>
+        <field name="model">ss.plantation.pay.scheme</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="mode"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="rate_per_kg" invisible="mode != 'piece_rate'"/>
+                            <field name="basis_kg" invisible="mode != 'mixed'"/>
+                            <field name="bonus_per_kg" invisible="mode != 'mixed'"/>
+                            <field name="penalty_unripe"/>
+                            <field name="penalty_loose_left"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_pay_scheme_action" model="ir.actions.act_window">
+        <field name="name">Pay Schemes</field>
+        <field name="res_model">ss.plantation.pay.scheme</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="ss_plantation_harvest_pay_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.pay.list</field>
+        <field name="model">ss.plantation.harvest.pay</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="scheme_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="harvested_kg" sum="kg"/>
+                <field name="bonus_amount" sum="Bonus"/>
+                <field name="penalty_amount" sum="Penalty"/>
+                <field name="amount" sum="Total"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge" decoration-success="state == 'posted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_pay_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.pay.form</field>
+        <field name="model">ss.plantation.harvest.pay</field>
+        <field name="arch" type="xml">
+            <form edit="0">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="scheme_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="harvested_kg"/>
+                            <field name="bonus_amount"/>
+                            <field name="penalty_amount"/>
+                            <field name="amount"/>
+                            <field name="payslip_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_pay_action" model="ir.actions.act_window">
+        <field name="name">Harvest Pay</field>
+        <field name="res_model">ss.plantation.harvest.pay</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="ss_plantation_harvest_pay_wizard_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.pay.wizard.form</field>
+        <field name="model">ss.plantation.harvest.pay.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="employee_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_compute" type="object" string="Compute" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_harvest_pay_wizard_action" model="ir.actions.act_window">
+        <field name="name">Compute Harvest Pay</field>
+        <field name="res_model">ss.plantation.harvest.pay.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="hr_employee_view_form_inherit_ss_plantation" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.ss.plantation</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="ss_pay_scheme_id" groups="ss_plantation.group_ss_feature_payroll"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,671 @@
+{
+ "version": "19.3.10",
+ "sheets": [
+  {
+   "id": "dashboard_sheet_id",
+   "name": "Dashboard",
+   "colNumber": 10,
+   "rowNumber": 95,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 136
+    }
+   },
+   "merges": [],
+   "cells": {},
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [
+    {
+     "id": "ee405b60-12df-4398-a6cb-5fe22d66d647",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Weighed FFB (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B2",
+      "humanize": true,
+      "chartId": "ee405b60-12df-4398-a6cb-5fe22d66d647",
+      "baseline": "Data!C2"
+     },
+     "offset": {
+      "x": 0,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "bf3b578f-d80d-40bf-8916-c7a81a54264b",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Yield (kg/ha)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B5",
+      "humanize": true,
+      "chartId": "bf3b578f-d80d-40bf-8916-c7a81a54264b",
+      "baseline": "Data!C5"
+     },
+     "offset": {
+      "x": 229,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "c90cf600-6785-49b7-bf4b-0ec86aa6abcf",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Cost per ha",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B6",
+      "humanize": true,
+      "chartId": "c90cf600-6785-49b7-bf4b-0ec86aa6abcf",
+      "baseline": "Data!C6"
+     },
+     "offset": {
+      "x": 458,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "88b8bec5-5454-4f9d-b3aa-f73291b2aa8f",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Cost per kg FFB",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B7",
+      "humanize": true,
+      "chartId": "88b8bec5-5454-4f9d-b3aa-f73291b2aa8f",
+      "baseline": "Data!C7"
+     },
+     "offset": {
+      "x": 0,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "95bc52f5-fe3e-4656-abff-102bfb288dd9",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "FFB sold (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B8",
+      "humanize": true,
+      "chartId": "95bc52f5-fe3e-4656-abff-102bfb288dd9",
+      "baseline": "Data!C8"
+     },
+     "offset": {
+      "x": 229,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "7de331c8-86f3-4185-802b-c809807591d9",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "FFB sold (amount)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B9",
+      "humanize": true,
+      "chartId": "7de331c8-86f3-4185-802b-c809807591d9",
+      "baseline": "Data!C9"
+     },
+     "offset": {
+      "x": 458,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "cad4374f-7910-4704-b16a-973cb7a85b8c",
+     "col": 0,
+     "row": 0,
+     "offset": {
+      "x": 0,
+      "y": 243
+     },
+     "width": 688,
+     "height": 320,
+     "tag": "carousel",
+     "data": {
+      "chartDefinitions": {
+       "7a1ae135-db60-4f7d-9b83-c00f61cd9cea": {
+        "type": "bar",
+        "legendPosition": "none",
+        "title": {},
+        "aggregated": false,
+        "showValues": false,
+        "humanize": true,
+        "dataSource": {
+         "labelRange": "Monthly!A2:A37",
+         "type": "range",
+         "dataSets": [
+          {
+           "dataSetId": "0",
+           "dataRange": "Monthly!B2:B37"
+          }
+         ],
+         "dataSetsHaveTitle": false
+        },
+        "dataSetStyles": {
+         "0": {}
+        }
+       }
+      },
+      "title": {
+       "text": "Weighed FFB per month (kg)",
+       "fontSize": 16,
+       "bold": true,
+       "color": "#01666B"
+      },
+      "items": [
+       {
+        "type": "chart",
+        "chartId": "7a1ae135-db60-4f7d-9b83-c00f61cd9cea",
+        "title": "Weighed FFB per month (kg)"
+       }
+      ],
+      "fieldMatching": {}
+     }
+    }
+   ],
+   "tables": [],
+   "areGridLinesVisible": false,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "3fc0e33b-1395-4c0f-b931-e447452bad4c",
+   "name": "Data",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=_t(\"KPI\")",
+    "B1": "=_t(\"Current\")",
+    "C1": "=_t(\"Previous\")",
+    "A2": "Weighed FFB (kg)",
+    "B2": "=PIVOT.VALUE(1,\"weighed_kg:sum\")",
+    "C2": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"weighed_kg:sum\"),\"N/A\")",
+    "A3": "Cost",
+    "B3": "=PIVOT.VALUE(1,\"cost:sum\")",
+    "C3": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"cost:sum\"),\"N/A\")",
+    "A4": "Mature area (ha)",
+    "B4": "=PIVOT.VALUE(3,\"area_ha:sum\")",
+    "A5": "Yield (kg/ha)",
+    "B5": "=IFERROR(B2/B4,0)",
+    "C5": "=IFERROR(C2/B4,\"N/A\")",
+    "A6": "Cost per ha",
+    "B6": "=IFERROR(B3/B4,0)",
+    "C6": "=IFERROR(C3/B4,\"N/A\")",
+    "A7": "Cost per kg FFB",
+    "B7": "=IFERROR(B3/B2,0)",
+    "C7": "=IFERROR(C3/C2,\"N/A\")",
+    "A8": "FFB sold (kg)",
+    "B8": "=PIVOT.VALUE(4,\"payable_kg:sum\")",
+    "C8": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(5,\"payable_kg:sum\"),\"N/A\")",
+    "A9": "FFB sold (amount)",
+    "B9": "=PIVOT.VALUE(4,\"amount_total:sum\")",
+    "C9": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(5,\"amount_total:sum\"),\"N/A\")"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "de30bbe0-048d-4a1a-810e-0deef45e1137",
+   "name": "Monthly",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(6,36,false,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "dbb81f74-01d0-42b7-8add-9666760e46b1",
+   "name": "By division",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(7,50,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  }
+ ],
+ "styles": {},
+ "formats": {},
+ "borders": {},
+ "revisionId": "START_REVISION",
+ "uniqueFigureIds": true,
+ "settings": {
+  "locale": {
+   "name": "English (US)",
+   "code": "en_US",
+   "thousandsSeparator": ",",
+   "decimalSeparator": ".",
+   "dateFormat": "mm/dd/yyyy",
+   "timeFormat": "hh:mm:ss",
+   "formulaArgSeparator": ",",
+   "weekStart": 7
+  }
+ },
+ "pivots": {
+  "1": {
+   "type": "ODOO",
+   "domain": [],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "weighed_kg:sum",
+     "fieldName": "weighed_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "cost:sum",
+     "fieldName": "cost",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.yield.report",
+   "name": "Yield and cost",
+   "formulaId": "1",
+   "fieldMatching": {
+    "400e6dfe-728e-4b5d-9d50-4a46885ae535": {
+     "chain": "month",
+     "type": "date",
+     "offset": 0
+    },
+    "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9": {
+     "chain": "estate_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "2": {
+   "type": "ODOO",
+   "domain": [],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "weighed_kg:sum",
+     "fieldName": "weighed_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "cost:sum",
+     "fieldName": "cost",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.yield.report",
+   "name": "Yield and cost, previous",
+   "formulaId": "2",
+   "fieldMatching": {
+    "400e6dfe-728e-4b5d-9d50-4a46885ae535": {
+     "chain": "month",
+     "type": "date",
+     "offset": -1
+    },
+    "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9": {
+     "chain": "estate_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "3": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "stage",
+     "=",
+     "mature"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "area_ha:sum",
+     "fieldName": "area_ha",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.block",
+   "name": "Mature area",
+   "formulaId": "3",
+   "fieldMatching": {
+    "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9": {
+     "chain": "estate_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "4": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "direction",
+     "=",
+     "out"
+    ],
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "amount_total:sum",
+     "fieldName": "amount_total",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "FFB sold",
+   "formulaId": "4",
+   "fieldMatching": {
+    "400e6dfe-728e-4b5d-9d50-4a46885ae535": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "5": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "direction",
+     "=",
+     "out"
+    ],
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "amount_total:sum",
+     "fieldName": "amount_total",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "FFB sold, previous",
+   "formulaId": "5",
+   "fieldMatching": {
+    "400e6dfe-728e-4b5d-9d50-4a46885ae535": {
+     "chain": "date",
+     "type": "date",
+     "offset": -1
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "6": {
+   "type": "ODOO",
+   "domain": [],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "weighed_kg:sum",
+     "fieldName": "weighed_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "cost:sum",
+     "fieldName": "cost",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.yield.report",
+   "name": "Monthly",
+   "formulaId": "6",
+   "fieldMatching": {
+    "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9": {
+     "chain": "estate_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "month",
+     "granularity": "month"
+    }
+   ]
+  },
+  "7": {
+   "type": "ODOO",
+   "domain": [],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "weighed_kg:sum",
+     "fieldName": "weighed_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "cost:sum",
+     "fieldName": "cost",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.yield.report",
+   "name": "By division",
+   "formulaId": "7",
+   "fieldMatching": {
+    "400e6dfe-728e-4b5d-9d50-4a46885ae535": {
+     "chain": "month",
+     "type": "date",
+     "offset": 0
+    },
+    "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9": {
+     "chain": "estate_id",
+     "type": "many2one"
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "division_id"
+    }
+   ]
+  }
+ },
+ "pivotNextId": 8,
+ "customTableStyles": {},
+ "namedRanges": {},
+ "globalFilters": [
+  {
+   "id": "400e6dfe-728e-4b5d-9d50-4a46885ae535",
+   "type": "date",
+   "label": "Period"
+  },
+  {
+   "id": "0b1f8e10-5bc2-4e0b-b4b2-0025192e76d9",
+   "type": "relation",
+   "label": "Estate",
+   "defaultValueDisplayNames": [],
+   "modelName": "ss.plantation.estate",
+   "includeChildren": false
+  }
+ ],
+ "lists": {},
+ "listNextId": 1,
+ "odooLinkReferences": {}
+}

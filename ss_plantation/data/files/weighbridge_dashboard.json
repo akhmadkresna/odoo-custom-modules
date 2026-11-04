@@ -1,0 +1,604 @@
+{
+ "version": "19.3.10",
+ "sheets": [
+  {
+   "id": "dashboard_sheet_id",
+   "name": "Dashboard",
+   "colNumber": 10,
+   "rowNumber": 95,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 136
+    }
+   },
+   "merges": [],
+   "cells": {},
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [
+    {
+     "id": "b6c931c6-b841-4df5-9342-5e708f351e95",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Tickets",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B2",
+      "humanize": true,
+      "chartId": "b6c931c6-b841-4df5-9342-5e708f351e95",
+      "baseline": "Data!C2"
+     },
+     "offset": {
+      "x": 0,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "6d00e73a-28b8-498b-a3ea-2fde5e6a4bfe",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Net weight (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B3",
+      "humanize": true,
+      "chartId": "6d00e73a-28b8-498b-a3ea-2fde5e6a4bfe",
+      "baseline": "Data!C3"
+     },
+     "offset": {
+      "x": 229,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "49e19360-1477-420e-9003-81f97af96079",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Payable weight (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B4",
+      "humanize": true,
+      "chartId": "49e19360-1477-420e-9003-81f97af96079",
+      "baseline": "Data!C4"
+     },
+     "offset": {
+      "x": 458,
+      "y": 9
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "92550e4c-90ad-4f80-8e7c-a7ca76e14881",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Deduction (kg)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B5",
+      "humanize": true,
+      "chartId": "92550e4c-90ad-4f80-8e7c-a7ca76e14881",
+      "baseline": "Data!C5"
+     },
+     "offset": {
+      "x": 0,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "2c495b1a-4b91-4e0f-ad4d-57af5d0c564b",
+     "width": 219,
+     "height": 107,
+     "tag": "chart",
+     "data": {
+      "baselineColorDown": "#DC6965",
+      "baselineColorUp": "#00A04A",
+      "baselineMode": "difference",
+      "title": {
+       "text": "Average deduction (%)",
+       "align": "left",
+       "bold": true,
+       "color": "#01666B"
+      },
+      "type": "scorecard",
+      "background": "",
+      "keyValue": "Data!B6",
+      "humanize": true,
+      "chartId": "2c495b1a-4b91-4e0f-ad4d-57af5d0c564b",
+      "baseline": "Data!C6"
+     },
+     "offset": {
+      "x": 229,
+      "y": 126
+     },
+     "col": 0,
+     "row": 0
+    },
+    {
+     "id": "3718ed1e-1be0-4778-9690-a4cd3a2374e9",
+     "col": 0,
+     "row": 0,
+     "offset": {
+      "x": 0,
+      "y": 243
+     },
+     "width": 688,
+     "height": 320,
+     "tag": "carousel",
+     "data": {
+      "chartDefinitions": {
+       "db1ab1fa-cc67-4a9f-8d1e-450cc52288b3": {
+        "type": "bar",
+        "legendPosition": "none",
+        "title": {},
+        "aggregated": false,
+        "showValues": false,
+        "humanize": true,
+        "dataSource": {
+         "labelRange": "Daily weight!A2:A61",
+         "type": "range",
+         "dataSets": [
+          {
+           "dataSetId": "0",
+           "dataRange": "Daily weight!B2:B61"
+          }
+         ],
+         "dataSetsHaveTitle": false
+        },
+        "dataSetStyles": {
+         "0": {}
+        }
+       }
+      },
+      "title": {
+       "text": "Payable weight per day (kg)",
+       "fontSize": 16,
+       "bold": true,
+       "color": "#01666B"
+      },
+      "items": [
+       {
+        "type": "chart",
+        "chartId": "db1ab1fa-cc67-4a9f-8d1e-450cc52288b3",
+        "title": "Payable weight per day (kg)"
+       }
+      ],
+      "fieldMatching": {}
+     }
+    }
+   ],
+   "tables": [],
+   "areGridLinesVisible": false,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "24c2dcd9-37ed-4bb6-9aaf-e98f07ab797b",
+   "name": "Data",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=_t(\"KPI\")",
+    "B1": "=_t(\"Current\")",
+    "C1": "=_t(\"Previous\")",
+    "A2": "Tickets",
+    "B2": "=PIVOT.VALUE(1,\"__count\")",
+    "C2": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"__count\"),\"N/A\")",
+    "A3": "Net weight (kg)",
+    "B3": "=PIVOT.VALUE(1,\"net_kg:sum\")",
+    "C3": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"net_kg:sum\"),\"N/A\")",
+    "A4": "Payable weight (kg)",
+    "B4": "=PIVOT.VALUE(1,\"payable_kg:sum\")",
+    "C4": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"payable_kg:sum\"),\"N/A\")",
+    "A5": "Deduction (kg)",
+    "B5": "=PIVOT.VALUE(1,\"deduction_kg:sum\")",
+    "C5": "=IF(ODOO.FILTER.VALUE(\"Period\")<>\"\",PIVOT.VALUE(2,\"deduction_kg:sum\"),\"N/A\")",
+    "A6": "Average deduction (%)",
+    "B6": "=IFERROR(B5/B3*100,0)",
+    "C6": "=IFERROR(C5/C3*100,\"N/A\")"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "2e0e6e58-82e1-4ef3-8a1e-aa21d783b581",
+   "name": "Daily weight",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(5,60,false,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "8464ed87-a1f5-4339-a023-e37009df0daf",
+   "name": "By direction",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(3,10,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  },
+  {
+   "id": "224645ce-615d-456f-bdab-0790d1651411",
+   "name": "Deductions by grade",
+   "colNumber": 12,
+   "rowNumber": 250,
+   "rows": {},
+   "cols": {
+    "0": {
+     "size": 220
+    }
+   },
+   "merges": [],
+   "cells": {
+    "A1": "=PIVOT(4,20,true,true)"
+   },
+   "styles": {},
+   "formats": {},
+   "borders": {},
+   "conditionalFormats": [],
+   "dataValidationRules": [],
+   "figures": [],
+   "tables": [],
+   "areGridLinesVisible": true,
+   "isVisible": true,
+   "backgroundColor": null,
+   "headerGroups": {
+    "ROW": [],
+    "COL": []
+   },
+   "comments": {}
+  }
+ ],
+ "styles": {},
+ "formats": {},
+ "borders": {},
+ "revisionId": "START_REVISION",
+ "uniqueFigureIds": true,
+ "settings": {
+  "locale": {
+   "name": "English (US)",
+   "code": "en_US",
+   "thousandsSeparator": ",",
+   "decimalSeparator": ".",
+   "dateFormat": "mm/dd/yyyy",
+   "timeFormat": "hh:mm:ss",
+   "formulaArgSeparator": ",",
+   "weekStart": 7
+  }
+ },
+ "pivots": {
+  "1": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    },
+    {
+     "id": "net_kg:sum",
+     "fieldName": "net_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "deduction_kg:sum",
+     "fieldName": "deduction_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "Tickets",
+   "formulaId": "1",
+   "fieldMatching": {
+    "57dd39b1-c68d-4db5-b2c7-476191d84125": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "2": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    },
+    {
+     "id": "net_kg:sum",
+     "fieldName": "net_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "deduction_kg:sum",
+     "fieldName": "deduction_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "Tickets, previous",
+   "formulaId": "2",
+   "fieldMatching": {
+    "57dd39b1-c68d-4db5-b2c7-476191d84125": {
+     "chain": "date",
+     "type": "date",
+     "offset": -1
+    }
+   },
+   "columns": [],
+   "rows": []
+  },
+  "3": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "__count",
+     "fieldName": "__count"
+    },
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    },
+    {
+     "id": "amount_total:sum",
+     "fieldName": "amount_total",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "By direction",
+   "formulaId": "3",
+   "fieldMatching": {
+    "57dd39b1-c68d-4db5-b2c7-476191d84125": {
+     "chain": "date",
+     "type": "date",
+     "offset": 0
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "direction"
+    }
+   ]
+  },
+  "4": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "ticket_id.state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "deduction_kg:sum",
+     "fieldName": "deduction_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.grade.line",
+   "name": "Deductions by grade",
+   "formulaId": "4",
+   "fieldMatching": {
+    "57dd39b1-c68d-4db5-b2c7-476191d84125": {
+     "chain": "ticket_id.date",
+     "type": "date",
+     "offset": 0
+    }
+   },
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "grade_type_id"
+    }
+   ]
+  },
+  "5": {
+   "type": "ODOO",
+   "domain": [
+    [
+     "state",
+     "=",
+     "confirmed"
+    ]
+   ],
+   "context": {},
+   "sortedColumn": null,
+   "measures": [
+    {
+     "id": "payable_kg:sum",
+     "fieldName": "payable_kg",
+     "aggregator": "sum"
+    }
+   ],
+   "model": "ss.plantation.weigh.ticket",
+   "name": "Daily",
+   "formulaId": "5",
+   "fieldMatching": {},
+   "columns": [],
+   "rows": [
+    {
+     "fieldName": "date",
+     "granularity": "day"
+    }
+   ]
+  }
+ },
+ "pivotNextId": 6,
+ "customTableStyles": {},
+ "namedRanges": {},
+ "globalFilters": [
+  {
+   "id": "57dd39b1-c68d-4db5-b2c7-476191d84125",
+   "type": "date",
+   "label": "Period"
+  }
+ ],
+ "lists": {},
+ "listNextId": 1,
+ "odooLinkReferences": {}
+}

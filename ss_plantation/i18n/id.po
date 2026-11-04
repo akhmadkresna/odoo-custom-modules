@@ -1,0 +1,2755 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ss_plantation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-03 07:51+0000\n"
+"PO-Revision-Date: 2026-11-03 07:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_tally_line.py:0
+msgid ""
+"%(harvester)s already has a tally line for block %(block)s on %(date)s."
+msgstr ""
+"%(harvester)s sudah punya baris tally untuk blok %(block)s pada %(date)s."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_geo_mixin.py:0
+msgid "%(record)s: %(error)s"
+msgstr "%(record)s: %(error)s"
+
+#. module: ss_plantation
+#: model:ir.actions.report,print_report_name:ss_plantation.action_report_weigh_ticket
+msgid "'Weigh Ticket - %s' % object.name"
+msgstr "'Tiket Timbang - %s' % object.name"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "<span class=\"o_stat_text\">Stock Transfer</span>"
+msgstr "<span class=\"o_stat_text\">Transfer Stok</span>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "<span class=\"o_stat_text\">Tally Lines</span>"
+msgstr "<span class=\"o_stat_text\">Baris Tally</span>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "<span>ha</span>"
+msgstr "<span>ha</span>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Tanggal:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Direction:</strong>"
+msgstr "<strong>Arah:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Driver:</strong>"
+msgstr "<strong>Sopir:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Lot:</strong>"
+msgstr "<strong>Lot:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Net weight</strong>"
+msgstr "<strong>Berat netto</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Partner:</strong>"
+msgstr "<strong>Mitra:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Payable weight</strong>"
+msgstr "<strong>Berat dibayar</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Transport notes:</strong>"
+msgstr "<strong>Nota angkut:</strong>"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "<strong>Vehicle:</strong>"
+msgstr "<strong>Kendaraan:</strong>"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid ""
+"A confirmed ticket cannot be cancelled. Return the stock and issue a new "
+"ticket."
+msgstr ""
+"Tiket yang sudah dikonfirmasi tidak dapat dibatalkan. Kembalikan stok lalu "
+"terbitkan tiket baru."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "A confirmed weigh ticket can only be changed by a manager."
+msgstr ""
+"Tiket timbang yang sudah dikonfirmasi hanya dapat diubah oleh manajer."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_transport.py:0
+msgid "A weighed transport note cannot be cancelled."
+msgstr "Nota angkut yang sudah ditimbang tidak dapat dibatalkan."
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_block_asset_wizard__counterpart_account_id
+msgid "Account holding the development cost until it is capitalised."
+msgstr "Akun yang menampung biaya pengembangan sampai dikapitalisasi."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__acquisition_date
+msgid "Acquisition Date"
+msgstr "Tanggal Perolehan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__active
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+msgid "Activities done"
+msgstr "Aktivitas selesai"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__activity_id
+msgid "Activity"
+msgstr "Aktivitas"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_activity_type_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_activity_type
+msgid "Activity Types"
+msgstr "Jenis Aktivitas"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.hr_payslip_view_form_inherit_ss_plantation
+msgid "Add Harvest Pay"
+msgstr "Tambah Gaji Panen"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
+msgid "Add more points to complete the shape."
+msgstr "Tambahkan lebih banyak titik untuk melengkapi bentuk."
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_pay__state__posted
+msgid "Added to Payslip"
+msgstr "Masuk ke Slip Gaji"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__amount
+msgid "Amount"
+msgstr "Jumlah"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__amount_total
+msgid "Amount Total"
+msgstr "Total Jumlah"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Apply"
+msgstr "Terapkan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_division_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_estate_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_estate_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_view_form
+msgid "Archived"
+msgstr "Diarsipkan"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.js:0
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_landmark_type__geometry_kind__area
+msgid "Area"
+msgstr "Luas"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__area_ha
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__area_ha
+msgid "Area Ha"
+msgstr "Luas (ha)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_block__suggested_area_ha
+msgid "Area computed from the drawn boundary. Informational only."
+msgstr "Luas dihitung dari batas yang digambar. Hanya sebagai informasi."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+msgid "Area or palms worked"
+msgstr "Luas atau jumlah pohon yang dikerjakan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__account_asset_id
+msgid "Asset Account"
+msgstr "Akun Aset"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Average deduction (%)"
+msgstr "Rata-rata potongan (%)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__avg_bunch_weight_kg
+msgid "Avg Bunch Weight (kg)"
+msgstr "Berat Rata-rata Tandan / BJR (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__block_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__block_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__block_ids
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__block_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__block_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__block_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
+msgid "Block"
+msgstr "Blok"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_tally_line.py:0
+msgid "Block %(block)s is %(stage)s. Only mature blocks can be harvested."
+msgstr ""
+"Blok %(block)s berstatus %(stage)s. Hanya blok mature (TM) yang dapat "
+"dipanen."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_tally_line.py:0
+msgid "Block %(block)s is not in division %(division)s."
+msgstr "Blok %(block)s tidak berada di divisi %(division)s."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_block_asset_wizard.py:0
+msgid "Block %s already has an asset."
+msgstr "Blok %s sudah punya aset."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_block.py:0
+msgid "Block %s has activities or costs. Archive it instead."
+msgstr "Blok %s sudah punya aktivitas atau biaya. Arsipkan saja."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__block_count
+msgid "Block Count"
+msgstr "Jumlah Blok"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_block_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_block
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_division_view_form
+msgid "Blocks"
+msgstr "Blok"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+msgid "Blocks ("
+msgstr "Blok ("
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_list
+msgid "Bonus"
+msgstr "Bonus"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__bonus_per_kg
+msgid "Bonus / kg above Basis"
+msgstr "Bonus / kg di atas Basis"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__bonus_amount
+msgid "Bonus Amount"
+msgstr "Jumlah Bonus"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Bought"
+msgstr "Dibeli"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__direction__third_party_in
+msgid "Bought from Third Party"
+msgstr "Beli dari Pihak Ketiga"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_division_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_estate_view_form
+msgid "Boundary"
+msgstr "Batas"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__boundary_geojson
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__boundary_geojson
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__boundary_geojson
+msgid "Boundary (GeoJSON)"
+msgstr "Batas (GeoJSON)"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_bridge
+msgid "Bridge"
+msgstr "Jembatan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__bunch_total
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__bunch_total
+msgid "Bunch Total"
+msgstr "Total Tandan"
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_harvest_tally_line_counts_positive
+msgid "Bunch counts and loose fruit weight cannot be negative."
+msgstr "Jumlah tandan dan berat brondolan tidak boleh negatif."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__bunches
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__bunches
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_list
+msgid "Bunches"
+msgstr "Tandan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__bunches_overripe
+msgid "Bunches Overripe"
+msgstr "Tandan Lewat Matang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__bunches_ripe
+msgid "Bunches Ripe"
+msgstr "Tandan Matang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__bunches_unripe
+msgid "Bunches Unripe"
+msgstr "Tandan Mentah"
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_transport_line_bunches_positive
+msgid "Bunches must be positive."
+msgstr "Jumlah tandan harus positif."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__ss_cpo_kg
+msgid "CPO Produced (kg)"
+msgstr "CPO Dihasilkan (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_cpo_product_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_cpo_product_id
+msgid "CPO Product"
+msgstr "Produk CPO"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "CSV rows need the columns name, type, lat, lon."
+msgstr "Baris CSV membutuhkan kolom name, type, lat, lon."
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_canal
+msgid "Canal or Drain"
+msgstr "Kanal atau Parit"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_asset_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_import_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Cancel"
+msgstr "Batal"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity__state__cancel
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_tally__state__cancel
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_transport__state__cancel
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__state__cancel
+msgid "Cancelled"
+msgstr "Dibatalkan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+msgid "Cancelling a done activity returns its inputs to the store."
+msgstr ""
+"Membatalkan aktivitas yang sudah selesai akan mengembalikan input ke gudang."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_block_asset_wizard.py:0
+msgid "Capitalisation of %s"
+msgstr "Kapitalisasi %s"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_block_asset_wizard_action
+msgid "Capitalise Block"
+msgstr "Kapitalisasi Blok"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_block_asset_wizard
+msgid "Capitalise Mature Block"
+msgstr "Kapitalisasi Blok Mature"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "Capitalise as Asset"
+msgstr "Kapitalisasi sebagai Aset"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Capitalise mature blocks as depreciable assets"
+msgstr "Kapitalisasi blok mature sebagai aset yang disusutkan"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Choose the lot sold on ticket %s."
+msgstr "Pilih lot yang dijual pada tiket %s."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Clear"
+msgstr "Hapus"
+
+#. module: ss_plantation
+#: model:res.groups,name:ss_plantation.group_plantation_user
+msgid "Clerk"
+msgstr "Petugas"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid ""
+"Click the map to add points. Drag a point to move it, click it to remove it."
+msgstr ""
+"Klik peta untuk menambah titik. Seret titik untuk memindahkan, klik titik "
+"untuk menghapus."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Click the map to place the point."
+msgstr "Klik peta untuk menempatkan titik."
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_block__stage__closed
+msgid "Closed"
+msgstr "Ditutup"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__code
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__code
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__code
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__code
+msgid "Code"
+msgstr "Kode"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_tph
+msgid "Collection Point (TPH)"
+msgstr "Tempat Pengumpulan Hasil (TPH)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__color
+msgid "Color"
+msgstr "Warna"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+msgid "Colour blocks by"
+msgstr "Warnai blok berdasarkan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_landmark_type__color
+msgid "Colour used on the map (CSS hex)."
+msgstr "Warna di peta (hex CSS)."
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_res_company
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__company_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__company_id
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_wizard_view_form
+msgid "Compute"
+msgstr "Hitung"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_harvest_pay_wizard_action
+#: model:ir.model,name:ss_plantation.model_ss_plantation_harvest_pay_wizard
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_compute_pay
+msgid "Compute Harvest Pay"
+msgstr "Hitung Gaji Panen"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_res_config_settings
+msgid "Config Settings"
+msgstr "Pengaturan Konfigurasi"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_config
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_tally__state__confirmed
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__state__confirmed
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Confirmed"
+msgstr "Dikonfirmasi"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__cost
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_list
+msgid "Cost"
+msgstr "Biaya"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__analytic_account_id
+msgid "Cost Centre"
+msgstr "Pusat Biaya"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__cost_per_ha
+msgid "Cost Per Ha"
+msgstr "Biaya per Ha"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "Cost per ha"
+msgstr "Biaya per ha"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "Cost per kg FFB"
+msgstr "Biaya per kg TBS"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_block.py:0
+msgid "Cost: %s"
+msgstr "Biaya: %s"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__counterpart_account_id
+msgid "Counterpart Account"
+msgstr "Akun Lawan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_asset_wizard_view_form
+msgid "Create Asset"
+msgstr "Buat Aset"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__create_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__create_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_asset_wizard_view_form
+msgid ""
+"Creates a journal entry moving the development cost from the counterpart account to\n"
+"                    the asset account, and a draft asset linked to it. Validate the asset to start depreciation."
+msgstr ""
+"Membuat jurnal yang memindahkan biaya pengembangan dari akun lawan ke akun aset,\n"
+"                    dan aset draft yang terkait. Validasi aset untuk memulai penyusutan."
+
+#. module: ss_plantation
+#: model:product.template,name:ss_plantation.product_cpo_product_template
+msgid "Crude Palm Oil (CPO)"
+msgstr "Minyak Sawit Mentah (CPO)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__currency_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__currency_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__currency_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__currency_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__currency_id
+msgid "Currency"
+msgstr "Mata Uang"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Current"
+msgstr "Saat Ini"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__basis_kg
+msgid "Daily Basis (kg)"
+msgstr "Basis Harian (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_pay_scheme__mode__mixed
+msgid "Daily basis plus bonus above it"
+msgstr "Basis harian plus bonus di atasnya"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_pay_scheme__mode__daily
+msgid "Daily wage (penalties only)"
+msgstr "Upah harian (hanya penalti)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_pay_scheme__mode
+msgid ""
+"Daily wage itself stays in the normal payroll contract. This scheme only "
+"adds the harvest bonus, or the piece-rate pay, minus penalties."
+msgstr ""
+"Upah harian tetap ada di kontrak penggajian biasa. Skema ini hanya "
+"menambahkan bonus panen, atau upah borongan, dikurangi penalti."
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_dashboards
+msgid "Dashboards"
+msgstr "Dasbor"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__tally_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__date
+msgid "Date"
+msgstr "Tanggal"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__date_from
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__date_from
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__date_from
+msgid "Date From"
+msgstr "Dari Tanggal"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__date_to
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__date_to
+msgid "Date To"
+msgstr "Sampai Tanggal"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Day"
+msgstr "Hari"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__percent
+msgid "Deduction (%)"
+msgstr "Potongan (%)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__kg
+msgid "Deduction (kg)"
+msgstr "Potongan (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__deduction_kg
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__deduction_kg
+msgid "Deduction Kg"
+msgstr "Potongan (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Deduction:"
+msgstr "Potongan:"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__default_percent
+msgid "Default Deduction (%)"
+msgstr "Potongan Bawaan (%)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__type_id
+msgid "Default Type"
+msgstr "Jenis Bawaan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__direction
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Direction"
+msgstr "Arah"
+
+#. module: ss_plantation
+#: model:ss.plantation.grade.type,name:ss_plantation.grade_dirt
+msgid "Dirt and Water"
+msgstr "Kotoran dan Air"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_payslip__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_geo_mixin__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__display_name
+#: model:ir.model.fields,field_description:ss_plantation.field_stock_move__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__division_ids
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__division_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__division_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
+msgid "Division"
+msgstr "Divisi"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__division_count
+msgid "Division Count"
+msgstr "Jumlah Divisi"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_division_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_division
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_estate_view_form
+msgid "Divisions"
+msgstr "Divisi"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity__state__done
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+msgid "Done"
+msgstr "Selesai"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity__state__draft
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_pay__state__draft
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_tally__state__draft
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_transport__state__draft
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__state__draft
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Draft"
+msgstr "Draft"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__driver_id
+msgid "Driver"
+msgstr "Sopir"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__driver_name
+msgid "Driver Name"
+msgstr "Nama Sopir"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Driver<br/><br/><br/>________________"
+msgstr "Sopir<br/><br/><br/>________________"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_landmark_type__icon
+msgid "Emoji or short text shown on the map marker."
+msgstr "Emoji atau teks pendek pada penanda peta."
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_hr_employee
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__employee_id
+msgid "Employee"
+msgstr "Karyawan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__employee_ids
+msgid "Employees"
+msgstr "Karyawan"
+
+#. module: ss_plantation
+#: model:ss.plantation.grade.type,name:ss_plantation.grade_empty_bunch
+msgid "Empty Bunches"
+msgstr "Tandan Kosong"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__est_weight_kg
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__est_weight_kg
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__est_weight_kg
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__est_weight_kg
+msgid "Est Weight Kg"
+msgstr "Berat Estimasi (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__estate_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__estate_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__estate_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__estate_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__estate_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_division_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
+msgid "Estate"
+msgstr "Kebun"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_estate_location_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_estate_location_id
+msgid "Estate Harvest Location"
+msgstr "Lokasi Panen Kebun"
+
+#. module: ss_plantation
+#: model:spreadsheet.dashboard,name:ss_plantation.spreadsheet_dashboard_manager
+msgid "Estate Manager"
+msgstr "Manajer Kebun"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_estate_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_estate
+msgid "Estates"
+msgstr "Kebun"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__est_weight_kg
+msgid "Estimated (kg)"
+msgstr "Estimasi (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+msgid "Estimated harvest per day (kg)"
+msgstr "Estimasi panen per hari (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_line_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_list
+msgid "Estimated kg"
+msgstr "Kg estimasi"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+msgid "Estimated weight (kg)"
+msgstr "Berat estimasi (kg)"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.mrp_production_ss_extraction_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_extraction
+#: model_terms:ir.ui.view,arch_db:ss_plantation.mrp_production_view_form_inherit_ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.mrp_production_view_pivot_ss_plantation
+msgid "Extraction Rates"
+msgstr "Rasio Ekstraksi"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Extraction rates for own mill manufacturing orders"
+msgstr "Rasio ekstraksi untuk order produksi pabrik sendiri"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_freshness_hours
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_freshness_hours
+msgid "FFB Freshness Limit (hours)"
+msgstr "Batas Kesegaran TBS (jam)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__ss_ffb_kg
+msgid "FFB Processed (kg)"
+msgstr "TBS Diolah (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_ffb_product_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_ffb_product_id
+msgid "FFB Product"
+msgstr "Produk TBS"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_ffb_price_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_ffb_price
+msgid "FFB Reference Prices"
+msgstr "Harga Referensi TBS"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "FFB sold (amount)"
+msgstr "TBS terjual (nilai)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "FFB sold (kg)"
+msgstr "TBS terjual (kg)"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_fertilising
+msgid "Fertilising"
+msgstr "Pemupukan"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_activity_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_activity
+msgid "Field Activities"
+msgstr "Aktivitas Lapangan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__file
+msgid "File"
+msgstr "Berkas"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__filename
+msgid "Filename"
+msgstr "Nama Berkas"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+msgid "Fit to data"
+msgstr "Sesuaikan dengan data"
+
+#. module: ss_plantation
+#: model:product.template,name:ss_plantation.product_ffb_product_template
+msgid "Fresh Fruit Bunches (FFB)"
+msgstr "Tandan Buah Segar (TBS)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Freshness Limit"
+msgstr "Batas Kesegaran"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
+msgid "GeoJSON Drawing"
+msgstr "Gambar GeoJSON"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_import_view_form
+msgid ""
+"GeoJSON FeatureCollection (feature properties \"name\" and \"type\") or CSV "
+"with the columns name, type, lat, lon."
+msgstr ""
+"GeoJSON FeatureCollection (properti fitur \"name\" dan \"type\") atau CSV "
+"dengan kolom name, type, lat, lon."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__geometry_geojson
+msgid "Geometry (GeoJSON)"
+msgstr "Geometri (GeoJSON)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__geometry_kind
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__geometry_kind
+msgid "Geometry Kind"
+msgstr "Jenis Geometri"
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_weigh_grade_line_one_basis
+msgid "Give the deduction either as a percentage or in kg, not both."
+msgstr "Isi potongan dalam persen atau kg, tidak keduanya."
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_grade_type_action
+msgid "Grade Deduction Types"
+msgstr "Jenis Potongan Mutu"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_grade_type
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Grade Deductions"
+msgstr "Potongan Mutu"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__grade_line_ids
+msgid "Grade Line"
+msgstr "Baris Mutu"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__grade_type_id
+msgid "Grade Type"
+msgstr "Jenis Mutu"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Grade deductions exceed the net weight."
+msgstr "Potongan mutu melebihi berat netto."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__gross_kg
+msgid "Gross Kg"
+msgstr "Bruto (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Gross weight"
+msgstr "Berat bruto"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_harvest_pay_wizard.py:0
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_harvest_pay_action
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_payslip__ss_harvest_pay_ids
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__group_ss_feature_payroll
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_harvest_pay
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Harvest Pay"
+msgstr "Gaji Panen"
+
+#. module: ss_plantation
+#: model:hr.salary.rule,name:ss_plantation.salary_rule_harvest_pay
+msgid "Harvest Pay (Premi Panen)"
+msgstr "Gaji Panen (Premi Panen)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_employee__ss_pay_scheme_id
+msgid "Harvest Pay Scheme"
+msgstr "Skema Gaji Panen"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_harvest_tally_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_tally
+msgid "Harvest Tally"
+msgstr "Tally Panen"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Harvest and Weighbridge"
+msgstr "Panen dan Jembatan Timbang"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/hr_payslip.py:0
+msgid "Harvest pay can only be added to a draft payslip."
+msgstr "Gaji panen hanya dapat ditambahkan ke slip gaji draft."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__delay_hours
+msgid "Harvest to Weigh-in (h)"
+msgstr "Panen ke Timbang (jam)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__harvested_at
+msgid "Harvested At"
+msgstr "Waktu Panen"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__harvested_kg
+msgid "Harvested Kg"
+msgstr "Kg Dipanen"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__harvester_id
+msgid "Harvester"
+msgstr "Pemanen"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_hazard
+msgid "Hazard"
+msgstr "Bahaya"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity_type__uom_basis__ha
+msgid "Hectare"
+msgstr "Hektar"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Hours allowed between harvest and weighing before a ticket is flagged"
+msgstr ""
+"Jam yang diizinkan antara panen dan penimbangan sebelum tiket ditandai"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_employee__id
+#: model:ir.model.fields,field_description:ss_plantation.field_hr_payslip__id
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_geo_mixin__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__id
+#: model:ir.model.fields,field_description:ss_plantation.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+msgid "Immature"
+msgstr "Immature"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_block__stage__immature
+msgid "Immature (TBM)"
+msgstr "Belum Menghasilkan (TBM)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_import_view_form
+msgid "Import"
+msgstr "Impor"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_landmark_import_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_landmark_import
+msgid "Import Landmarks"
+msgstr "Impor Penanda Lokasi"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_landmark_import
+msgid "Import Plantation Landmarks"
+msgstr "Impor Penanda Lokasi Kebun"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "Imported landmarks"
+msgstr "Penanda lokasi diimpor"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__input_line_ids
+msgid "Input Line"
+msgstr "Baris Input"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__store_location_id
+msgid "Input Store"
+msgstr "Gudang Input"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+msgid "Inputs"
+msgstr "Input"
+
+#. module: ss_plantation
+#: model:res.groups,comment:ss_plantation.group_plantation_weighbridge
+msgid "Issues and confirms weigh tickets."
+msgstr "Menerbitkan dan mengonfirmasi tiket timbang."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__journal_id
+msgid "Journal"
+msgstr "Jurnal"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__ss_ker
+msgid "KER (%)"
+msgstr "KER (%)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "KPI"
+msgstr "KPI"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__ss_kernel_kg
+msgid "Kernel Produced (kg)"
+msgstr "Kernel Dihasilkan (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_kernel_product_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_kernel_product_id
+msgid "Kernel Product"
+msgstr "Produk Kernel"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_mrp_production__ss_ker
+msgid "Kernel extraction rate: kernel divided by FFB processed."
+msgstr "Rasio ekstraksi kernel: kernel dibagi TBS diolah."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "Landmark %s"
+msgstr "Penanda lokasi %s"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_landmark_type_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_landmark_type
+msgid "Landmark Types"
+msgstr "Jenis Penanda Lokasi"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_landmark_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_landmark
+msgid "Landmarks"
+msgstr "Penanda Lokasi"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+msgid "Landmarks ("
+msgstr "Penanda Lokasi ("
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.js:0
+msgid "Last 30 days"
+msgstr "30 hari terakhir"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__last_harvest_date
+msgid "Last Harvest Date"
+msgstr "Tanggal Panen Terakhir"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__write_uid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay_wizard__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_import__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__write_date
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.js:0
+msgid "Last harvest"
+msgstr "Panen terakhir"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__latitude
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__latitude
+msgid "Latitude"
+msgstr "Lintang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_ffb_price__partner_category_id
+msgid "Leave empty for a price valid for every supplier."
+msgstr "Kosongkan untuk harga yang berlaku bagi semua pemasok."
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_harvest_pay_wizard__employee_ids
+msgid "Leave empty for every employee that has a pay scheme."
+msgstr "Kosongkan untuk semua karyawan yang punya skema gaji."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__line_ids
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__line_ids
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_landmark_type__geometry_kind__line
+msgid "Line"
+msgstr "Baris"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_division__store_location_id
+msgid "Location the field inputs (fertiliser, chemicals) are taken from."
+msgstr "Lokasi pengambilan input lapangan (pupuk, bahan kimia)."
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Locations"
+msgstr "Lokasi"
+
+#. module: ss_plantation
+#: model:ss.plantation.grade.type,name:ss_plantation.grade_long_stalk
+msgid "Long Stalks"
+msgstr "Tangkai Panjang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__longitude
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__longitude
+msgid "Longitude"
+msgstr "Bujur"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__loose_fruit_kg
+msgid "Loose Fruit Kg"
+msgstr "Brondolan (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__loose_left_kg
+msgid "Loose Fruit Left (kg)"
+msgstr "Brondolan Tertinggal (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_harvest_tally_line__loose_left_kg
+msgid ""
+"Loose fruit left on the ground, found at inspection. Used for pay penalties."
+msgstr ""
+"Brondolan yang tertinggal di tanah, ditemukan saat inspeksi. Dipakai untuk "
+"penalti gaji."
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+msgid "Loose kg"
+msgstr "Brondolan kg"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__lot_id
+msgid "Lot"
+msgstr "Lot"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__source_lot_id
+msgid "Lot Sold"
+msgstr "Lot Terjual"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_weigh_ticket__source_lot_id
+msgid "Lot delivered. Required for sales."
+msgstr "Lot yang dikirim. Wajib untuk penjualan."
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_road
+msgid "Main Road"
+msgstr "Jalan Utama"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__man_days
+msgid "Man Days"
+msgstr "Hari Kerja"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+msgid "Man-days"
+msgstr "Hari kerja"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__manager_id
+#: model:res.groups,name:ss_plantation.group_plantation_manager
+msgid "Manager"
+msgstr "Manajer"
+
+#. module: ss_plantation
+#: model:res.groups,comment:ss_plantation.group_plantation_manager
+msgid ""
+"Manages master data, prices, pay schemes and can correct confirmed tickets."
+msgstr ""
+"Mengelola data master, harga, skema gaji, dan dapat mengoreksi tiket yang "
+"sudah dikonfirmasi."
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "Order Produksi"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_map
+msgid "Map"
+msgstr "Peta"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_master
+msgid "Master Data"
+msgstr "Data Master"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+msgid "Mature"
+msgstr "Mature"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_block__stage__mature
+msgid "Mature (TM)"
+msgstr "Menghasilkan (TM)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__asset_id
+msgid "Mature Asset"
+msgstr "Aset Mature"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__mature_date
+msgid "Mature Date"
+msgstr "Tanggal Mature"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__group_ss_feature_asset
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Mature Plantation Assets"
+msgstr "Aset Kebun Mature"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_mill
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_mill
+msgid "Mill"
+msgstr "Pabrik"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_pay_scheme__basis_kg
+msgid ""
+"Mixed mode: kilograms a harvester must reach per day before the bonus "
+"starts."
+msgstr ""
+"Mode campuran: kilogram yang harus dicapai pemanen per hari sebelum bonus "
+"dimulai."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__mode
+msgid "Mode"
+msgstr "Mode"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__month
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
+msgid "Month"
+msgstr "Bulan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__move_id
+msgid "Move"
+msgstr "Pergerakan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_division__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_estate__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__name
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__name
+msgid "Name"
+msgstr "Nama"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__net_kg
+msgid "Net Kg"
+msgstr "Netto (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_list
+msgid "Net kg"
+msgstr "Netto kg"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Net weight (kg)"
+msgstr "Berat netto (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "New shape"
+msgstr "Bentuk baru"
+
+#. module: ss_plantation
+#: model:res.groups.privilege,placeholder:ss_plantation.res_groups_privilege_plantation
+msgid "No"
+msgstr "Tidak"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/hr_payslip.py:0
+msgid ""
+"No draft harvest pay for %(employee)s in this period. Compute it first from "
+"Plantation > Payroll."
+msgstr ""
+"Tidak ada gaji panen draft untuk %(employee)s pada periode ini. Hitung dulu "
+"dari Perkebunan > Penggajian."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_harvest_pay_wizard.py:0
+msgid "No employee with a harvest pay scheme was found."
+msgstr "Tidak ditemukan karyawan dengan skema gaji panen."
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity_type__uom_basis__none
+msgid "None"
+msgstr "Tidak ada"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_search
+msgid "Not Weighed"
+msgstr "Belum Ditimbang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__note
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__note
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__note
+msgid "Note"
+msgstr "Catatan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+msgid "Notes"
+msgstr "Catatan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_mrp_production__ss_oer
+msgid "OER (%)"
+msgstr "OER (%)"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_office
+msgid "Office"
+msgstr "Kantor"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_mrp_production__ss_oer
+msgid "Oil extraction rate: CPO divided by FFB processed."
+msgstr "Rasio ekstraksi minyak: CPO dibagi TBS diolah."
+
+#. module: ss_plantation
+#: model:ir.module.module,summary:base.module_ss_plantation
+msgid ""
+"Oil palm estate: blocks, field work, harvest, weighbridge, pay, assets, "
+"mill, map and dashboards"
+msgstr ""
+"Kebun kelapa sawit: blok, pekerjaan lapangan, panen, jembatan timbang, gaji,"
+" aset, pabrik, peta, dan dasbor"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_block_asset_wizard.py:0
+msgid "Only a mature block can be capitalised."
+msgstr "Hanya blok mature yang dapat dikapitalisasi."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_activity.py:0
+msgid "Only draft activities can be edited."
+msgstr "Hanya aktivitas draft yang dapat diubah."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_tally.py:0
+msgid "Only draft tallies can be edited."
+msgstr "Hanya tally draft yang dapat diubah."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.js:0
+msgid "Open"
+msgstr "Buka"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_operations
+msgid "Operations"
+msgstr "Operasional"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Optional Features"
+msgstr "Fitur Opsional"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block_asset_wizard__original_value
+msgid "Original Value"
+msgstr "Nilai Awal"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+msgid "Overripe"
+msgstr "Lewat matang"
+
+#. module: ss_plantation
+#: model:ss.plantation.grade.type,name:ss_plantation.grade_overripe
+msgid "Overripe or Rotten Bunches"
+msgstr "Tandan Lewat Matang atau Busuk"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Own Estate"
+msgstr "Kebun Sendiri"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__direction__estate_in
+msgid "Own Estate to Mill"
+msgstr "Kebun Sendiri ke Pabrik"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__group_ss_feature_mill
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Own Mill"
+msgstr "Pabrik Sendiri"
+
+#. module: ss_plantation
+#: model:spreadsheet.dashboard,name:ss_plantation.spreadsheet_dashboard_owner
+msgid "Owner"
+msgstr "Pemilik"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity_type__uom_basis__palm
+msgid "Palm"
+msgstr "Pohon"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_census
+msgid "Palm Census"
+msgstr "Sensus Pohon"
+
+#. module: ss_plantation
+#: model:product.template,name:ss_plantation.product_kernel_product_template
+msgid "Palm Kernel"
+msgstr "Kernel Sawit"
+
+#. module: ss_plantation
+#: model:product.template,name:ss_plantation.product_shell_product_template
+msgid "Palm Shell"
+msgstr "Cangkang Sawit"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__stand_count
+msgid "Palms"
+msgstr "Pohon"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__partner_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Partner"
+msgstr "Mitra"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Paste GeoJSON"
+msgstr "Tempel GeoJSON"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Paste a GeoJSON geometry, Feature or FeatureCollection"
+msgstr "Tempel geometri, Feature, atau FeatureCollection GeoJSON"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_pay_scheme_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_pay_scheme
+msgid "Pay Schemes"
+msgstr "Skema Gaji"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Slip Gaji"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Pay schemes and harvest pay on payslips"
+msgstr "Skema gaji dan gaji panen pada slip gaji"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__payable_kg
+msgid "Payable Kg"
+msgstr "Dibayar (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_list
+msgid "Payable kg"
+msgstr "Dibayar kg"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Payable weight (kg)"
+msgstr "Berat dibayar (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Payable weight per day (kg)"
+msgstr "Berat dibayar per hari (kg)"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_payroll
+msgid "Payroll"
+msgstr "Penggajian"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__payslip_id
+msgid "Payslip"
+msgstr "Slip Gaji"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_list
+msgid "Penalty"
+msgstr "Penalti"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__penalty_unripe
+msgid "Penalty / Unripe Bunch"
+msgstr "Penalti / Tandan Mentah"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__penalty_loose_left
+msgid "Penalty / kg Loose Fruit Left"
+msgstr "Penalti / kg Brondolan Tertinggal"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__penalty_amount
+msgid "Penalty Amount"
+msgstr "Jumlah Penalti"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__photo
+msgid "Photo"
+msgstr "Foto"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__picking_id
+msgid "Picking"
+msgstr "Transfer"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme__rate_per_kg
+msgid "Piece Rate / kg"
+msgstr "Upah Borongan / kg"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_pay_scheme__mode__piece_rate
+msgid "Piece rate (per kg)"
+msgstr "Upah borongan (per kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_pay_scheme__rate_per_kg
+msgid "Piece rate mode: paid on every harvested kg."
+msgstr "Mode borongan: dibayar untuk setiap kg yang dipanen."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Place point"
+msgstr "Tempatkan titik"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_root
+#: model:res.groups.privilege,name:ss_plantation.res_groups_privilege_plantation
+#: model:spreadsheet.dashboard.group,name:ss_plantation.spreadsheet_dashboard_group_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Plantation"
+msgstr "Perkebunan"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_block_asset_wizard.py:0
+msgid "Plantation %s"
+msgstr "Perkebunan %s"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_activity_input
+msgid "Plantation Activity Input"
+msgstr "Input Aktivitas Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_activity_type
+msgid "Plantation Activity Type"
+msgstr "Jenis Aktivitas Perkebunan"
+
+#. module: ss_plantation
+#: model:account.analytic.plan,name:ss_plantation.analytic_plan_block
+#: model:ir.model,name:ss_plantation.model_ss_plantation_block
+#: model:ir.model.fields,field_description:ss_plantation.field_stock_move__ss_plantation_block_id
+msgid "Plantation Block"
+msgstr "Blok Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_consumption_location_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_consumption_location_id
+msgid "Plantation Consumption Location"
+msgstr "Lokasi Konsumsi Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_division
+msgid "Plantation Division"
+msgstr "Divisi Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_estate
+msgid "Plantation Estate"
+msgstr "Kebun"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_grade_type
+msgid "Plantation FFB Grade Deduction Type"
+msgstr "Jenis Potongan Mutu TBS"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_ffb_price
+msgid "Plantation FFB Reference Price"
+msgstr "Harga Referensi TBS"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_activity
+msgid "Plantation Field Activity"
+msgstr "Aktivitas Lapangan Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_geo_mixin
+msgid "Plantation GeoJSON helpers"
+msgstr "Pembantu GeoJSON Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_harvest_pay
+msgid "Plantation Harvest Pay"
+msgstr "Gaji Panen Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_pay_scheme
+msgid "Plantation Harvest Pay Scheme"
+msgstr "Skema Gaji Panen Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_harvest_tally
+msgid "Plantation Harvest Tally"
+msgstr "Tally Panen Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_harvest_tally_line
+msgid "Plantation Harvest Tally Line"
+msgstr "Baris Tally Panen Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_landmark
+msgid "Plantation Landmark"
+msgstr "Penanda Lokasi Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_landmark_type
+msgid "Plantation Landmark Type"
+msgstr "Jenis Penanda Lokasi Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.module.module,shortdesc:base.module_ss_plantation
+msgid "Plantation Management"
+msgstr "Manajemen Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.actions.client,name:ss_plantation.ss_plantation_map_action
+msgid "Plantation Map"
+msgstr "Peta Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_transport_line
+msgid "Plantation Transport Line"
+msgstr "Baris Nota Angkut Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_transport
+msgid "Plantation Transport Note"
+msgstr "Nota Angkut Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_weigh_ticket
+msgid "Plantation Weigh Ticket"
+msgstr "Tiket Timbang Perkebunan"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_weigh_grade_line
+msgid "Plantation Weigh Ticket Grade Deduction"
+msgstr "Potongan Mutu Tiket Timbang"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_ss_plantation_yield_report
+msgid "Plantation Yield and Cost"
+msgstr "Hasil dan Biaya Perkebunan"
+
+#. module: ss_plantation
+#: model:res.groups,name:ss_plantation.group_ss_feature_payroll
+msgid "Plantation: Harvest Pay"
+msgstr "Perkebunan: Gaji Panen"
+
+#. module: ss_plantation
+#: model:res.groups,name:ss_plantation.group_ss_feature_asset
+msgid "Plantation: Mature Assets"
+msgstr "Perkebunan: Aset Mature"
+
+#. module: ss_plantation
+#: model:res.groups,name:ss_plantation.group_ss_feature_mill
+msgid "Plantation: Own Mill"
+msgstr "Perkebunan: Pabrik Sendiri"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "Planting"
+msgstr "Penanaman"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__planting_date
+msgid "Planting Date"
+msgstr "Tanggal Tanam"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__planting_year
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+msgid "Planting Year"
+msgstr "Tahun Tanam"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__plate
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__plate
+msgid "Plate"
+msgstr "Plat"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_landmark_type__geometry_kind__point
+msgid "Point"
+msgstr "Titik"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/inputs_dashboard.json:0
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__unit_price
+msgid "Price / kg"
+msgstr "Harga / kg"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__price_per_kg
+msgid "Price Per Kg"
+msgstr "Harga per Kg"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Print"
+msgstr "Cetak"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__product_id
+msgid "Product"
+msgstr "Produk"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Products"
+msgstr "Produk"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Products used by weigh tickets and the mill"
+msgstr "Produk yang dipakai tiket timbang dan pabrik"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_pruning
+msgid "Pruning"
+msgstr "Pruning (Pemangkasan)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__purchase_id
+msgid "Purchase"
+msgstr "Pembelian"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__qty
+msgid "Quantity"
+msgstr "Kuantitas"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__quantity
+msgid "Quantity (ha / palms)"
+msgstr "Kuantitas (ha / pohon)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_warehouse_id
+#: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_warehouse_id
+msgid "Receiving Warehouse"
+msgstr "Gudang Penerima"
+
+#. module: ss_plantation
+#: model:res.groups,comment:ss_plantation.group_plantation_user
+msgid "Records field activities, harvest tallies and transport notes."
+msgstr "Mencatat aktivitas lapangan, tally panen, dan nota angkut."
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_block__stage__replanting
+msgid "Replanting"
+msgstr "Peremajaan"
+
+#. module: ss_plantation
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_reporting
+msgid "Reporting"
+msgstr "Laporan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__reverse_move_id
+msgid "Reverse Move"
+msgstr "Pergerakan Balik"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_line_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+msgid "Ripe"
+msgstr "Matang"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+msgid "Ripe bunches"
+msgstr "Tandan matang"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_road
+msgid "Road and Drain Maintenance"
+msgstr "Perawatan Jalan dan Parit"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "Row %(row)s: %(error)s"
+msgstr "Baris %(row)s: %(error)s"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__scheme_id
+msgid "Scheme"
+msgstr "Skema"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_form
+msgid "Send to Mill"
+msgstr "Kirim ke Pabrik"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_transport__state__sent
+msgid "Sent"
+msgstr "Terkirim"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__sequence
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_grade_type__sequence
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark_type__sequence
+msgid "Sequence"
+msgstr "Urutan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "Set Mature"
+msgstr "Jadikan Mature"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid ""
+"Set the FFB product and receiving warehouse in the Plantation settings."
+msgstr "Atur produk TBS dan gudang penerima di pengaturan Perkebunan."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Set the estate harvest location in the Plantation settings."
+msgstr "Atur lokasi panen kebun di pengaturan Perkebunan."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_activity_input.py:0
+msgid ""
+"Set the input store on division %(division)s and the consumption location in"
+" the Plantation settings."
+msgstr ""
+"Atur gudang input pada divisi %(division)s dan lokasi konsumsi di pengaturan"
+" Perkebunan."
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_transport_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Set to Draft"
+msgstr "Kembalikan ke Draft"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_settings_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_settings
+msgid "Settings"
+msgstr "Pengaturan"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__direction__out
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Sold"
+msgstr "Dijual"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_spraying
+msgid "Spraying"
+msgstr "Penyemprotan"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.js:0
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__stage
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_search
+msgid "Stage"
+msgstr "Tahap"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__state
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__state
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__state
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__tally_state
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__state
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__state
+msgid "State"
+msgstr "Status"
+
+#. module: ss_plantation
+#: model:ir.model,name:ss_plantation.model_stock_move
+msgid "Stock Move"
+msgstr "Pergerakan Stok"
+
+#. module: ss_plantation
+#: model:spreadsheet.dashboard,name:ss_plantation.spreadsheet_dashboard_inputs
+msgid "Stock and Inputs"
+msgstr "Stok dan Input"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_store
+msgid "Store"
+msgstr "Gudang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__suggested_area_ha
+msgid "Suggested Area Ha"
+msgstr "Saran Luas (ha)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_ffb_price__partner_category_id
+msgid "Supplier Tag"
+msgstr "Tag Pemasok"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally_line__tally_id
+msgid "Tally"
+msgstr "Tally"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_tally.py:0
+msgid "Tally %s has no lines."
+msgstr "Tally %s tidak punya baris."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__clerk_id
+msgid "Tally Clerk"
+msgstr "Petugas Tally"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Tally lines"
+msgstr "Baris tally"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__tare_kg
+msgid "Tare Kg"
+msgstr "Tara (kg)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Tare weight"
+msgstr "Berat tara"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Tare weight cannot exceed gross weight."
+msgstr "Berat tara tidak boleh melebihi berat bruto."
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_block_area_positive
+msgid "The block area must be positive."
+msgstr "Luas blok harus positif."
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_block_code_company_uniq
+msgid "The block code must be unique per company."
+msgstr "Kode blok harus unik per perusahaan."
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_division_code_company_uniq
+msgid "The division code must be unique per company."
+msgstr "Kode divisi harus unik per perusahaan."
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_estate_code_company_uniq
+msgid "The estate code must be unique per company."
+msgstr "Kode kebun harus unik per perusahaan."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "The file could not be read: %s"
+msgstr "Berkas tidak dapat dibaca: %s"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "The fruit waited"
+msgstr "Buah menunggu selama"
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_activity_input_qty_positive
+msgid "The input quantity must be positive."
+msgstr "Kuantitas input harus positif."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_harvest_pay.py:0
+msgid "The period start must not be after its end."
+msgstr "Awal periode tidak boleh setelah akhir periode."
+
+#. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_ffb_price_price_positive
+msgid "The price cannot be negative."
+msgstr "Harga tidak boleh negatif."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
+msgid "The stored value is not valid GeoJSON."
+msgstr "Nilai tersimpan bukan GeoJSON yang valid."
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
+msgid "This Year"
+msgstr "Tahun Ini"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
+msgid "This is not valid JSON."
+msgstr "Ini bukan JSON yang valid."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_grade_line__ticket_id
+msgid "Ticket"
+msgstr "Tiket"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Ticket %s has no payable weight."
+msgstr "Tiket %s tidak punya berat dibayar."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Ticket %s needs a partner."
+msgstr "Tiket %s membutuhkan mitra."
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+msgid "Tickets"
+msgstr "Tiket"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+msgid "Tickets over freshness limit"
+msgstr "Tiket melewati batas kesegaran"
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_transport__harvested_at
+msgid ""
+"Time the earliest fruit on this load was cut. Used for the freshness check."
+msgstr ""
+"Waktu buah paling awal di muatan ini dipotong. Dipakai untuk pemeriksaan "
+"kesegaran."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__too_stale
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
+msgid "Too Stale"
+msgstr "Terlalu Lama"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_division_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_list
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_list
+msgid "Total"
+msgstr "Total"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__cost_total
+msgid "Total Cost"
+msgstr "Total Biaya"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Traceability"
+msgstr "Keterlacakan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport_line__transport_id
+msgid "Transport"
+msgstr "Pengangkutan"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_transport_action
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__transport_ids
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_transport
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Transport Notes"
+msgstr "Nota Angkut"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_transport.py:0
+msgid "Transport note %s has no lines."
+msgstr "Nota angkut %s tidak punya baris."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__type_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_landmark__type_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_landmark_view_search
+msgid "Type"
+msgstr "Jenis"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "Undo"
+msgstr "Urungkan"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__uom_id
+msgid "Unit"
+msgstr "Satuan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_form
+msgid "Unripe"
+msgstr "Mentah"
+
+#. module: ss_plantation
+#: model:ss.plantation.grade.type,name:ss_plantation.grade_unripe
+msgid "Unripe Bunches"
+msgstr "Tandan Mentah"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/manager_dashboard.json:0
+msgid "Unripe bunches cut"
+msgstr "Tandan mentah yang dipotong"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__uom_basis
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__uom_basis
+msgid "Uom Basis"
+msgstr "Basis Satuan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "Use drawn area ("
+msgstr "Pakai luas gambar ("
+
+#. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_landmark_import__type_id
+msgid "Used for rows or features that do not name a known type."
+msgstr ""
+"Dipakai untuk baris atau fitur yang tidak menyebut jenis yang dikenal."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_type__requires_inputs
+msgid "Uses Stock Inputs"
+msgstr "Memakai Input Stok"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_block__variety
+msgid "Variety"
+msgstr "Varietas"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__vehicle_id
+msgid "Vehicle"
+msgstr "Kendaraan"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.res_config_settings_view_form_ss_plantation
+msgid "Warehouse and virtual locations used for stock moves"
+msgstr "Gudang dan lokasi virtual untuk pergerakan stok"
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_water
+msgid "Water Body"
+msgstr "Badan Air"
+
+#. module: ss_plantation
+#: model:ss.plantation.activity.type,name:ss_plantation.activity_type_weeding
+msgid "Weeding"
+msgstr "Penyiangan"
+
+#. module: ss_plantation
+#: model:ir.actions.report,name:ss_plantation.action_report_weigh_ticket
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__ticket_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Weigh Ticket"
+msgstr "Tiket Timbang"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_weigh_ticket_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_ticket
+msgid "Weigh Tickets"
+msgstr "Tiket Timbang"
+
+#. module: ss_plantation
+#: model:spreadsheet.dashboard,name:ss_plantation.spreadsheet_dashboard_weighbridge
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_weighbridge
+msgid "Weighbridge"
+msgstr "Jembatan Timbang"
+
+#. module: ss_plantation
+#: model:res.groups,name:ss_plantation.group_plantation_weighbridge
+msgid "Weighbridge Operator"
+msgstr "Operator Jembatan Timbang"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+msgid "Weighbridge operator<br/><br/><br/>________________"
+msgstr "Operator jembatan timbang<br/><br/><br/>________________"
+
+#. module: ss_plantation
+#: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_transport__state__weighed
+msgid "Weighed"
+msgstr "Ditimbang"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_yield_report__weighed_kg
+msgid "Weighed (kg)"
+msgstr "Ditimbang (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "Weighed FFB (kg)"
+msgstr "TBS ditimbang (kg)"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "Weighed FFB per month (kg)"
+msgstr "TBS ditimbang per bulan (kg)"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__weigh_in_at
+msgid "Weighed In"
+msgstr "Timbang Masuk"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_weigh_ticket__weigh_out_at
+msgid "Weighed Out"
+msgstr "Timbang Keluar"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_list
+msgid "Weighed kg"
+msgstr "Kg ditimbang"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "Weights"
+msgstr "Berat"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid "Weights cannot be negative."
+msgstr "Berat tidak boleh negatif."
+
+#. module: ss_plantation
+#: model:ss.plantation.landmark.type,name:ss_plantation.landmark_type_housing
+msgid "Worker Housing"
+msgstr "Perumahan Pekerja"
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__employee_ids
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_form
+msgid "Workers"
+msgstr "Pekerja"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/data/files/owner_dashboard.json:0
+msgid "Yield (kg/ha)"
+msgstr "Hasil (kg/ha)"
+
+#. module: ss_plantation
+#: model:ir.actions.act_window,name:ss_plantation.ss_plantation_yield_report_action
+#: model:ir.ui.menu,name:ss_plantation.ss_plantation_menu_yield
+msgid "Yield and Cost"
+msgstr "Hasil dan Biaya"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/map/plantation_map.xml:0
+msgid "Yield, last 30 days"
+msgstr "Hasil, 30 hari terakhir"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
+msgid "ha)"
+msgstr "ha)"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
+msgid "hours between harvest and weighing."
+msgstr "jam antara panen dan penimbangan."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_harvest_pay_wizard.py:0
+#: code:addons/ss_plantation/wizard/ss_plantation_landmark_import.py:0
+msgid "id"
+msgstr "id"
+
+#. module: ss_plantation
+#: model_terms:ir.ui.view,arch_db:ss_plantation.report_weigh_ticket
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_list
+msgid "kg"
+msgstr "kg"
+
+#. module: ss_plantation
+#. odoo-javascript
+#: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
+msgid "points)"
+msgstr "titik)"

@@ -1,0 +1,58 @@
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+
+
+class SsPlantationHarvestTally(models.Model):
+    _name = 'ss.plantation.harvest.tally'
+    _description = 'Plantation Harvest Tally'
+    _order = 'date desc, id desc'
+    _check_company_auto = True
+
+    name = fields.Char(readonly=True, copy=False, default='/')
+    date = fields.Date(required=True, default=fields.Date.context_today, index=True)
+    division_id = fields.Many2one(
+        'ss.plantation.division', required=True, index=True, check_company=True, ondelete='restrict')
+    company_id = fields.Many2one(
+        'res.company', required=True, index=True, default=lambda self: self.env.company)
+    clerk_id = fields.Many2one('hr.employee', string="Tally Clerk", check_company=True)
+    line_ids = fields.One2many('ss.plantation.harvest.tally.line', 'tally_id', copy=True)
+    state = fields.Selection(
+        [('draft', "Draft"), ('confirmed', "Confirmed"), ('cancel', "Cancelled")],
+        default='draft', required=True, index=True, copy=False)
+    bunch_total = fields.Integer(compute='_compute_totals', store=True)
+    est_weight_kg = fields.Float(compute='_compute_totals', store=True, digits=(16, 1))
+
+    @api.depends('line_ids.bunches_ripe', 'line_ids.bunches_overripe', 'line_ids.est_weight_kg')
+    def _compute_totals(self):
+        for tally in self:
+            tally.bunch_total = sum(tally.line_ids.mapped(
+                lambda l: l.bunches_ripe + l.bunches_overripe))
+            tally.est_weight_kg = sum(tally.line_ids.mapped('est_weight_kg'))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', '/') == '/':
+                vals['name'] = self.env['ir.sequence'].next_by_code('ss.plantation.harvest.tally') or '/'
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if set(vals) - {'state'} and any(t.state != 'draft' for t in self):
+            raise UserError(self.env._("Only draft tallies can be edited."))
+        return super().write(vals)
+
+    def action_confirm(self):
+        for tally in self.filtered(lambda t: t.state == 'draft'):
+            if not tally.line_ids:
+                raise UserError(self.env._("Tally %s has no lines.", tally.name))
+            tally.line_ids._check_duplicates()
+            tally.state = 'confirmed'
+            for block in tally.line_ids.block_id:
+                if not block.last_harvest_date or block.last_harvest_date < tally.date:
+                    block.last_harvest_date = tally.date
+
+    def action_cancel(self):
+        self.state = 'cancel'
+
+    def action_draft(self):
+        self.filtered(lambda t: t.state == 'cancel').state = 'draft'
