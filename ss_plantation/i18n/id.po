@@ -2753,3 +2753,23 @@ msgstr "kg"
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "points)"
 msgstr "titik)"
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
+msgid ""
+"The FFB product %(product)s is counted in %(uom)s, which cannot be converted "
+"from kilograms. Give it a weight unit such as kg or tonne."
+msgstr ""
+"Produk TBS %(product)s dihitung dalam %(uom)s, yang tidak dapat dikonversi "
+"dari kilogram. Beri satuan berat seperti kg atau ton."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/wizard/ss_plantation_block_asset_wizard.py:0
+msgid ""
+"Account %s has no depreciation model. Set one on the account (Accounting > "
+"Configuration > Chart of Accounts) before capitalising a block."
+msgstr ""
+"Akun %s belum punya model penyusutan. Atur pada akun tersebut (Akuntansi > "
+"Konfigurasi > Bagan Akun) sebelum mengkapitalisasi blok."
