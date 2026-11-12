@@ -2773,3 +2773,23 @@ msgid ""
 msgstr ""
 "Akun %s belum punya model penyusutan. Atur pada akun tersebut (Akuntansi > "
 "Konfigurasi > Bagan Akun) sebelum mengkapitalisasi blok."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_activity.py:0
+msgid ""
+"Activity type '%(type)s' does not use stock inputs. Remove the input lines or "
+"enable 'Uses Stock Inputs' on the activity type."
+msgstr ""
+"Jenis aktivitas '%(type)s' tidak memakai input stok. Hapus baris input atau "
+"aktifkan 'Memakai Input Stok' pada jenis aktivitas."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/models/ss_plantation_activity.py:0
+msgid ""
+"Activity type '%(type)s' uses stock inputs. Add at least one input line "
+"before marking it Done."
+msgstr ""
+"Jenis aktivitas '%(type)s' memakai input stok. Tambahkan minimal satu baris "
+"input sebelum menandai Selesai."

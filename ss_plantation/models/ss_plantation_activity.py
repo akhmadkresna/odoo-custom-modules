@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -17,6 +17,7 @@ class SsPlantationActivity(models.Model):
         'res.company', required=True, index=True, default=lambda self: self.env.company)
     type_id = fields.Many2one('ss.plantation.activity.type', required=True)
     uom_basis = fields.Selection(related='type_id.uom_basis')
+    requires_inputs = fields.Boolean(related='type_id.requires_inputs')
     quantity = fields.Float(string="Quantity (ha / palms)")
     man_days = fields.Float()
     employee_ids = fields.Many2many('hr.employee', string="Workers", check_company=True)
@@ -38,6 +39,19 @@ class SsPlantationActivity(models.Model):
         if self.type_id.uom_basis == 'ha' and self.block_id and not self.quantity:
             self.quantity = self.block_id.area_ha
 
+    @api.onchange('type_id')
+    def _onchange_type_id_inputs(self):
+        if not self.type_id.requires_inputs:
+            self.input_line_ids = [Command.clear()]
+
+    @api.constrains('type_id', 'input_line_ids')
+    def _check_inputs_allowed(self):
+        for activity in self:
+            if activity.input_line_ids and not activity.type_id.requires_inputs:
+                raise UserError(self.env._(
+                    "Activity type '%(type)s' does not use stock inputs. Remove the input lines or enable "
+                    "'Uses Stock Inputs' on the activity type.", type=activity.type_id.name))
+
     def write(self, vals):
         if set(vals) - {'note', 'state'} and any(a.state != 'draft' for a in self):
             raise UserError(self.env._("Only draft activities can be edited."))
@@ -45,6 +59,10 @@ class SsPlantationActivity(models.Model):
 
     def action_done(self):
         for activity in self.filtered(lambda a: a.state == 'draft'):
+            if activity.type_id.requires_inputs and not activity.input_line_ids:
+                raise UserError(self.env._(
+                    "Activity type '%(type)s' uses stock inputs. Add at least one input line before marking "
+                    "it Done.", type=activity.type_id.name))
             activity.input_line_ids._consume()
             activity.state = 'done'
 
