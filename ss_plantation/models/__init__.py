@@ -17,6 +17,7 @@ from . import ss_plantation_ffb_price
 from . import ss_plantation_weigh_grade_line
 from . import ss_plantation_weigh_ticket
 from . import ss_plantation_pay_scheme
+from . import ss_plantation_pay_scheme_tier
 from . import ss_plantation_harvest_pay
 from . import hr_employee
 from . import hr_payslip

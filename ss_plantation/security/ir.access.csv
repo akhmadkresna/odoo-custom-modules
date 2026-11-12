@@ -34,6 +34,7 @@ access_ss_plantation_weigh_grade_line_manager,ss.plantation.weigh.grade.line man
 access_ss_plantation_ffb_price_weighbridge,ss.plantation.ffb.price weighbridge,ss.plantation.ffb.price,group_plantation_weighbridge,r,""
 access_ss_plantation_ffb_price_manager,ss.plantation.ffb.price manager,ss.plantation.ffb.price,group_plantation_manager,crud,""
 access_ss_plantation_pay_scheme_manager,ss.plantation.pay.scheme manager,ss.plantation.pay.scheme,group_plantation_manager,crud,""
+access_ss_plantation_pay_scheme_tier_manager,ss.plantation.pay.scheme.tier manager,ss.plantation.pay.scheme.tier,group_plantation_manager,crud,""
 access_ss_plantation_harvest_pay_manager,ss.plantation.harvest.pay manager,ss.plantation.harvest.pay,group_plantation_manager,crud,""
 access_ss_plantation_yield_report_user,ss.plantation.yield.report user,ss.plantation.yield.report,group_plantation_user,r,""
 access_ss_plantation_yield_report_manager,ss.plantation.yield.report manager,ss.plantation.yield.report,group_plantation_manager,r,""
@@ -57,3 +58,4 @@ rule_ss_plantation_ffb_price_company,ss.plantation.ffb.price multi-company,ss.pl
 rule_ss_plantation_pay_scheme_company,ss.plantation.pay.scheme multi-company,ss.plantation.pay.scheme,,crud,"[('company_id', 'in', company_ids)]"
 rule_ss_plantation_harvest_pay_company,ss.plantation.harvest.pay multi-company,ss.plantation.harvest.pay,,crud,"[('company_id', 'in', company_ids)]"
 rule_ss_plantation_yield_report_company,ss.plantation.yield.report multi-company,ss.plantation.yield.report,,crud,"[('company_id', 'in', company_ids)]"
+rule_ss_plantation_pay_scheme_tier_company,ss.plantation.pay.scheme.tier multi-company,ss.plantation.pay.scheme.tier,,crud,"[('company_id', 'in', company_ids)]"

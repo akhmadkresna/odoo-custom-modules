@@ -10,6 +10,7 @@
                 <field name="rate_per_kg" optional="show"/>
                 <field name="basis_kg" optional="show"/>
                 <field name="bonus_per_kg" optional="show"/>
+                <field name="holiday_factor" optional="hide"/>
                 <field name="currency_id" column_invisible="1"/>
             </list>
         </field>
@@ -32,10 +33,24 @@
                             <field name="rate_per_kg" invisible="mode != 'piece_rate'"/>
                             <field name="basis_kg" invisible="mode != 'mixed'"/>
                             <field name="bonus_per_kg" invisible="mode != 'mixed'"/>
+                            <field name="holiday_factor" invisible="mode == 'daily'"/>
                             <field name="penalty_unripe"/>
                             <field name="penalty_loose_left"/>
                         </group>
                     </group>
+                    <separator string="Premium Tiers" invisible="mode != 'mixed'"/>
+                    <p class="text-muted" invisible="mode != 'mixed'">
+                        Optional. Pay a higher rate per kg for the fruit far above the basis. The scheme's
+                        Bonus / kg above Basis applies first; each tier below raises the rate from its
+                        starting point.
+                    </p>
+                    <field name="tier_ids" invisible="mode != 'mixed'">
+                        <list editable="bottom">
+                            <field name="above_kg"/>
+                            <field name="rate_per_kg"/>
+                            <field name="currency_id" column_invisible="1"/>
+                        </list>
+                    </field>
                 </sheet>
             </form>
         </field>

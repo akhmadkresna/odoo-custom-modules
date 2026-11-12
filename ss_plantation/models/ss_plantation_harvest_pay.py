@@ -45,11 +45,16 @@ class SsPlantationHarvestPay(models.Model):
         for line in lines:
             kg_by_day[line.tally_date] += line.est_weight_kg
         total_kg = sum(kg_by_day.values())
+        rest_days = (
+            self.env['ss.plantation.pay.scheme']._rest_days(employee, date_from, date_to)
+            if scheme.holiday_factor != 1.0 else set())
         bonus = 0.0
-        if scheme.mode == 'piece_rate':
-            bonus = total_kg * scheme.rate_per_kg
-        elif scheme.mode == 'mixed':
-            bonus = sum(max(kg - scheme.basis_kg, 0.0) for kg in kg_by_day.values()) * scheme.bonus_per_kg
+        for day, kg in kg_by_day.items():
+            factor = scheme.holiday_factor if day in rest_days else 1.0
+            if scheme.mode == 'piece_rate':
+                bonus += kg * scheme.rate_per_kg * factor
+            elif scheme.mode == 'mixed':
+                bonus += scheme._tiered_bonus(max(kg - scheme.basis_kg, 0.0)) * factor
         penalty = (
             sum(lines.mapped('bunches_unripe')) * scheme.penalty_unripe
             + sum(lines.mapped('loose_left_kg')) * scheme.penalty_loose_left)
