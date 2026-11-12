@@ -107,7 +107,7 @@ with sync_playwright() as p:
     step(pg, 'Dashboards: Plantation > Owner', owner_dash, '.o_action', 'Plantation dashboard group.')
 
     def to_company2():
-        ctx.add_cookies([{'name': 'cids', 'value': '2', 'url': URL}])
+        ctx.add_cookies([{'name': 'cids', 'value': os.environ.get('E2E_COMPANY', '2'), 'url': URL}])
         pg.goto(URL + '/odoo'); pg.wait_for_selector('.o_navbar'); settle(pg, 3000)
         pg.locator('.o_app', has_text=t('Plantation')).first.click(); settle(pg, 3000)
     step(pg, 'Switch to the E2E company (company 2) holding transactions', to_company2, '.o_navbar')
@@ -132,7 +132,13 @@ with sync_playwright() as p:
     if pg.locator('.o_data_row').count(): open_first('Weigh ticket form (confirmed, stock link)')
     lst('Mill', 'Extraction Rates', 'Mill: Extraction Rates (OER/KER)')
     lst('Payroll', 'Pay Schemes', 'Payroll: Pay Schemes'); 
-    if pg.locator('.o_data_row').count(): open_first('Pay scheme form')
+    def scheme_form():
+        row = pg.locator('.o_data_row:has-text("Tiered")')  # the tiered scheme made by the API run, if there
+        (row.first if row.count() else pg.locator('.o_data_row').first).click()
+        pg.wait_for_selector('.o_form_view')
+    if pg.locator('.o_data_row').count():
+        step(pg, 'Pay scheme form (premium tiers, Sunday / holiday factor)', scheme_form, '.o_form_view .o_field_x2many',
+             'Mixed scheme with a higher rate beyond a point and a Sunday / holiday factor.')
     lst('Payroll', 'Harvest Pay', 'Payroll: Harvest Pay')
 
     def wiz():

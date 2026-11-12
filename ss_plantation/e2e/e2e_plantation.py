@@ -7,8 +7,8 @@ import json, sys, traceback
 sys.path.insert(0, __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
 from kpm import call, sr, one, OdooError
 
-CO = 2
-CTX = {'allowed_company_ids': [2, 1, 3]}
+CO = int(__import__('os').environ.get('E2E_COMPANY', 2))  # the Indonesian (IDR) company
+CTX = {'allowed_company_ids': sorted({CO, 1})}
 D1, D2 = '2026-11-02', '2026-11-03'
 PERIOD = ('2026-11-01', '2026-11-30')
 S = {}          # ids created / found
@@ -58,9 +58,17 @@ def _():
     S['wh'] = wh
     lot_stock = sr('stock.warehouse', [['id', '=', wh]], ['lot_stock_id'], context=CTX)[0]['lot_stock_id'][0]
     S['lot_stock'] = lot_stock
+    def ref(name):
+        data = sr('ir.model.data', [['module', '=', 'ss_plantation'], ['name', '=', name]], ['res_id'])
+        return data[0]['res_id']
     c('res.company', 'write', ids=[CO], vals={
         'ss_warehouse_id': wh, 'ss_freshness_hours': 8,
-        'ss_estate_location_id': 38, 'ss_consumption_location_id': 37})
+        'ss_estate_location_id': ref('location_estate_harvest'),
+        'ss_consumption_location_id': ref('location_consumption'),
+        # a company created after the module was installed has no product defaults yet
+        'ss_ffb_product_id': ref('product_ffb'), 'ss_cpo_product_id': ref('product_cpo'),
+        'ss_kernel_product_id': ref('product_kernel')})
+    S['kg'] = sr('ir.model.data', [['module', '=', 'uom'], ['name', '=', 'product_uom_kgm']], ['res_id'])[0]['res_id']
     return f"warehouse {wh}, stock loc {lot_stock}"
 
 
@@ -88,10 +96,12 @@ def _():
 
 @step("1.4 Assign pay schemes to employees (Siti=piece, Agus=mixed, Dewi=daily)")
 def _():
-    S['emp'] = {'siti': 24, 'agus': 25, 'dewi': 26, 'budi': 27}
-    c('hr.employee', 'write', ids=[24], vals={'ss_pay_scheme_id': S['sch_piece']})
-    c('hr.employee', 'write', ids=[25], vals={'ss_pay_scheme_id': S['sch_mixed']})
-    c('hr.employee', 'write', ids=[26], vals={'ss_pay_scheme_id': S['sch_daily']})
+    names = {'siti': 'Siti Rahayu', 'agus': 'Agus Pratama', 'dewi': 'Dewi Lestari', 'budi': 'Budi Santoso'}
+    S['emp'] = {key: get_or_create('hr.employee', [['name', '=', name], ['company_id', '=', CO]],
+                                   {'name': name, 'company_id': CO}) for key, name in names.items()}
+    c('hr.employee', 'write', ids=[S['emp']['siti']], vals={'ss_pay_scheme_id': S['sch_piece']})
+    c('hr.employee', 'write', ids=[S['emp']['agus']], vals={'ss_pay_scheme_id': S['sch_mixed']})
+    c('hr.employee', 'write', ids=[S['emp']['dewi']], vals={'ss_pay_scheme_id': S['sch_daily']})
 
 
 @step("1.5 FFB reference prices (general + tag 'Smallholder')")
@@ -139,7 +149,7 @@ def _():
 @step("1.8 Products: NPK fertilizer (storable, kg) + opening stock in input store")
 def _():
     prod = get_or_create('product.product', [['name', '=', 'E2E NPK Fertilizer']], {
-        'name': 'E2E NPK Fertilizer', 'type': 'consu', 'is_storable': True, 'uom_id': 16})
+        'name': 'E2E NPK Fertilizer', 'type': 'consu', 'is_storable': True, 'uom_id': S['kg']})
     S['npk'] = prod
     quant = c('stock.quant', 'create', vals_list=[{'product_id': prod, 'location_id': S['store'],
                                                  'inventory_quantity': 1000}],
@@ -177,26 +187,29 @@ def _():
     def line(block, emp, ripe, unripe=0, over=0, loose=0, left=0):
         return [0, 0, {'block_id': S['blk'][block], 'harvester_id': S['emp'][emp], 'bunches_ripe': ripe,
                        'bunches_unripe': unripe, 'bunches_overripe': over, 'loose_fruit_kg': loose, 'loose_left_kg': left}]
-    t1 = create('ss.plantation.harvest.tally', {
-        'date': D1, 'division_id': S['div'], 'company_id': CO, 'clerk_id': S['emp']['budi'],
-        'line_ids': [line('E101', 'agus', 90, unripe=3, left=2), line('E102', 'siti', 100, over=5, loose=20),
-                     line('E103', 'dewi', 80, unripe=6, left=3)]})
-    t2 = create('ss.plantation.harvest.tally', {
-        'date': D2, 'division_id': S['div'], 'company_id': CO, 'clerk_id': S['emp']['budi'],
-        'line_ids': [line('E101', 'agus', 70), line('E104', 'siti', 110, loose=15), line('E102', 'dewi', 60)]})
-    c('ss.plantation.harvest.tally', 'action_confirm', ids=[t1, t2])
+    def tally(date, lines):  # re-runs reuse the day's tally instead of colliding with it
+        return get_or_create('ss.plantation.harvest.tally', [
+            ['date', '=', date], ['division_id', '=', S['div']], ['company_id', '=', CO], ['state', '!=', 'cancel']], {
+            'date': date, 'division_id': S['div'], 'company_id': CO, 'clerk_id': S['emp']['budi'], 'line_ids': lines})
+    t1 = tally(D1, [line('E101', 'agus', 90, unripe=3, left=2), line('E102', 'siti', 100, over=5, loose=20),
+                    line('E103', 'dewi', 80, unripe=6, left=3)])
+    t2 = tally(D2, [line('E101', 'agus', 70), line('E104', 'siti', 110, loose=15), line('E102', 'dewi', 60)])
+    c('ss.plantation.harvest.tally', 'action_confirm', ids=[t for t in (t1, t2) if sr(
+        'ss.plantation.harvest.tally', [['id', '=', t], ['state', '=', 'draft']], ['id'], context=CTX)])
     S['tallies'] = [t1, t2]
     return sr('ss.plantation.harvest.tally', [['id', 'in', [t1, t2]]], ['name', 'state', 'bunch_total', 'est_weight_kg'], context=CTX)
 
 
 @step("2.3 Transport note (day 2 harvest) -> Send")
 def _():
-    t = create('ss.plantation.transport', {
+    t = get_or_create('ss.plantation.transport', [['date', '=', D2], ['plate', '=', 'KT 1234 AB'], ['company_id', '=', CO],
+                                                   ['state', '!=', 'cancel']], {
         'date': D2, 'harvested_at': '2026-11-03 06:30:00', 'division_id': S['div'], 'company_id': CO,
         'plate': 'KT 1234 AB', 'driver_id': S['emp']['budi'],
         'line_ids': [[0, 0, {'block_id': S['blk']['E101'], 'bunches': 190}],
                      [0, 0, {'block_id': S['blk']['E104'], 'bunches': 150}]]})
-    c('ss.plantation.transport', 'action_send', ids=[t])
+    if sr('ss.plantation.transport', [['id', '=', t], ['state', '=', 'draft']], ['id'], context=CTX):
+        c('ss.plantation.transport', 'action_send', ids=[t])
     S['transport'] = t
     return sr('ss.plantation.transport', [['id', '=', t]], ['name', 'state', 'bunch_total', 'est_weight_kg'], context=CTX)
 
@@ -246,11 +259,11 @@ def _():
     ffb, cpo, ker = co['ss_ffb_product_id'][0], co['ss_cpo_product_id'][0], co['ss_kernel_product_id'][0]
     bom = c('mrp.bom', 'create', vals_list=[{
         'product_tmpl_id': sr('product.product', [['id', '=', cpo]], ['product_tmpl_id'], context=CTX)[0]['product_tmpl_id'][0],
-        'product_qty': 440, 'uom_id': 16, 'company_id': CO, 'type': 'normal',  # uom 16 = kg
+        'product_qty': 440, 'uom_id': S['kg'], 'company_id': CO, 'type': 'normal',  # uom 16 = kg
         'bom_line_ids': [[0, 0, {'product_id': ffb, 'product_qty': 2000}]],
         'byproduct_ids': [[0, 0, {'product_id': ker, 'product_qty': 100}]]}], context=CTX)[0]
     S['bom'] = bom
-    mo = create('mrp.production', {'product_id': cpo, 'bom_id': bom, 'product_qty': 440, 'uom_id': 16, 'company_id': CO})
+    mo = create('mrp.production', {'product_id': cpo, 'bom_id': bom, 'product_qty': 440, 'uom_id': S['kg'], 'company_id': CO})
     S['mo'] = mo
     c('mrp.production', 'action_confirm', ids=[mo])
     c('mrp.production', 'action_assign', ids=[mo])
@@ -291,14 +304,53 @@ def _():
     return out
 
 
+@step("3.3 Tiered premium and Sunday factor: scheme -> Sunday + Monday tallies -> Compute -> check amounts")
+def _():
+    sch = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Tiered (basis 1000, Rp 250, Rp 350 beyond 500 kg, Sunday x2)'], ['company_id', '=', CO]], {
+        'name': 'Tiered (basis 1000, Rp 250, Rp 350 beyond 500 kg, Sunday x2)', 'company_id': CO, 'mode': 'mixed',
+        'basis_kg': 1000, 'bonus_per_kg': 250, 'holiday_factor': 2.0,
+        'tier_ids': [[0, 0, {'above_kg': 500, 'rate_per_kg': 350}]]})
+    rina = get_or_create('hr.employee', [['name', '=', 'Rina Wulandari'], ['company_id', '=', CO]],
+                         {'name': 'Rina Wulandari', 'company_id': CO})
+    c('hr.employee', 'write', ids=[rina], vals={'ss_pay_scheme_id': sch})
+    sunday, monday = '2026-11-08', '2026-11-09'
+
+    def tally(date, bunches):
+        return get_or_create('ss.plantation.harvest.tally', [
+            ['date', '=', date], ['division_id', '=', S['div']], ['company_id', '=', CO], ['state', '!=', 'cancel']], {
+            'date': date, 'division_id': S['div'], 'company_id': CO, 'clerk_id': S['emp']['budi'],
+            'line_ids': [[0, 0, {'block_id': S['blk']['E101'], 'harvester_id': rina, 'bunches_ripe': bunches}]]})
+    t = [tally(sunday, 100), tally(monday, 140)]
+    pending = [x for x in t if sr('ss.plantation.harvest.tally', [['id', '=', x], ['state', '=', 'draft']], ['id'], context=CTX)]
+    if pending:
+        c('ss.plantation.harvest.tally', 'action_confirm', ids=pending)
+    w = create('ss.plantation.harvest.pay.wizard', {'date_from': sunday, 'date_to': monday, 'employee_ids': [[6, 0, [rina]]]})
+    c('ss.plantation.harvest.pay.wizard', 'action_compute', ids=[w])
+    pay = sr('ss.plantation.harvest.pay', [['employee_id', '=', rina], ['date_from', '=', sunday], ['date_to', '=', monday]],
+             ['harvested_kg', 'bonus_amount', 'amount'], context=CTX)[0]
+    # Sunday: 1,450 kg, 450 kg above basis x Rp 250 x 2 = 225,000
+    # Monday: 2,030 kg, 1,030 above basis = 500 x 250 + 530 x 350 = 310,500
+    expected = 225000.0 + 310500.0
+    if abs(pay['bonus_amount'] - expected) > 0.5:
+        raise AssertionError(f"bonus {pay['bonus_amount']} but expected {expected}")
+    return {'kg': pay['harvested_kg'], 'bonus': pay['bonus_amount'], 'expected': expected}
+
+
 # ----------------------------------------------------------------------------------------------
 # 4. ASSET + REPORT
 # ----------------------------------------------------------------------------------------------
 @step("4.1 Capitalise mature block E102 as asset (wizard)")
 def _():
-    fixed = sr('account.account', [['account_type', '=', 'asset_fixed']], ['code', 'name'], context=CTX, limit=20)
+    done = sr('ss.plantation.block', [['id', '=', S['blk']['E102']]], ['asset_id', 'cost_total'], context=CTX)[0]
+    if done['asset_id']:  # re-run: the block was capitalised already
+        return {'already capitalised': done['asset_id']}
+    only = {'allowed_company_ids': [CO]}  # accounts of the Indonesian company only
+    fixed = sr('account.account', [['account_type', '=', 'asset_fixed']], ['code', 'name', 'depreciation_model_id'], context=only, limit=20)
     pick = next((a for a in fixed if 'Plantation' in a['name'] or 'Machinery' in a['name']), fixed[0])
-    counter = sr('account.account', [['account_type', '=', 'asset_current']], ['code', 'name'], context=CTX, limit=1)[0]
+    if not pick['depreciation_model_id']:  # a fixed-asset account needs a depreciation model before a block can use it
+        model = one('account.depreciation.model', [['name', '=', '16 Year']], ['id'])
+        c('account.account', 'write', ids=[pick['id']], vals={'depreciation_model_id': model['id']}, context=only)
+    counter = sr('account.account', [['account_type', '=', 'asset_current']], ['code', 'name'], context=only, limit=1)[0]
     journal = one('account.journal', [['company_id', '=', CO], ['type', '=', 'general'], ['code', '=', 'MISC']], ['id'])['id']
     w = create('ss.plantation.block.asset.wizard', {
         'block_id': S['blk']['E102'], 'name': 'Plantation E102', 'acquisition_date': '2026-11-04',
