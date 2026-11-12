@@ -73,4 +73,6 @@
               action="ss_plantation_grade_type_action" sequence="40"/>
     <menuitem id="ss_plantation_menu_ffb_price" name="FFB Reference Prices" parent="ss_plantation_menu_config"
               action="ss_plantation_ffb_price_action" sequence="50"/>
+    <menuitem id="ss_plantation_menu_field_device" name="Field Devices" parent="ss_plantation_menu_config"
+              action="ss_plantation_field_device_action" sequence="60"/>
 </odoo>

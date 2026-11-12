@@ -37,6 +37,8 @@
                         </group>
                         <group>
                             <field name="clerk_id"/>
+                            <field name="field_device_id" invisible="not field_device_id"/>
+                            <field name="client_uuid" invisible="not client_uuid" groups="base.group_no_one"/>
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>

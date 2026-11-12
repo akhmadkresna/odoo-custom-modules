@@ -29,6 +29,7 @@
         "views/ss_plantation_harvest_views.xml",
         "views/ss_plantation_payroll_views.xml",
         "views/ss_plantation_map_views.xml",
+        "views/ss_plantation_field_views.xml",
         "report/ss_plantation_yield_report_views.xml",
         "views/ss_plantation_menus.xml",
     ],

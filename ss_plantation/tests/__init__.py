@@ -10,3 +10,4 @@ from . import test_access
 from . import test_asset
 from . import test_dashboard
 from . import test_uom
+from . import test_field_app

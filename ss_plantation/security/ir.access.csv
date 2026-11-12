@@ -41,6 +41,7 @@ access_ss_plantation_landmark_import_user,ss.plantation.landmark.import user,ss.
 access_ss_plantation_landmark_import_manager,ss.plantation.landmark.import manager,ss.plantation.landmark.import,group_plantation_manager,crud,""
 access_ss_plantation_harvest_pay_wizard_manager,ss.plantation.harvest.pay.wizard manager,ss.plantation.harvest.pay.wizard,group_plantation_manager,crud,""
 access_ss_plantation_block_asset_wizard_manager,ss.plantation.block.asset.wizard manager,ss.plantation.block.asset.wizard,group_plantation_manager,crud,""
+access_ss_plantation_field_device_manager,ss.plantation.field.device manager,ss.plantation.field.device,group_plantation_manager,crud,""
 rule_ss_plantation_estate_company,ss.plantation.estate multi-company,ss.plantation.estate,,crud,"[('company_id', 'in', company_ids)]"
 rule_ss_plantation_division_company,ss.plantation.division multi-company,ss.plantation.division,,crud,"[('company_id', 'in', company_ids)]"
 rule_ss_plantation_block_company,ss.plantation.block multi-company,ss.plantation.block,,crud,"[('company_id', 'in', company_ids)]"

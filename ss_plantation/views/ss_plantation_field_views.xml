@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ss_plantation_field_device_view_list" model="ir.ui.view">
+        <field name="name">ss.plantation.field.device.list</field>
+        <field name="model">ss.plantation.field.device</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="last_sync"/>
+                <field name="sync_count"/>
+                <field name="expires_at"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="ss_plantation_field_device_view_form" model="ir.ui.view">
+        <field name="name">ss.plantation.field.device.form</field>
+        <field name="model">ss.plantation.field.device</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <sheet>
+                    <widget name="web_ribbon" title="Revoked" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="last_sync"/>
+                            <field name="sync_count"/>
+                            <field name="expires_at"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        Devices are paired from the phone: open the field app and sign in once.
+                        Untick Active to revoke a lost or stolen phone. It can no longer sync,
+                        and entries still waiting on it stay on the phone.
+                    </p>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ss_plantation_field_device_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.field.device.search</field>
+        <field name="model">ss.plantation.field.device</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="user_id"/>
+                <filter name="revoked" string="Revoked" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="ss_plantation_field_device_action" model="ir.actions.act_window">
+        <field name="name">Field Devices</field>
+        <field name="res_model">ss.plantation.field.device</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

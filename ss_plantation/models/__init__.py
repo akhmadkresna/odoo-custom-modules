@@ -8,6 +8,7 @@ from . import ss_plantation_activity_input
 from . import stock_move
 from . import ss_plantation_landmark_type
 from . import ss_plantation_landmark
+from . import ss_plantation_field_device
 from . import ss_plantation_harvest_tally
 from . import ss_plantation_harvest_tally_line
 from . import ss_plantation_transport
