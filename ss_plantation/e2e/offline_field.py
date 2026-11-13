@@ -7,6 +7,7 @@ sign in once to pair; ODOO_DB; API_URL is the Odoo URL used for checks and clean
 (JSON-2, rpc scope) is only used to check results and delete what the run created. Optional:
 APP_IP maps APP_HOST to that address, for use before public DNS catches up.
 """
+import datetime
 import json
 import os
 import sys
@@ -23,6 +24,11 @@ LOGIN = os.environ['ODOO_LOGIN']
 PW = os.environ['ODOO_PW']
 KEY = os.environ['ODOO_API_KEY']
 API = os.environ['API_URL']
+# Names of the test records. Change them to something realistic when capturing screenshots for a guide.
+HARVESTER = os.environ.get('E2E_HARVESTER', 'E2E Harvester')
+PRODUCT = os.environ.get('E2E_PRODUCT', 'E2E NPK')
+ACT_TYPE = os.environ.get('E2E_ACT_TYPE', 'E2E Fertilising')
+NOTE = os.environ.get('E2E_NOTE', 'Round 2')
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else 'offline_out')
 OUT.mkdir(parents=True, exist_ok=True)
 results = []
@@ -78,11 +84,12 @@ def cleanup(uuids=()):
         ids = rpc(model, 'search', domain=[['field_device_id.name', '=', 'E2E phone']], context={'active_test': False})
         if ids:
             rpc(model, 'unlink', ids=ids)
-    for model, name in (('product.product', 'E2E NPK'), ('ss.plantation.activity.type', 'E2E Fertilising')):
-        ids = rpc(model, 'search', domain=[['name', '=', name]], context={'active_test': False})
+    recent = (datetime.datetime.utcnow() - datetime.timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')  # leftovers of an interrupted run only
+    for model, name in (('product.product', PRODUCT), ('ss.plantation.activity.type', ACT_TYPE)):
+        ids = rpc(model, 'search', domain=[['name', '=', name], ['create_date', '>=', recent]], context={'active_test': False})
         if ids:
             rpc(model, 'unlink', ids=ids)
-    emp = rpc('hr.employee', 'search', domain=[['name', '=', 'E2E Harvester']], context={'active_test': False})
+    emp = rpc('hr.employee', 'search', domain=[['name', '=', HARVESTER], ['create_date', '>=', recent]], context={'active_test': False})
     if emp:
         rpc('hr.employee', 'unlink', ids=emp)
     dev = rpc('ss.plantation.field.device', 'search', domain=[['name', '=', 'E2E phone']], context={'active_test': False})
@@ -103,14 +110,15 @@ def main():
 
 
 def run(created_uuids):
-    employee = rpc('hr.employee', 'create', vals_list=[{'name': 'E2E Harvester'}])[0]
-    npk = rpc('product.product', 'create', vals_list=[{'name': 'E2E NPK', 'type': 'consu', 'is_storable': True}])[0]
-    act_type = rpc('ss.plantation.activity.type', 'create', vals_list=[{'name': 'E2E Fertilising', 'uom_basis': 'ha', 'requires_inputs': True}])[0]
+    employee = rpc('hr.employee', 'create', vals_list=[{'name': HARVESTER}])[0]
+    npk = rpc('product.product', 'create', vals_list=[{'name': PRODUCT, 'type': 'consu', 'is_storable': True}])[0]
+    act_type = rpc('ss.plantation.activity.type', 'create', vals_list=[{'name': ACT_TYPE, 'uom_basis': 'ha', 'requires_inputs': True}])[0]
     with sync_playwright() as p:
         browser = p.chromium.launch(args=[f'--host-resolver-rules=MAP {HOST} {IP}'] if IP else [])
         ctx = browser.new_context(viewport={'width': 390, 'height': 780}, locale='id-ID')
         page = ctx.new_page()
         page.on('pageerror', lambda e: print('PAGEERROR', e))
+        page.add_init_script(f'window.__e2e_name = {json.dumps(HARVESTER)}')
         base = f'https://{HOST}'
 
         # 1. sign in once with the normal Odoo login, then pair
@@ -150,7 +158,7 @@ def run(created_uuids):
             const s = window.__field.sync;
             const d = (await s.master("divisions"))[0];
             const blocks = (await s.master("blocks")).filter(b => b.division_id === d.id && b.stage === "mature");
-            const h = (await s.master("harvesters")).find(x => x.name === "E2E Harvester");
+            const h = (await s.master("harvesters")).find(x => x.name === window.__e2e_name);
             return {division: d.id, block: blocks[0] && (blocks[0].code + " - " + blocks[0].name), harvester: h.name};
         }''')
         page.select_option('#f-division', value=str(info['division']))
@@ -203,7 +211,7 @@ def run(created_uuids):
         page.click('[data-action=new-transport]')
         page.select_option('#tf-division', value=str(info['division']))
         page.fill('#tf-plate', 'kt 1234 ab')
-        page.fill('#pk-driver', 'E2E')
+        page.fill('#pk-driver', HARVESTER[:4])
         page.click('#pk-driver-results button')
         page.select_option('#tf-block', label=info['block'])
         page.fill('#tf-bunches', '40')
@@ -221,13 +229,13 @@ def run(created_uuids):
         page.select_option('#af-type', value=str(act_type))
         check('activity quantity defaults to the block area', page.input_value('#af-quantity') not in ('', '0'), page.input_value('#af-quantity'))
         page.fill('#af-man_days', '4')
-        page.fill('#pk-worker', 'E2E')
+        page.fill('#pk-worker', HARVESTER[:4])
         page.click('#pk-worker-results button')
-        page.fill('#pk-product', 'E2E NPK')
+        page.fill('#pk-product', PRODUCT[:6])
         page.click('#pk-product-results button')
         page.fill('#af-inqty', '5')
         page.click('[data-action=add-input]')
-        page.fill('#af-note', 'Round 2')
+        page.fill('#af-note', NOTE)
         page.evaluate('window.scrollTo(0, 0)')
         shot(page, '06c_activity_form')
         page.click('[data-action=save-activity]')
@@ -246,7 +254,7 @@ def run(created_uuids):
                    fields=['state', 'man_days', 'employee_ids', 'input_line_ids', 'note', 'quantity'])
         check('field activity reached Odoo as a draft with worker, input and note',
               len(acts) == 1 and acts[0]['state'] == 'draft' and acts[0]['man_days'] == 4 and len(acts[0]['employee_ids']) == 1
-              and len(acts[0]['input_line_ids']) == 1 and acts[0]['note'] == 'Round 2' and acts[0]['quantity'] > 0, str(acts))
+              and len(acts[0]['input_line_ids']) == 1 and acts[0]['note'] == NOTE and acts[0]['quantity'] > 0, str(acts))
         shot(page, '06d_all_synced')
 
         # 7. a server-side rejection lands in Needs attention with a readable reason
@@ -254,7 +262,7 @@ def run(created_uuids):
         page.evaluate('window.dispatchEvent(new Event("offline"))')
         entry = page.evaluate('''async (info) => { const s = window.__field.sync;
             const blocks = (await s.master("blocks")).filter(b => b.division_id === info.division && b.stage === "mature");
-            const h = (await s.master("harvesters")).find(x => x.name === "E2E Harvester");
+            const h = (await s.master("harvesters")).find(x => x.name === window.__e2e_name);
             const e = await s.enqueue("harvest_tally", {date: new Date(Date.now() + 864e5).toLocaleDateString("sv"),
               division_id: info.division, lines: [{harvester_id: h.id, harvester_name: h.name, block_id: blocks[0].id,
               block_name: blocks[0].code, bunches_ripe: 5, bunches_overripe: 0, bunches_unripe: 0, loose_fruit_kg: 0},
@@ -269,7 +277,7 @@ def run(created_uuids):
         page.click('[data-action=attention]')
         wait_for(page, 'document.querySelector("main li .error")')
         txt = page.inner_text('main li .error')
-        check('rejected entry is listed under Needs attention with a reason', 'E2E Harvester' in txt and len(txt) > 20, txt)
+        check('rejected entry is listed under Needs attention with a reason', HARVESTER in txt and len(txt) > 20, txt)
         shot(page, '07_attention')
 
         # 8. reference-data delta: archive a block on the server, the phone drops it
