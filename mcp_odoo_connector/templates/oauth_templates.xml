@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="oauth_error" name="MCP OAuth error">
+        <t t-call="web.login_layout">
+            <div class="text-center">
+                <h4>Authorization problem</h4>
+                <p class="alert alert-danger" t-esc="message"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="oauth_consent" name="MCP OAuth consent">
+        <t t-call="web.login_layout">
+            <form method="post" action="/oauth/authorize/decision">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="client_id" t-att-value="p.get('client_id')"/>
+                <input type="hidden" name="redirect_uri" t-att-value="p.get('redirect_uri')"/>
+                <input type="hidden" name="state" t-att-value="p.get('state')"/>
+                <input type="hidden" name="scope" t-att-value="p.get('scope')"/>
+                <input type="hidden" name="code_challenge" t-att-value="p.get('code_challenge')"/>
+                <input type="hidden" name="code_challenge_method" t-att-value="p.get('code_challenge_method', 'S256')"/>
+                <input type="hidden" name="response_type" value="code"/>
+                <h4 class="text-center">Connect <b t-esc="client.name"/> to Odoo</h4>
+                <p class="text-center">
+                    Signed in as <b t-esc="user.name"/>.
+                    This app will be able to <t t-if="writes">read, create and update</t><t t-else="">read</t>
+                    Odoo data using your access rights.
+                </p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="submit" name="decision" value="allow" class="btn btn-primary">Allow</button>
+                    <button type="submit" name="decision" value="deny" class="btn btn-secondary">Deny</button>
+                </div>
+            </form>
+        </t>
+    </template>
+</odoo>

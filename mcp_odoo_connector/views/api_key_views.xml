@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mcp_api_key_view_tree" model="ir.ui.view">
+        <field name="name">mcp.api.key.tree</field>
+        <field name="model">mcp.api.key</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="key_prefix"/>
+                <field name="expires_at"/>
+                <field name="last_used_at"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mcp_api_key_view_form" model="ir.ui.view">
+        <field name="name">mcp.api.key.form</field>
+        <field name="model">mcp.api.key</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_key" type="object" string="Generate / Regenerate key"
+                            class="btn-primary"
+                            confirm="This invalidates the current key. Continue?"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="key_prefix"/>
+                            <field name="expires_at"/>
+                            <field name="last_used_at"/>
+                            <field name="last_used_ip"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Model access">
+                            <field name="access_ids">
+                                <tree editable="bottom">
+                                    <field name="model_id" options="{'no_create': True}"/>
+                                    <field name="perm_read"/>
+                                    <field name="perm_create"/>
+                                    <field name="perm_write"/>
+                                    <field name="perm_unlink"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mcp_api_key_action" model="ir.actions.act_window">
+        <field name="name">API Keys</field>
+        <field name="res_model">mcp.api.key</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

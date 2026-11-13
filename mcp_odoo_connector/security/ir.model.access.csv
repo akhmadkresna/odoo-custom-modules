@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mcp_api_key_admin,mcp.api.key admin,model_mcp_api_key,group_mcp_admin,1,1,1,1
+access_mcp_api_key_access_admin,mcp.api.key.access admin,model_mcp_api_key_access,group_mcp_admin,1,1,1,1
+access_mcp_audit_log_admin,mcp.audit.log admin,model_mcp_audit_log,group_mcp_admin,1,0,0,1
+access_mcp_oauth_client_admin,mcp.oauth.client admin,model_mcp_oauth_client,group_mcp_admin,1,1,1,1
+access_mcp_oauth_code_admin,mcp.oauth.code admin,model_mcp_oauth_code,group_mcp_admin,1,0,0,0
+access_mcp_oauth_token_admin,mcp.oauth.token admin,model_mcp_oauth_token,group_mcp_admin,1,1,0,1

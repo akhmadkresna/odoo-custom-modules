@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_mcp_root" name="MCP" sequence="95" groups="group_mcp_admin"
+              web_icon="base,static/description/icon.png"/>
+    <menuitem id="menu_mcp_api_keys" name="API Keys" parent="menu_mcp_root" action="mcp_api_key_action" sequence="10"/>
+    <menuitem id="menu_mcp_oauth_clients" name="OAuth Clients" parent="menu_mcp_root" action="mcp_oauth_client_action" sequence="20"/>
+    <menuitem id="menu_mcp_oauth_tokens" name="OAuth Sessions" parent="menu_mcp_root" action="mcp_oauth_token_action" sequence="30"/>
+    <menuitem id="menu_mcp_audit" name="Audit Log" parent="menu_mcp_root" action="mcp_audit_log_action" sequence="40"/>
+</odoo>

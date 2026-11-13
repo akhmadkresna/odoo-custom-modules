@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mcp_audit_log_view_tree" model="ir.ui.view">
+        <field name="name">mcp.audit.log.tree</field>
+        <field name="model">mcp.audit.log</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" decoration-danger="status == 'error'" decoration-warning="status == 'denied'">
+                <field name="create_date"/>
+                <field name="user_id"/>
+                <field name="credential"/>
+                <field name="tool"/>
+                <field name="model_name"/>
+                <field name="status"/>
+                <field name="duration_ms"/>
+                <field name="message" optional="hide"/>
+                <field name="ip" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mcp_audit_log_view_form" model="ir.ui.view">
+        <field name="name">mcp.audit.log.form</field>
+        <field name="model">mcp.audit.log</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="user_id"/>
+                            <field name="source"/>
+                            <field name="credential"/>
+                            <field name="ip"/>
+                        </group>
+                        <group>
+                            <field name="tool"/>
+                            <field name="model_name"/>
+                            <field name="status"/>
+                            <field name="duration_ms"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="message"/>
+                        <field name="arguments"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="mcp_audit_log_view_search" model="ir.ui.view">
+        <field name="name">mcp.audit.log.search</field>
+        <field name="model">mcp.audit.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tool"/>
+                <field name="model_name"/>
+                <field name="user_id"/>
+                <filter name="denied" string="Denied / errors" domain="[('status', '!=', 'ok')]"/>
+                <group expand="0" string="Group by">
+                    <filter name="by_tool" string="Tool" context="{'group_by': 'tool'}"/>
+                    <filter name="by_user" string="User" context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="mcp_audit_log_action" model="ir.actions.act_window">
+        <field name="name">Audit Log</field>
+        <field name="res_model">mcp.audit.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
