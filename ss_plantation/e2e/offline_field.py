@@ -29,9 +29,12 @@ HARVESTER = os.environ.get('E2E_HARVESTER', 'E2E Harvester')
 PRODUCT = os.environ.get('E2E_PRODUCT', 'E2E NPK')
 ACT_TYPE = os.environ.get('E2E_ACT_TYPE', 'E2E Fertilising')
 NOTE = os.environ.get('E2E_NOTE', 'Round 2')
+DIVISION = os.environ.get('E2E_DIVISION')  # name of the division to record in; first one when not set
+COMPANY = int(os.environ['E2E_COMPANY']) if os.environ.get('E2E_COMPANY') else None  # company of the people created
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else 'offline_out')
 OUT.mkdir(parents=True, exist_ok=True)
 results = []
+CREATED = {}  # records this run made, by model: only these are removed at the end
 
 
 def rpc(model, method, **kw):
@@ -84,14 +87,15 @@ def cleanup(uuids=()):
         ids = rpc(model, 'search', domain=[['field_device_id.name', '=', 'E2E phone']], context={'active_test': False})
         if ids:
             rpc(model, 'unlink', ids=ids)
-    recent = (datetime.datetime.utcnow() - datetime.timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')  # leftovers of an interrupted run only
-    for model, name in (('product.product', PRODUCT), ('ss.plantation.activity.type', ACT_TYPE)):
-        ids = rpc(model, 'search', domain=[['name', '=', name], ['create_date', '>=', recent]], context={'active_test': False})
-        if ids:
-            rpc(model, 'unlink', ids=ids)
-    emp = rpc('hr.employee', 'search', domain=[['name', '=', HARVESTER], ['create_date', '>=', recent]], context={'active_test': False})
-    if emp:
-        rpc('hr.employee', 'unlink', ids=emp)
+    for model, rec_id in CREATED.items():
+        if rec_id:
+            rpc(model, 'unlink', ids=[rec_id])
+    if HARVESTER.startswith('E2E'):  # leftovers of an interrupted run, found by their test names
+        recent = (datetime.datetime.utcnow() - datetime.timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')
+        for model, name in (('product.product', PRODUCT), ('ss.plantation.activity.type', ACT_TYPE), ('hr.employee', HARVESTER)):
+            ids = rpc(model, 'search', domain=[['name', '=', name], ['create_date', '>=', recent]], context={'active_test': False})
+            if ids:
+                rpc(model, 'unlink', ids=ids)
     dev = rpc('ss.plantation.field.device', 'search', domain=[['name', '=', 'E2E phone']], context={'active_test': False})
     if dev:
         rpc('ss.plantation.field.device', 'unlink', ids=dev)
@@ -110,15 +114,21 @@ def main():
 
 
 def run(created_uuids):
-    employee = rpc('hr.employee', 'create', vals_list=[{'name': HARVESTER}])[0]
-    npk = rpc('product.product', 'create', vals_list=[{'name': PRODUCT, 'type': 'consu', 'is_storable': True}])[0]
-    act_type = rpc('ss.plantation.activity.type', 'create', vals_list=[{'name': ACT_TYPE, 'uom_basis': 'ha', 'requires_inputs': True}])[0]
+    employee = rpc('hr.employee', 'create', vals_list=[{'name': HARVESTER, **({'company_id': COMPANY} if COMPANY else {})}])[0]
+    CREATED['hr.employee'] = employee
+    # reuse a product / activity type of that name when it exists; only what this run creates is removed afterwards
+    found = rpc('product.product', 'search', domain=[['name', '=', PRODUCT], ['is_storable', '=', True]])
+    npk = found[0] if found else rpc('product.product', 'create', vals_list=[{'name': PRODUCT, 'type': 'consu', 'is_storable': True}])[0]
+    CREATED['product.product'] = None if found else npk
+    found = rpc('ss.plantation.activity.type', 'search', domain=[['name', '=', ACT_TYPE], ['requires_inputs', '=', True]])
+    act_type = found[0] if found else rpc('ss.plantation.activity.type', 'create', vals_list=[{'name': ACT_TYPE, 'uom_basis': 'ha', 'requires_inputs': True}])[0]
+    CREATED['ss.plantation.activity.type'] = None if found else act_type
     with sync_playwright() as p:
         browser = p.chromium.launch(args=[f'--host-resolver-rules=MAP {HOST} {IP}'] if IP else [])
         ctx = browser.new_context(viewport={'width': 390, 'height': 780}, locale='id-ID')
         page = ctx.new_page()
         page.on('pageerror', lambda e: print('PAGEERROR', e))
-        page.add_init_script(f'window.__e2e_name = {json.dumps(HARVESTER)}')
+        page.add_init_script(f'window.__e2e_name = {json.dumps(HARVESTER)}; window.__e2e_div = {json.dumps(DIVISION)};')
         base = f'https://{HOST}'
 
         # 1. sign in once with the normal Odoo login, then pair
@@ -156,7 +166,7 @@ def run(created_uuids):
         page.click('[data-action=new-tally]')
         info = page.evaluate('''async () => {
             const s = window.__field.sync;
-            const d = (await s.master("divisions"))[0];
+            const d = (await s.master("divisions")).find(x => !window.__e2e_div || x.name === window.__e2e_div);
             const blocks = (await s.master("blocks")).filter(b => b.division_id === d.id && b.stage === "mature");
             const h = (await s.master("harvesters")).find(x => x.name === window.__e2e_name);
             return {division: d.id, block: blocks[0] && (blocks[0].code + " - " + blocks[0].name), harvester: h.name};
@@ -224,7 +234,7 @@ def run(created_uuids):
         page.click('[data-action=home]')
         page.click('[data-action=activity]')
         page.click('[data-action=new-activity]')
-        block_id = page.evaluate('async () => (await window.__field.sync.master("blocks")).find(b => b.code === "A101").id')
+        block_id = page.evaluate('async (d) => (await window.__field.sync.master("blocks")).find(b => b.division_id === d && b.stage === "mature").id', info['division'])
         page.select_option('#af-block', value=str(block_id))
         page.select_option('#af-type', value=str(act_type))
         check('activity quantity defaults to the block area', page.input_value('#af-quantity') not in ('', '0'), page.input_value('#af-quantity'))

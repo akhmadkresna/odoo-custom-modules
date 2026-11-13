@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-13 04:43+0000\n"
+"POT-Creation-Date: 2026-11-13 05:42+0000\n"
 "PO-Revision-Date: 2026-11-03 07:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -244,6 +244,7 @@ msgstr "Tambahkan minimal %s titik, lalu tekan Selesai."
 
 #. module: ss_plantation
 #: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_pay__state__posted
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_search
 msgid "Added to Payslip"
 msgstr "Masuk ke Slip Gaji"
 
@@ -1013,6 +1014,7 @@ msgstr "Selesai"
 #: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_transport__state__draft
 #: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_weigh_ticket__state__draft
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_activity_view_search
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_search
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_tally_view_search
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_search
 msgid "Draft"
@@ -1069,6 +1071,7 @@ msgstr "Emoji atau teks pendek pada penanda peta."
 #. module: ss_plantation
 #: model:ir.model,name:ss_plantation.model_hr_employee
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__employee_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_search
 msgid "Employee"
 msgstr "Karyawan"
 
@@ -2151,6 +2154,7 @@ msgstr "Jumlah Penalti"
 #: code:addons/ss_plantation/data/files/manager_dashboard.json:0
 #: code:addons/ss_plantation/data/files/owner_dashboard.json:0
 #: code:addons/ss_plantation/data/files/weighbridge_dashboard.json:0
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_search
 msgid "Period"
 msgstr "Periode"
 
@@ -2504,6 +2508,7 @@ msgstr "Baris %(row)s: %(error)s"
 #. module: ss_plantation
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_pay__scheme_id
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_pay_scheme_tier__scheme_id
+#: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_harvest_pay_view_search
 msgid "Scheme"
 msgstr "Skema"
 

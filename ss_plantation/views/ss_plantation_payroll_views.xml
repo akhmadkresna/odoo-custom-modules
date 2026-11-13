@@ -62,6 +62,24 @@
         <field name="view_mode">list,form</field>
     </record>
 
+    <record id="ss_plantation_harvest_pay_view_search" model="ir.ui.view">
+        <field name="name">ss.plantation.harvest.pay.search</field>
+        <field name="model">ss.plantation.harvest.pay</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id"/>
+                <field name="scheme_id"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="posted" string="Added to Payslip" domain="[('state', '=', 'posted')]"/>
+                <group>
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_scheme" string="Scheme" context="{'group_by': 'scheme_id'}"/>
+                    <filter name="group_period" string="Period" context="{'group_by': 'date_from:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="ss_plantation_harvest_pay_view_list" model="ir.ui.view">
         <field name="name">ss.plantation.harvest.pay.list</field>
         <field name="model">ss.plantation.harvest.pay</field>

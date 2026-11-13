@@ -11,6 +11,8 @@ CO = int(__import__('os').environ.get('E2E_COMPANY', 2))  # the Indonesian (IDR)
 CTX = {'allowed_company_ids': sorted({CO, 1})}
 D1, D2 = '2026-11-02', '2026-11-03'
 PERIOD = ('2026-11-01', '2026-11-30')
+BLOCK_NAMES = {'E101': 'Sungai Dua', 'E102': 'Bukit Duri', 'E103': 'Tanjung Asri',
+               'E104': 'Lembah Hijau', 'E105': 'Rawa Mulya', 'E106': 'Pondok Baru'}
 S = {}          # ids created / found
 RESULTS = []
 
@@ -75,21 +77,21 @@ def _():
 @step("1.2 Input store location (division store)")
 def _():
     view = sr('stock.warehouse', [['id', '=', S['wh']]], ['view_location_id'], context=CTX)[0]['view_location_id'][0]
-    S['store'] = get_or_create('stock.location', [['name', '=', 'Estate Input Store'], ['company_id', '=', CO]],
-                               {'name': 'Estate Input Store', 'usage': 'internal', 'location_id': view, 'company_id': CO})
+    S['store'] = get_or_create('stock.location', [['name', '=', 'Gudang Input Afdeling I'], ['company_id', '=', CO]],
+                               {'name': 'Gudang Input Afdeling I', 'usage': 'internal', 'location_id': view, 'company_id': CO})
     return S['store']
 
 
 @step("1.3 Harvest pay schemes (piece rate / mixed / daily)")
 def _():
-    S['sch_piece'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Piece Rate (Rp 120/kg)'], ['company_id', '=', CO]], {
-        'name': 'Piece Rate (Rp 120/kg)', 'company_id': CO, 'mode': 'piece_rate', 'rate_per_kg': 120,
+    S['sch_piece'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Borongan per kg (Rp 120/kg)'], ['company_id', '=', CO]], {
+        'name': 'Borongan per kg (Rp 120/kg)', 'company_id': CO, 'mode': 'piece_rate', 'rate_per_kg': 120,
         'penalty_unripe': 2000, 'penalty_loose_left': 500})
-    S['sch_mixed'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Mixed (basis 1000 kg + Rp 250/kg)'], ['company_id', '=', CO]], {
-        'name': 'Mixed (basis 1000 kg + Rp 250/kg)', 'company_id': CO, 'mode': 'mixed', 'basis_kg': 1000, 'bonus_per_kg': 250,
+    S['sch_mixed'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Basis 1.000 kg + bonus Rp 250/kg'], ['company_id', '=', CO]], {
+        'name': 'Basis 1.000 kg + bonus Rp 250/kg', 'company_id': CO, 'mode': 'mixed', 'basis_kg': 1000, 'bonus_per_kg': 250,
         'penalty_unripe': 2000, 'penalty_loose_left': 500})
-    S['sch_daily'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Daily Wage (penalties only)'], ['company_id', '=', CO]], {
-        'name': 'Daily Wage (penalties only)', 'company_id': CO, 'mode': 'daily',
+    S['sch_daily'] = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Upah harian (denda saja)'], ['company_id', '=', CO]], {
+        'name': 'Upah harian (denda saja)', 'company_id': CO, 'mode': 'daily',
         'penalty_unripe': 2000, 'penalty_loose_left': 500})
     return {k: v for k, v in S.items() if k.startswith('sch_')}
 
@@ -106,7 +108,7 @@ def _():
 
 @step("1.5 FFB reference prices (general + tag 'Smallholder')")
 def _():
-    tag = get_or_create('res.partner.category', [['name', '=', 'Smallholder']], {'name': 'Smallholder'})
+    tag = get_or_create('res.partner.category', [['name', '=', 'Petani Plasma']], {'name': 'Petani Plasma'})
     S['tag'] = tag
     get_or_create('ss.plantation.ffb.price', [['company_id', '=', CO], ['partner_category_id', '=', False]],
                   {'company_id': CO, 'date_from': '2026-10-01', 'price_per_kg': 2400})
@@ -117,11 +119,11 @@ def _():
 @step("1.6 Estate / division / blocks (company 2)")
 def _():
     lon0, lat0 = 113.060, -1.510
-    est = get_or_create('ss.plantation.estate', [['code', '=', 'E2E'], ['company_id', '=', CO]],
-                        {'name': 'E2E Estate (Indonesia)', 'code': 'E2E', 'company_id': CO,
+    est = get_or_create('ss.plantation.estate', [['code', '=', 'SGR'], ['company_id', '=', CO]],
+                        {'name': 'Kebun Sungai Raya', 'code': 'SGR', 'company_id': CO,
                          'boundary_geojson': poly(lon0 - 0.001, lat0 - 0.001, 0.014)})
-    div = get_or_create('ss.plantation.division', [['code', '=', 'E-D1'], ['estate_id', '=', est]],
-                        {'name': 'E2E Division 1', 'code': 'E-D1', 'estate_id': est, 'store_location_id': S['store'],
+    div = get_or_create('ss.plantation.division', [['code', '=', 'AFD-I'], ['estate_id', '=', est]],
+                        {'name': 'Afdeling I', 'code': 'AFD-I', 'estate_id': est, 'store_location_id': S['store'],
                          'boundary_geojson': poly(lon0 - 0.0005, lat0 - 0.0005, 0.010)})
     S['est'], S['div'] = est, div
     specs = [('E101', 'mature', 2012), ('E102', 'mature', 2013), ('E103', 'mature', 2014),
@@ -130,7 +132,7 @@ def _():
     for i, (code, stage, yr) in enumerate(specs):
         row, col = divmod(i, 3)
         S['blk'][code] = get_or_create('ss.plantation.block', [['code', '=', code], ['division_id', '=', div]], {
-            'name': f'Block {code}', 'code': code, 'division_id': div, 'area_ha': 11.0,
+            'name': BLOCK_NAMES[code], 'code': code, 'division_id': div, 'area_ha': 11.0,
             'planting_date': f'{yr}-03-01', 'stage': stage, 'variety': 'Tenera DxP', 'stand_count': 1540,
             'avg_bunch_weight_kg': 14.5 if stage == 'mature' else 0,
             'boundary_geojson': poly(lon0 + col * 0.003, lat0 + row * 0.003)})
@@ -140,7 +142,7 @@ def _():
 @step("1.7 Landmarks for the estate (mill, weighbridge)")
 def _():
     types = {t['name']: t['id'] for t in sr('ss.plantation.landmark.type', [], ['name'])}
-    for name, tn, lon, lat in [('E2E Mill', 'Mill', 113.075, -1.5035), ('E2E Weighbridge', 'Weighbridge', 113.072, -1.5035)]:
+    for name, tn, lon, lat in [('PKS Sungai Raya', 'Mill', 113.075, -1.5035), ('Jembatan Timbang PKS', 'Weighbridge', 113.072, -1.5035)]:
         get_or_create('ss.plantation.landmark', [['name', '=', name]], {
             'name': name, 'type_id': types[tn], 'estate_id': S['est'], 'company_id': CO,
             'geometry_geojson': json.dumps({"type": "Point", "coordinates": [lon, lat]})})
@@ -148,8 +150,8 @@ def _():
 
 @step("1.8 Products: NPK fertilizer (storable, kg) + opening stock in input store")
 def _():
-    prod = get_or_create('product.product', [['name', '=', 'E2E NPK Fertilizer']], {
-        'name': 'E2E NPK Fertilizer', 'type': 'consu', 'is_storable': True, 'uom_id': S['kg']})
+    prod = get_or_create('product.product', [['name', '=', 'Pupuk NPK 15-15-15']], {
+        'name': 'Pupuk NPK 15-15-15', 'type': 'consu', 'is_storable': True, 'uom_id': S['kg']})
     S['npk'] = prod
     quant = c('stock.quant', 'create', vals_list=[{'product_id': prod, 'location_id': S['store'],
                                                  'inventory_quantity': 1000}],
@@ -160,10 +162,10 @@ def _():
 
 @step("1.9 Partners: smallholder supplier (tag) + buyer")
 def _():
-    S['sup'] = get_or_create('res.partner', [['name', '=', 'E2E Smallholder Pak Joko']], {
-        'name': 'E2E Smallholder Pak Joko', 'category_id': [[4, S['tag']]], 'supplier_rank': 1})
-    S['buyer'] = get_or_create('res.partner', [['name', '=', 'E2E PT Pembeli TBS']], {
-        'name': 'E2E PT Pembeli TBS', 'customer_rank': 1})
+    S['sup'] = get_or_create('res.partner', [['name', '=', 'Pak Joko (Petani Plasma)']], {
+        'name': 'Pak Joko (Petani Plasma)', 'category_id': [[4, S['tag']]], 'supplier_rank': 1})
+    S['buyer'] = get_or_create('res.partner', [['name', '=', 'PT Pembeli TBS Nusantara']], {
+        'name': 'PT Pembeli TBS Nusantara', 'customer_rank': 1})
 
 
 # ----------------------------------------------------------------------------------------------
@@ -174,7 +176,7 @@ def _():
     act_type = one('ss.plantation.activity.type', [['code', '=', 'FERT']], ['id'])['id']
     act = create('ss.plantation.activity', {
         'date': D1, 'block_id': S['blk']['E101'], 'type_id': act_type, 'quantity': 11.0, 'man_days': 6,
-        'company_id': CO, 'employee_ids': [[6, 0, [S['emp']['budi']]]], 'note': 'E2E fertilising',
+        'company_id': CO, 'employee_ids': [[6, 0, [S['emp']['budi']]]], 'note': 'Pemupukan putaran 2',
         'input_line_ids': [[0, 0, {'product_id': S['npk'], 'qty': 200}]]})
     c('ss.plantation.activity', 'action_done', ids=[act])
     S['act'] = act
