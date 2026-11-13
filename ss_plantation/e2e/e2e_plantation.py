@@ -306,8 +306,8 @@ def _():
 
 @step("3.3 Tiered premium and Sunday factor: scheme -> Sunday + Monday tallies -> Compute -> check amounts")
 def _():
-    sch = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Tiered (basis 1000, Rp 250, Rp 350 beyond 500 kg, Sunday x2)'], ['company_id', '=', CO]], {
-        'name': 'Tiered (basis 1000, Rp 250, Rp 350 beyond 500 kg, Sunday x2)', 'company_id': CO, 'mode': 'mixed',
+    sch = get_or_create('ss.plantation.pay.scheme', [['name', '=', 'Bertingkat (basis 1.000 kg, Rp 250, Rp 350 setelah 500 kg, Minggu x2)'], ['company_id', '=', CO]], {
+        'name': 'Bertingkat (basis 1.000 kg, Rp 250, Rp 350 setelah 500 kg, Minggu x2)', 'company_id': CO, 'mode': 'mixed',
         'basis_kg': 1000, 'bonus_per_kg': 250, 'holiday_factor': 2.0,
         'tier_ids': [[0, 0, {'above_kg': 500, 'rate_per_kg': 350}]]})
     rina = get_or_create('hr.employee', [['name', '=', 'Rina Wulandari'], ['company_id', '=', CO]],

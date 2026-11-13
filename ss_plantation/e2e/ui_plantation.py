@@ -133,7 +133,7 @@ with sync_playwright() as p:
     lst('Mill', 'Extraction Rates', 'Mill: Extraction Rates (OER/KER)')
     lst('Payroll', 'Pay Schemes', 'Payroll: Pay Schemes'); 
     def scheme_form():
-        row = pg.locator('.o_data_row:has-text("Tiered")')  # the tiered scheme made by the API run, if there
+        row = pg.locator('.o_data_row:has-text("Bertingkat")')  # the tiered ("Bertingkat") scheme made by the API run, if there
         (row.first if row.count() else pg.locator('.o_data_row').first).click()
         pg.wait_for_selector('.o_form_view')
     if pg.locator('.o_data_row').count():
