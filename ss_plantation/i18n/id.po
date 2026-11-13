@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 14:30+0000\n"
+"POT-Creation-Date: 2026-11-13 04:43+0000\n"
 "PO-Revision-Date: 2026-11-03 07:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgstr "'Tiket Timbang - %s' % object.name"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid ", then click the map."
-msgstr ""
+msgstr ", lalu klik peta."
 
 #. module: ss_plantation
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_weigh_ticket_view_form
@@ -102,6 +102,12 @@ msgstr "<strong>Kendaraan:</strong>"
 
 #. module: ss_plantation
 #. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "A block no longer exists."
+msgstr "Salah satu blok sudah tidak ada."
+
+#. module: ss_plantation
+#. odoo-python
 #: code:addons/ss_plantation/models/ss_plantation_weigh_ticket.py:0
 msgid ""
 "A confirmed ticket cannot be cancelled. Return the stock and issue a new "
@@ -126,10 +132,16 @@ msgstr ""
 "atas Basis pada skema."
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "A product no longer exists."
+msgstr "Salah satu produk sudah tidak ada."
+
+#. module: ss_plantation
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
 msgid "A shape needs at least %s points. Use Clear to remove it."
-msgstr ""
+msgstr "Bentuk memerlukan minimal %s titik. Gunakan Hapus untuk menghapusnya."
 
 #. module: ss_plantation
 #. odoo-python
@@ -228,7 +240,7 @@ msgstr "Tambah Gaji Panen"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.js:0
 msgid "Add at least %s points, then press Finish."
-msgstr ""
+msgstr "Tambahkan minimal %s titik, lalu tekan Selesai."
 
 #. module: ss_plantation
 #: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_harvest_pay__state__posted
@@ -246,7 +258,15 @@ msgid "Amount Total"
 msgstr "Total Jumlah"
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "An employee is not in the company of this entry."
+msgstr "Salah satu karyawan bukan dari perusahaan data ini."
+
+#. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__client_uuid
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__client_uuid
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__client_uuid
 msgid "App Reference"
 msgstr "Referensi Aplikasi"
 
@@ -329,6 +349,7 @@ msgstr ""
 
 #. module: ss_plantation
 #. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
 #: code:addons/ss_plantation/models/ss_plantation_harvest_tally_line.py:0
 msgid "Block %(block)s is not in division %(division)s."
 msgstr "Blok %(block)s tidak berada di divisi %(division)s."
@@ -451,6 +472,8 @@ msgid "Bunches Unripe"
 msgstr "Tandan Mentah"
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_transport_line_bunches_positive
 msgid "Bunches must be positive."
 msgstr "Jumlah tandan harus positif."
@@ -551,7 +574,7 @@ msgstr "Petugas"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Click the map to add points ("
-msgstr ""
+msgstr "Klik peta untuk menambah titik ("
 
 #. module: ss_plantation
 #. odoo-javascript
@@ -1002,24 +1025,26 @@ msgid ""
 "Drag a point to move it. Click a point to remove it. \"Draw again\" replaces "
 "the shape."
 msgstr ""
+"Seret titik untuk memindahkannya. Klik titik untuk menghapusnya. \"Gambar "
+"ulang\" mengganti bentuk."
 
 #. module: ss_plantation
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Draw again"
-msgstr ""
+msgstr "Gambar ulang"
 
 #. module: ss_plantation
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Draw shape"
-msgstr ""
+msgstr "Gambar bentuk"
 
 #. module: ss_plantation
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Drawing"
-msgstr ""
+msgstr "Menggambar"
 
 #. module: ss_plantation
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__driver_id
@@ -1216,7 +1241,7 @@ msgstr "Nama Berkas"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Finish"
-msgstr ""
+msgstr "Selesai"
 
 #. module: ss_plantation
 #. odoo-javascript
@@ -1421,7 +1446,9 @@ msgid "Icon"
 msgstr "Ikon"
 
 #. module: ss_plantation
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_activity__client_uuid
 #: model:ir.model.fields,help:ss_plantation.field_ss_plantation_harvest_tally__client_uuid
+#: model:ir.model.fields,help:ss_plantation.field_ss_plantation_transport__client_uuid
 msgid ""
 "Identifier generated by the offline field app. It makes re-sending the same "
 "entry harmless."
@@ -1876,7 +1903,7 @@ msgstr "Tidak ditemukan karyawan dengan skema gaji panen."
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "No shape yet. Press"
-msgstr ""
+msgstr "Belum ada bentuk. Tekan"
 
 #. module: ss_plantation
 #: model:ir.model.fields.selection,name:ss_plantation.selection__ss_plantation_activity_type__uom_basis__none
@@ -2414,6 +2441,12 @@ msgid "Quantity (ha / palms)"
 msgstr "Kuantitas (ha / pohon)"
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "Quantity and man days cannot be negative."
+msgstr "Jumlah dan hari orang tidak boleh negatif."
+
+#. module: ss_plantation
 #: model:ir.model.fields,field_description:ss_plantation.field_res_company__ss_warehouse_id
 #: model:ir.model.fields,field_description:ss_plantation.field_res_config_settings__ss_warehouse_id
 msgid "Receiving Warehouse"
@@ -2604,7 +2637,9 @@ msgid "Sync Count"
 msgstr "Jumlah Sinkron"
 
 #. module: ss_plantation
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity__field_device_id
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_harvest_tally__field_device_id
+#: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_transport__field_device_id
 msgid "Synced From"
 msgstr "Disinkronkan Dari"
 
@@ -2662,6 +2697,12 @@ msgid "The Sunday / Holiday factor cannot be below 1."
 msgstr "Faktor Minggu / Hari Libur tidak boleh di bawah 1."
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "The activity type no longer exists."
+msgstr "Jenis aktivitas sudah tidak ada."
+
+#. module: ss_plantation
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_block_area_positive
 msgid "The block area must be positive."
 msgstr "Luas blok harus positif."
@@ -2670,6 +2711,12 @@ msgstr "Luas blok harus positif."
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_block_code_company_uniq
 msgid "The block code must be unique per company."
 msgstr "Kode blok harus unik per perusahaan."
+
+#. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "The block no longer exists."
+msgstr "Blok sudah tidak ada."
 
 #. module: ss_plantation
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_pay_scheme_tier_rate_not_negative
@@ -2716,6 +2763,8 @@ msgid "The fruit waited"
 msgstr "Buah menunggu selama"
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_activity_input_qty_positive
 msgid "The input quantity must be positive."
 msgstr "Kuantitas input harus positif."
@@ -2752,12 +2801,20 @@ msgid "The tally has no lines."
 msgstr "Tally tidak punya baris."
 
 #. module: ss_plantation
+#. odoo-python
+#: code:addons/ss_plantation/controllers/field.py:0
+msgid "The transport note has no lines."
+msgstr "Nota angkut tidak punya baris."
+
+#. module: ss_plantation
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_yield_report_view_search
 msgid "This Year"
 msgstr "Tahun Ini"
 
 #. module: ss_plantation
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_activity_client_uuid_unique
 #: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_harvest_tally_client_uuid_unique
+#: model:ir.model.constraint,message:ss_plantation.constraint_ss_plantation_transport_client_uuid_unique
 msgid "This entry from the field app was already received."
 msgstr "Data dari aplikasi lapangan ini sudah diterima."
 
@@ -2872,7 +2929,7 @@ msgstr "Jenis"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "Undo last point"
-msgstr ""
+msgstr "Urungkan titik terakhir"
 
 #. module: ss_plantation
 #: model:ir.model.fields,field_description:ss_plantation.field_ss_plantation_activity_input__uom_id
@@ -3070,7 +3127,7 @@ msgstr "Hasil, 30 hari terakhir"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "added, at least"
-msgstr ""
+msgstr "ditambahkan, minimal"
 
 #. module: ss_plantation
 #: model_terms:ir.ui.view,arch_db:ss_plantation.ss_plantation_block_view_form
@@ -3099,4 +3156,4 @@ msgstr "kg"
 #. odoo-javascript
 #: code:addons/ss_plantation/static/src/geojson_draw/geojson_draw.xml:0
 msgid "needed), then press Finish."
-msgstr ""
+msgstr "diperlukan), lalu tekan Selesai."

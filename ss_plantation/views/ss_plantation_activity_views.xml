@@ -61,6 +61,10 @@
                         </page>
                         <page string="Notes" name="notes">
                             <field name="note"/>
+                            <group invisible="not field_device_id">
+                                <field name="field_device_id"/>
+                                <field name="client_uuid" groups="base.group_no_one"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

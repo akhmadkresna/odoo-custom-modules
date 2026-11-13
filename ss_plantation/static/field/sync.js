@@ -1,7 +1,7 @@
 import * as db from './db.js';
 import { call, ApiError } from './api.js';
 
-export const MASTER_KEYS = ['divisions', 'blocks', 'harvesters', 'activity_types', 'landmarks'];
+export const MASTER_KEYS = ['divisions', 'blocks', 'harvesters', 'activity_types', 'landmarks', 'products'];
 const SYNCED_KEEP_MS = 3 * 24 * 3600 * 1000;
 const BATCH = 50;
 const BACKOFF_MS = [0, 5000, 15000, 60000, 300000]; // retry delays by attempt count
@@ -59,7 +59,9 @@ async function applyMaster(payload) {
 }
 
 export async function refreshMaster() {
-  const since = await db.getMeta('master_time');
+  // A phone paired before a new kind of reference data existed asks for everything again.
+  const stored = await Promise.all(MASTER_KEYS.map((key) => db.get('master', key)));
+  const since = stored.every(Boolean) ? await db.getMeta('master_time') : null;
   const payload = await call(since ? 'delta?since=' + encodeURIComponent(since) : 'bootstrap');
   await applyMaster(payload);
   await db.setMeta('master_checked', Date.now());

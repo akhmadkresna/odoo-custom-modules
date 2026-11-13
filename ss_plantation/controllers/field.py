@@ -17,6 +17,13 @@ APP_PATH = '/plantation/field'
 STATIC_URL = '/ss_plantation/static/field/'
 SCHEMA_VERSION = 1
 
+# entry type -> model that stores it, so a replayed entry can be found by its client_uuid
+OP_MODELS = {
+    'harvest_tally': 'ss.plantation.harvest.tally',
+    'transport_note': 'ss.plantation.transport',
+    'field_activity': 'ss.plantation.activity',
+}
+
 # What the phone caches. model -> (key in the payload, odoo model, fields, domain).
 # Rows are read with the device user's own access rights.
 MASTER = {
@@ -24,7 +31,8 @@ MASTER = {
     'blocks': ('ss.plantation.block', [
         'name', 'code', 'division_id', 'stage', 'area_ha', 'avg_bunch_weight_kg'], []),
     'harvesters': ('hr.employee', ['name', 'barcode', 'company_id'], []),  # read with sudo, see _master
-    'activity_types': ('ss.plantation.activity.type', ['name', 'code', 'uom_basis'], []),
+    'activity_types': ('ss.plantation.activity.type', ['name', 'code', 'uom_basis', 'requires_inputs'], []),
+    'products': ('product.product', ['name', 'default_code', 'uom_id'], [('is_storable', '=', True)]),
     'landmarks': ('ss.plantation.landmark', [
         'name', 'type_id', 'division_id', 'latitude', 'longitude'], []),
 }
@@ -153,6 +161,8 @@ class PlantationFieldApp(http.Controller):
     @staticmethod
     def _row(record, field_names):
         row = {'id': record.id}
+        if record._name == 'product.product':
+            row['uom_name'] = record.uom_id.name or ''
         if 'active' in record._fields:
             row['active'] = record.active
         for fname in field_names:
@@ -236,7 +246,7 @@ class PlantationFieldApp(http.Controller):
                     'message': request.env._("The entry has an invalid value.")}
         except psycopg2.IntegrityError:
             # Another request stored the same entry first, or a database rule refused it.
-            existing = request.env['ss.plantation.harvest.tally'].search(
+            existing = request.env[OP_MODELS.get(op.get('type'), 'ss.plantation.harvest.tally')].search(
                 [('client_uuid', '=', uuid)], limit=1)
             if existing:
                 return {'uuid': uuid, 'status': 'duplicate', 'id': existing.id, 'name': existing.name}
@@ -285,3 +295,95 @@ class PlantationFieldApp(http.Controller):
             'line_ids': lines,
         })
         return tally, True
+
+    def _employee(self, value, company):
+        """An employee id from the phone, or an empty record when none was given."""
+        if not value:
+            return request.env['hr.employee']
+        employee = request.env['hr.employee'].sudo().browse(int(value)).exists()
+        if not employee or employee.company_id != company:
+            raise ValidationError(request.env._("An employee is not in the company of this entry."))
+        return employee
+
+    def _op_transport_note(self, uuid, p, device):
+        env = request.env
+        Note = env['ss.plantation.transport']
+        division = env['ss.plantation.division'].browse(int(p.get('division_id') or 0)).exists()
+        if not division:
+            raise ValidationError(env._("The division no longer exists."))
+        existing = Note.search([('client_uuid', '=', uuid), ('company_id', '=', division.company_id.id)], limit=1)
+        if existing:
+            return existing, False
+        lines = []
+        for line in p.get('lines') or []:
+            block = env['ss.plantation.block'].browse(int(line.get('block_id') or 0)).exists()
+            if not block:
+                raise ValidationError(env._("A block no longer exists."))
+            if block.division_id != division:
+                raise ValidationError(env._(
+                    "Block %(block)s is not in division %(division)s.",
+                    block=block.display_name, division=division.display_name))
+            bunches = int(line.get('bunches') or 0)
+            if bunches <= 0:
+                raise ValidationError(env._("Bunches must be positive."))
+            lines.append((0, 0, {'block_id': block.id, 'bunches': bunches}))
+        if not lines:
+            raise ValidationError(env._("The transport note has no lines."))
+        vals = {
+            'date': p.get('date') or fields.Date.context_today(Note),
+            'division_id': division.id,
+            'company_id': division.company_id.id,
+            'plate': str(p.get('plate') or '').strip().upper()[:32],
+            'driver_id': self._employee(p.get('driver_id'), division.company_id).id or False,
+            'client_uuid': uuid,
+            'field_device_id': device.id,
+            'line_ids': lines,
+        }
+        if p.get('harvested_at'):
+            vals['harvested_at'] = fields.Datetime.to_datetime(p['harvested_at'])
+        return Note.create(vals), True
+
+    def _op_field_activity(self, uuid, p, device):
+        env = request.env
+        Activity = env['ss.plantation.activity']
+        block = env['ss.plantation.block'].browse(int(p.get('block_id') or 0)).exists()
+        if not block:
+            raise ValidationError(env._("The block no longer exists."))
+        existing = Activity.search([('client_uuid', '=', uuid), ('company_id', '=', block.company_id.id)], limit=1)
+        if existing:
+            return existing, False
+        act_type = env['ss.plantation.activity.type'].browse(int(p.get('type_id') or 0)).exists()
+        if not act_type:
+            raise ValidationError(env._("The activity type no longer exists."))
+        quantity = float(p.get('quantity') or 0)
+        man_days = float(p.get('man_days') or 0)
+        if quantity < 0 or man_days < 0:
+            raise ValidationError(env._("Quantity and man days cannot be negative."))
+        if not quantity and act_type.uom_basis == 'ha':
+            quantity = block.area_ha
+        inputs = []
+        for line in p.get('inputs') or []:
+            product = env['product.product'].browse(int(line.get('product_id') or 0)).exists()
+            qty = float(line.get('qty') or 0)
+            if not product:
+                raise ValidationError(env._("A product no longer exists."))
+            if qty <= 0:
+                raise ValidationError(env._("The input quantity must be positive."))
+            inputs.append((0, 0, {'product_id': product.id, 'qty': qty}))
+        workers = [self._employee(w, block.company_id).id for w in (p.get('employee_ids') or [])]
+        activity = Activity.create({
+            'date': p.get('date') or fields.Date.context_today(Activity),
+            'block_id': block.id,
+            'company_id': block.company_id.id,
+            'type_id': act_type.id,
+            'quantity': quantity,
+            'man_days': man_days,
+            'note': str(p.get('note') or '')[:2000],
+            'input_line_ids': inputs,
+            'client_uuid': uuid,
+            'field_device_id': device.id,
+        })
+        if workers:
+            # Clerks may not touch employee records, yet recording who worked is their job.
+            activity.sudo().employee_ids = [(6, 0, workers)]
+        return activity, True

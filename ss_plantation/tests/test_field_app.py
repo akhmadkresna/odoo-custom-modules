@@ -189,3 +189,104 @@ class TestFieldApp(SsPlantationCommon, HttpCase):
         self.assertNotIn('__ASSETS__', sw.text)
         self.assertIn('/ss_plantation/static/field/app.js', sw.text)
         self.assertEqual(sw.text, self.url_open('/plantation/field/sw.js').text, "stable version string")
+
+    # ---- transport notes and field activities ----
+
+    def _transport_op(self, uuid, bunches=40, block=None, **payload):
+        return {'uuid': uuid, 'type': 'transport_note', 'payload': {
+            'date': str(fields.Date.today()), 'harvested_at': '2026-11-03 06:30:00',
+            'division_id': self.division.id, 'plate': ' kt 1234 ab ', 'driver_id': self.harvester.id,
+            'lines': [{'block_id': (block or self.block).id, 'bunches': bunches}], **payload}}
+
+    def test_transport_note_synced_as_draft_and_replay_is_harmless(self):
+        op = self._transport_op('a1111111-1111-4111-8111-111111111111')
+        res = self._post('sync', {'ops': [op]}).json()['results'][0]
+        self.assertEqual(res['status'], 'ok')
+        note = self.env['ss.plantation.transport'].browse(res['id'])
+        self.assertEqual(note.state, 'draft')
+        self.assertEqual(note.plate, 'KT 1234 AB', "the plate is tidied up")
+        self.assertEqual(note.driver_id, self.harvester)
+        self.assertEqual(str(note.harvested_at), '2026-11-03 06:30:00')
+        self.assertEqual(note.bunch_total, 40)
+        self.assertEqual(note.field_device_id, self.device)
+        again = self._post('sync', {'ops': [op]}).json()['results'][0]
+        self.assertEqual((again['status'], again['id']), ('duplicate', note.id))
+        self.assertEqual(self.env['ss.plantation.transport'].search_count(
+            [('client_uuid', '=', op['uuid'])]), 1)
+
+    def test_transport_note_rejections(self):
+        other_division = self.env['ss.plantation.division'].create({
+            'name': 'Afdeling II', 'code': 'D2', 'estate_id': self.estate.id})
+        foreign = self.env['ss.plantation.block'].create({
+            'name': 'Block X', 'code': 'TX01', 'division_id': other_division.id, 'area_ha': 5.0,
+            'avg_bunch_weight_kg': 15.0, 'stage': 'mature'})
+        ops = [
+            self._transport_op('a2222222-2222-4222-8222-222222222222', block=foreign),
+            self._transport_op('a3333333-3333-4333-8333-333333333333', bunches=0),
+            self._transport_op('a4444444-4444-4444-8444-444444444444', lines=[]),
+            self._transport_op('a5555555-5555-4555-8555-555555555555', harvested_at='not a time'),
+            self._transport_op('a6666666-6666-4666-8666-666666666666'),
+        ]
+        results = self._post('sync', {'ops': ops}).json()['results']
+        self.assertEqual([r['status'] for r in results], ['rejected'] * 4 + ['ok'])
+        self.assertEqual(results[0]['code'], 'validation')
+        self.assertEqual(results[3]['code'], 'bad_request')
+        self.assertFalse(self.env['ss.plantation.transport'].search(
+            [('client_uuid', 'in', [o['uuid'] for o in ops[:4]])]))
+
+    def _activity_op(self, uuid, act_type, **payload):
+        return {'uuid': uuid, 'type': 'field_activity', 'payload': {
+            'date': str(fields.Date.today()), 'block_id': self.block.id, 'type_id': act_type.id,
+            'man_days': 3, 'employee_ids': [self.harvester.id, self.harvester_2.id], 'note': 'Round 2',
+            **payload}}
+
+    def test_field_activity_synced_as_draft_with_inputs(self):
+        Type = self.env['ss.plantation.activity.type']
+        fert = Type.create({'name': 'Fertilising T', 'uom_basis': 'ha', 'requires_inputs': True})
+        npk = self.env['product.product'].sudo().create({'name': 'NPK T', 'type': 'consu', 'is_storable': True})
+        op = self._activity_op('b1111111-1111-4111-8111-111111111111', fert,
+                               inputs=[{'product_id': npk.id, 'qty': 120.0}])
+        res = self._post('sync', {'ops': [op]}).json()['results'][0]
+        self.assertEqual(res['status'], 'ok', res)
+        act = self.env['ss.plantation.activity'].browse(res['id'])
+        self.assertEqual(act.state, 'draft', "stock is only used when the supervisor marks it Done")
+        self.assertEqual(act.quantity, self.block.area_ha, "hectare-based types default to the block area")
+        self.assertEqual(act.man_days, 3)
+        self.assertEqual(act.employee_ids, self.harvester + self.harvester_2)
+        self.assertEqual(act.input_line_ids.product_id, npk)
+        self.assertEqual(act.input_line_ids.qty, 120.0)
+        self.assertEqual(act.field_device_id, self.device)
+        again = self._post('sync', {'ops': [op]}).json()['results'][0]
+        self.assertEqual((again['status'], again['id']), ('duplicate', act.id))
+
+    def test_field_activity_rejections(self):
+        Type = self.env['ss.plantation.activity.type']
+        plain = Type.create({'name': 'Weeding T', 'uom_basis': 'ha', 'requires_inputs': False})
+        npk = self.env['product.product'].sudo().create({'name': 'NPK U', 'type': 'consu', 'is_storable': True})
+        ops = [
+            self._activity_op('b2222222-2222-4222-8222-222222222222', plain,
+                              inputs=[{'product_id': npk.id, 'qty': 5.0}]),  # type does not use inputs
+            self._activity_op('b3333333-3333-4333-8333-333333333333', plain,
+                              inputs=[{'product_id': npk.id, 'qty': 0}]),
+            self._activity_op('b4444444-4444-4444-8444-444444444444', plain, man_days=-1),
+            self._activity_op('b5555555-5555-4555-8555-555555555555', plain, block_id=0),
+            self._activity_op('b6666666-6666-4666-8666-666666666666', plain),
+        ]
+        results = self._post('sync', {'ops': ops}).json()['results']
+        self.assertEqual([r['status'] for r in results], ['rejected'] * 4 + ['ok'], results)
+        self.assertFalse(self.env['ss.plantation.activity'].search(
+            [('client_uuid', 'in', [o['uuid'] for o in ops[:4]])]))
+
+    def test_bootstrap_has_products_and_input_flag(self):
+        Type = self.env['ss.plantation.activity.type']
+        fert = Type.create({'name': 'Fertilising V', 'uom_basis': 'ha', 'requires_inputs': True})
+        kg = self.env.ref('uom.product_uom_kgm')
+        npk = self.env['product.product'].sudo().create({
+            'name': 'NPK V', 'type': 'consu', 'is_storable': True, 'uom_id': kg.id})
+        service = self.env['product.product'].sudo().create({'name': 'Consult V', 'type': 'service'})
+        data = self._get('bootstrap').json()['data']
+        products = {p['id']: p for p in data['products']}
+        self.assertEqual(products[npk.id]['uom_name'], kg.name)
+        self.assertNotIn(service.id, products, "only storable products can be inputs")
+        types = {t['id']: t for t in data['activity_types']}
+        self.assertTrue(types[fert.id]['requires_inputs'])

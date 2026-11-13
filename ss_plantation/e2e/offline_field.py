@@ -74,6 +74,14 @@ def cleanup(uuids=()):
         context={'active_test': False})
     if ids:
         rpc('ss.plantation.harvest.tally', 'unlink', ids=ids)
+    for model in ('ss.plantation.transport', 'ss.plantation.activity'):
+        ids = rpc(model, 'search', domain=[['field_device_id.name', '=', 'E2E phone']], context={'active_test': False})
+        if ids:
+            rpc(model, 'unlink', ids=ids)
+    for model, name in (('product.product', 'E2E NPK'), ('ss.plantation.activity.type', 'E2E Fertilising')):
+        ids = rpc(model, 'search', domain=[['name', '=', name]], context={'active_test': False})
+        if ids:
+            rpc(model, 'unlink', ids=ids)
     emp = rpc('hr.employee', 'search', domain=[['name', '=', 'E2E Harvester']], context={'active_test': False})
     if emp:
         rpc('hr.employee', 'unlink', ids=emp)
@@ -96,6 +104,8 @@ def main():
 
 def run(created_uuids):
     employee = rpc('hr.employee', 'create', vals_list=[{'name': 'E2E Harvester'}])[0]
+    npk = rpc('product.product', 'create', vals_list=[{'name': 'E2E NPK', 'type': 'consu', 'is_storable': True}])[0]
+    act_type = rpc('ss.plantation.activity.type', 'create', vals_list=[{'name': 'E2E Fertilising', 'uom_basis': 'ha', 'requires_inputs': True}])[0]
     with sync_playwright() as p:
         browser = p.chromium.launch(args=[f'--host-resolver-rules=MAP {HOST} {IP}'] if IP else [])
         ctx = browser.new_context(viewport={'width': 390, 'height': 780}, locale='id-ID')
@@ -140,7 +150,7 @@ def run(created_uuids):
             const s = window.__field.sync;
             const d = (await s.master("divisions"))[0];
             const blocks = (await s.master("blocks")).filter(b => b.division_id === d.id && b.stage === "mature");
-            const h = (await s.master("harvesters"))[0];
+            const h = (await s.master("harvesters")).find(x => x.name === "E2E Harvester");
             return {division: d.id, block: blocks[0] && (blocks[0].code + " - " + blocks[0].name), harvester: h.name};
         }''')
         page.select_option('#f-division', value=str(info['division']))
@@ -185,12 +195,66 @@ def run(created_uuids):
         count = rpc('ss.plantation.harvest.tally', 'search_count', domain=[['client_uuid', '=', created_uuids[0]]])
         check('re-sending the same entry does not duplicate it', count == 1, str(count))
 
+        # 6b. transport note and field activity recorded offline, sent later
+        ctx.set_offline(True)
+        page.evaluate('window.dispatchEvent(new Event("offline"))')
+        page.click('[data-action=home]')
+        page.click('[data-action=transport]')
+        page.click('[data-action=new-transport]')
+        page.select_option('#tf-division', value=str(info['division']))
+        page.fill('#tf-plate', 'kt 1234 ab')
+        page.fill('#pk-driver', 'E2E')
+        page.click('#pk-driver-results button')
+        page.select_option('#tf-block', label=info['block'])
+        page.fill('#tf-bunches', '40')
+        page.click('[data-action=add-tline]')
+        shot(page, '06b_transport_form')
+        page.click('[data-action=save-transport]')
+        wait_for(page, 'window.__field.db.all("outbox").then(r => r.some(e => e.type === "transport_note" && e.status === "pending"))')
+        check('transport note saved on the phone while offline', True)
+
+        page.click('[data-action=home]')
+        page.click('[data-action=activity]')
+        page.click('[data-action=new-activity]')
+        block_id = page.evaluate('async () => (await window.__field.sync.master("blocks")).find(b => b.code === "A101").id')
+        page.select_option('#af-block', value=str(block_id))
+        page.select_option('#af-type', value=str(act_type))
+        check('activity quantity defaults to the block area', page.input_value('#af-quantity') not in ('', '0'), page.input_value('#af-quantity'))
+        page.fill('#af-man_days', '4')
+        page.fill('#pk-worker', 'E2E')
+        page.click('#pk-worker-results button')
+        page.fill('#pk-product', 'E2E NPK')
+        page.click('#pk-product-results button')
+        page.fill('#af-inqty', '5')
+        page.click('[data-action=add-input]')
+        page.fill('#af-note', 'Round 2')
+        page.evaluate('window.scrollTo(0, 0)')
+        shot(page, '06c_activity_form')
+        page.click('[data-action=save-activity]')
+        wait_for(page, 'window.__field.db.all("outbox").then(r => r.some(e => e.type === "field_activity" && e.status === "pending"))')
+        check('field activity saved on the phone while offline', True)
+
+        ctx.set_offline(False)
+        page.evaluate('window.dispatchEvent(new Event("online"))')
+        wait_for(page, 'window.__field.db.all("outbox").then(r => r.filter(e => e.type !== "harvest_tally").every(e => e.status === "synced") && r.some(e => e.type === "transport_note"))', 40000)
+        notes = rpc('ss.plantation.transport', 'search_read', domain=[['field_device_id.name', '=', 'E2E phone']],
+                    fields=['state', 'plate', 'bunch_total', 'driver_id', 'harvested_at'])
+        check('transport note reached Odoo as a draft with plate, driver and bunches',
+              len(notes) == 1 and notes[0]['state'] == 'draft' and notes[0]['plate'] == 'KT 1234 AB' and notes[0]['bunch_total'] == 40
+              and notes[0]['driver_id'], str(notes))
+        acts = rpc('ss.plantation.activity', 'search_read', domain=[['field_device_id.name', '=', 'E2E phone']],
+                   fields=['state', 'man_days', 'employee_ids', 'input_line_ids', 'note', 'quantity'])
+        check('field activity reached Odoo as a draft with worker, input and note',
+              len(acts) == 1 and acts[0]['state'] == 'draft' and acts[0]['man_days'] == 4 and len(acts[0]['employee_ids']) == 1
+              and len(acts[0]['input_line_ids']) == 1 and acts[0]['note'] == 'Round 2' and acts[0]['quantity'] > 0, str(acts))
+        shot(page, '06d_all_synced')
+
         # 7. a server-side rejection lands in Needs attention with a readable reason
         ctx.set_offline(True)
         page.evaluate('window.dispatchEvent(new Event("offline"))')
         entry = page.evaluate('''async (info) => { const s = window.__field.sync;
             const blocks = (await s.master("blocks")).filter(b => b.division_id === info.division && b.stage === "mature");
-            const h = (await s.master("harvesters"))[0];
+            const h = (await s.master("harvesters")).find(x => x.name === "E2E Harvester");
             const e = await s.enqueue("harvest_tally", {date: new Date(Date.now() + 864e5).toLocaleDateString("sv"),
               division_id: info.division, lines: [{harvester_id: h.id, harvester_name: h.name, block_id: blocks[0].id,
               block_name: blocks[0].code, bunches_ripe: 5, bunches_overripe: 0, bunches_unripe: 0, loose_fruit_kg: 0},
